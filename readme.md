@@ -2,7 +2,6 @@
 
 [![Build Status][travis-image]][travis-url]
 [![npm][npm-image]][npm-url]
-[![Codecov.io][codecov-image]][codecov-url]
 
 > [BuckleScript](//github.com/BuckleScript/bucklescript) bindings for [dom-testing-library](//github.com/kentcdodds/dom-testing-library).
 
@@ -112,6 +111,3 @@ MIT © [Neil Kistner](https://neilkistner.com)
 
 [npm-image]: https://img.shields.io/npm/v/bs-dom-testing-library.svg?style=flat-square
 [npm-url]: https://npm.im/bs-dom-testing-library
-
-[codecov-image]: https://img.shields.io/codecov/c/github/wyze/bs-dom-testing-library.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/wyze/bs-dom-testing-library
