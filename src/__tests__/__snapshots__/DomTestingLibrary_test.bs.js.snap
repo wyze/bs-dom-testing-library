@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DomTestingLibrary getByText works with function matcher 1`] = `
+<p>
+   World!
+</p>
+`;
+
+exports[`DomTestingLibrary getByText works with regex matcher 1`] = `
+<p>
+   World!
+</p>
+`;
+
+exports[`DomTestingLibrary getByText works with string matcher 1`] = `
+<b>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary getNodeTest works 1`] = `"Hello,"`;
+
+exports[`DomTestingLibrary prettyDOM works 1`] = `
+"[36m<div>[39m
+  [36m<b>[39m
+    [0mHello,[0m
+  [36m</b>[39m
+  [36m<p>[39m
+    [0m World![0m
+  [36m</p>[39m
+[36m</div>[39m"
+`;
+
+exports[`DomTestingLibrary prettyDOM works with maxLength 1`] = `
+"[36m<div>[39m
+  [36m<b..."
+`;
