@@ -83,6 +83,14 @@ external getNodeText : Dom.element => string = "";
 
 let getByTestId: (string, Dom.element) => Dom.element;
 
+let getByPlaceholderText: (string, Dom.element) => Dom.element;
+
+let getByAltText: (string, Dom.element) => Dom.element;
+
+let getByTitle: (string, Dom.element) => Dom.element;
+
+let getByValue: (string, Dom.element) => Dom.element;
+
 let getByText:
   (
     ~matcher: [

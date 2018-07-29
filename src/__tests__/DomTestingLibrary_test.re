@@ -25,7 +25,15 @@ describe("DomTestingLibrary", () => {
   open Expect;
 
   let div = domParser()
-    |> parseFromString("<div><b>Hello,</b><p> World!</p></div>")
+    |> parseFromString({j|
+        <div>
+          <b title="greeting">Hello,</b>
+          <p data-testid="world"> World!</p>
+          <input type="text" placeholder="Enter something" />
+          <input type="text" value="Some value" />
+          <img src="" alt="Alt text" />
+        </div>
+      |j})
     |> body
     |> firstChild;
 
@@ -43,8 +51,38 @@ describe("DomTestingLibrary", () => {
     });
   });
 
-  test("getNodeTest works", () => {
-    let actual = div |> firstChild |> getNodeText;
+  test("getNodeText works", () => {
+    let actual = div |> getByTitle("greeting") |> getNodeText;
+
+    expect(actual) |> toMatchSnapshot;
+  });
+
+  test("getByTestId works", () => {
+    let actual = div |> getByTestId("world");
+
+    expect(actual) |> toMatchSnapshot;
+  });
+
+  test("getByPlaceholderText works", () => {
+    let actual = div |> getByPlaceholderText("Enter something");
+
+    expect(actual) |> toMatchSnapshot;
+  });
+
+  test("getByAltText works", () => {
+    let actual = div |> getByAltText("Alt text");
+
+    expect(actual) |> toMatchSnapshot;
+  });
+
+  test("getByTitle works", () => {
+    let actual = div |> getByTitle("greeting");
+
+    expect(actual) |> toMatchSnapshot;
+  });
+
+  test("getByValue works", () => {
+    let actual = div |> getByValue("Some value");
 
     expect(actual) |> toMatchSnapshot;
   });
