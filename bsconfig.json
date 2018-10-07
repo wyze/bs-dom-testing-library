@@ -25,6 +25,7 @@
     }
   ],
   "bs-dev-dependencies": [
-    "bs-jest"
+    "bs-jest",
+    "bs-webapi"
   ]
 }

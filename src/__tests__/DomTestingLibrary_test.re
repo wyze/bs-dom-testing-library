@@ -138,4 +138,37 @@ describe("DomTestingLibrary", () => {
         |> Js.Promise.catch(_ => Js.Promise.resolve(pass));
     });
   });
+
+  describe("FireEvent", () => {
+    test("click works", () => {
+      open Webapi.Dom;
+
+      let node = document |> Document.createElement("button");
+      let spy = JestJs.inferred_fn();
+      let fn = spy |> MockJs.fn;
+      let clickHandler = _ => [@bs] fn("clicked!") |> ignore;
+
+      node |> Element.addEventListener("click", clickHandler);
+
+      FireEvent.click(node);
+
+      expect(spy |> MockJs.calls) |> toEqual([|"clicked!"|]);
+    });
+
+    test("change works", () => {
+      open Webapi.Dom;
+
+      let node = document |> Document.createElement("input");
+      let spy = JestJs.inferred_fn();
+      let fn = spy |> MockJs.fn;
+      let changeHandler = _ => [@bs] fn("changed!") |> ignore;
+      let event = Event.makeWithOptions("change", { "target": { "value": "1" } });
+
+      node |> Element.addEventListener("change", changeHandler);
+
+      FireEvent.change(node, event);
+
+      expect(spy |> MockJs.calls) |> toEqual([|"changed!"|]);
+    });
+  });
 });

@@ -1,3 +1,5 @@
+module FireEvent = DomTestingLibrary__FireEvent;
+
 module Query = {
   type options = {
     .
