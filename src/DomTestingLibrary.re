@@ -5,6 +5,7 @@ module Query = {
     "exact": Js.undefined(bool),
     "selector": Js.undefined(string),
     "trim": Js.undefined(bool),
+    "ignore": Js.undefined(string),
   };
 
   [@bs.obj]
@@ -14,6 +15,7 @@ module Query = {
       ~exact: bool=?,
       ~selector: string=?,
       ~trim: bool=?,
+      ~ignore: string=?,
       unit
     ) =>
     options =
