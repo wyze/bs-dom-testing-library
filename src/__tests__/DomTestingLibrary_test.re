@@ -2,6 +2,10 @@ open Jest;
 open Webapi.Dom;
 open Webapi.Dom.Element;
 
+[@bs.get] external tagName : Dom.element => string = "";
+
+[@bs.val] external setTimeout : (unit => unit, int) => float = "setTimeout";
+
 let render = html => {
   let body = Document.createElement("body", document);
 
@@ -19,55 +23,18 @@ afterEach(() =>
   }
 );
 
-type parser;
-
-[@bs.new]
-external domParser : unit => parser = "DOMParser";
-
-[@bs.send.pipe : parser]
-external parseFromString : ( string, [@bs.as "text/html"] _) => Dom.element = "";
-
-[@bs.get]
-external body : Dom.element => Dom.element = "";
-
-[@bs.get]
-external firstChild : Dom.element => Dom.element = "";
-
-[@bs.get]
-external tagName : Dom.element => string = "";
-
-[@bs.val]
-external setTimeout : (unit => unit, int) => float = "setTimeout";
-
 describe("DomTestingLibrary", () => {
   open DomTestingLibrary;
   open Expect;
 
-  let div = domParser()
-    |> parseFromString({j|
-        <div>
-          <b title="greeting">Hello,</b>
-          <p data-testid="world"> World!</p>
-          <input type="text" placeholder="Enter something" />
-          <input type="text" value="Some value" />
-          <img src="" alt="Alt text" />
-        </div>
-      |j})
-    |> body
-    |> firstChild;
-
   describe("prettyDOM", () => {
-    test("works", () => {
-      let actual = div |> prettyDOM;
+    let html = {|<b title="greeting">Hello,</b><p data-testid="world"> World!</p><input type="text" placeholder="Enter something" /><input type="text" value="Some value" /><img src="" alt="Alt text" />|};
 
-      expect(actual) |> toMatchSnapshot;
-    });
+    test("works", () => render(html) |> prettyDOM |> expect |> toMatchSnapshot);
 
-    test("works with maxLength", () => {
-      let actual = div |> prettyDOM(~maxLength=25);
-
-      expect(actual) |> toMatchSnapshot;
-    });
+    test("works with maxLength", () =>
+      render(html) |> prettyDOM(~maxLength=60) |> expect |> toMatchSnapshot
+    );
   });
 
   test("getNodeText works", () =>
@@ -78,35 +45,40 @@ describe("DomTestingLibrary", () => {
     |> toMatchSnapshot
   );
 
-  test("getByTestId works", () => {
-    let actual = div |> getByTestId("world");
+  test("getByTestId works", () =>
+    render({|<p data-testid="world"> World!</p>|})
+    |> getByTestId("world")
+    |> expect
+    |> toMatchSnapshot
+  );
 
-    expect(actual) |> toMatchSnapshot;
-  });
+  test("getByPlaceholderText works", () =>
+    render({|<input type="text" placeholder="Enter something" />|})
+    |> getByPlaceholderText("Enter something")
+    |> expect
+    |> toMatchSnapshot
+  );
 
-  test("getByPlaceholderText works", () => {
-    let actual = div |> getByPlaceholderText("Enter something");
+  test("getByAltText works", () =>
+    render({|<img src="" alt="Alt text" />|})
+    |> getByAltText("Alt text")
+    |> expect
+    |> toMatchSnapshot
+  );
 
-    expect(actual) |> toMatchSnapshot;
-  });
+  test("getByTitle works", () =>
+    render({|<b title="greeting">Hello,</b>|})
+    |> getByTitle("greeting")
+    |> expect
+    |> toMatchSnapshot
+  );
 
-  test("getByAltText works", () => {
-    let actual = div |> getByAltText("Alt text");
-
-    expect(actual) |> toMatchSnapshot;
-  });
-
-  test("getByTitle works", () => {
-    let actual = div |> getByTitle("greeting");
-
-    expect(actual) |> toMatchSnapshot;
-  });
-
-  test("getByValue works", () => {
-    let actual = div |> getByValue("Some value");
-
-    expect(actual) |> toMatchSnapshot;
-  });
+  test("getByValue works", () =>
+    render({|<input type="text" value="Some value" />|})
+    |> getByValue("Some value")
+    |> expect
+    |> toMatchSnapshot
+  );
 
   describe("getByText", () => {
     test("works with string matcher", () =>

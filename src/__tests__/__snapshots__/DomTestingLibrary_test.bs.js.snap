@@ -64,46 +64,34 @@ exports[`DomTestingLibrary getByValue works 1`] = `
 exports[`DomTestingLibrary getNodeText works 1`] = `"Hello,"`;
 
 exports[`DomTestingLibrary prettyDOM works 1`] = `
-"[36m<div>[39m
-  [0m
-          [0m
+"[36m<body>[39m
   [36m<b[39m
     [33mtitle[39m=[32m\\"greeting\\"[39m
   [36m>[39m
     [0mHello,[0m
   [36m</b>[39m
-  [0m
-          [0m
   [36m<p[39m
     [33mdata-testid[39m=[32m\\"world\\"[39m
   [36m>[39m
     [0m World![0m
   [36m</p>[39m
-  [0m
-          [0m
   [36m<input[39m
     [33mplaceholder[39m=[32m\\"Enter something\\"[39m
     [33mtype[39m=[32m\\"text\\"[39m
   [36m/>[39m
-  [0m
-          [0m
   [36m<input[39m
     [33mtype[39m=[32m\\"text\\"[39m
     [33mvalue[39m=[32m\\"Some value\\"[39m
   [36m/>[39m
-  [0m
-          [0m
   [36m<img[39m
     [33malt[39m=[32m\\"Alt text\\"[39m
     [33msrc[39m=[32m\\"\\"[39m
   [36m/>[39m
-  [0m
-        [0m
-[36m</div>[39m"
+[36m</body>[39m"
 `;
 
 exports[`DomTestingLibrary prettyDOM works with maxLength 1`] = `
-"[36m<div>[39m
-  [0m
-  ..."
+"[36m<body>[39m
+  [36m<b[39m
+    [33mtitle[39m=[32m\\"gr..."
 `;
