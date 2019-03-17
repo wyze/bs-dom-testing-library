@@ -2,9 +2,9 @@ open Jest;
 open Webapi.Dom;
 open Webapi.Dom.Element;
 
-[@bs.get] external tagName : Dom.element => string = "";
+[@bs.get] external tagName: Dom.element => string = "";
 
-[@bs.val] external setTimeout : (unit => unit, int) => float = "setTimeout";
+[@bs.val] external setTimeout: (unit => unit, int) => float = "setTimeout";
 
 let render = html => {
   let body = Document.createElement("body", document);
@@ -30,7 +30,9 @@ describe("DomTestingLibrary", () => {
   describe("prettyDOM", () => {
     let html = {|<b title="greeting">Hello,</b><p data-testid="world"> World!</p><input type="text" placeholder="Enter something" /><input type="text" value="Some value" /><img src="" alt="Alt text" />|};
 
-    test("works", () => render(html) |> prettyDOM |> expect |> toMatchSnapshot);
+    test("works", () =>
+      render(html) |> prettyDOM |> expect |> toMatchSnapshot
+    );
 
     test("works with maxLength", () =>
       render(html) |> prettyDOM(~maxLength=60) |> expect |> toMatchSnapshot
@@ -97,7 +99,9 @@ describe("DomTestingLibrary", () => {
 
     test("works with function matcher", () =>
       render({|<p data-testid="world"> World!</p>|})
-      |> getByText(~matcher=`Func(( _text, node ) => (node |> tagName) === "P"))
+      |> getByText(
+           ~matcher=`Func((_text, node) => node |> tagName === "P"),
+         )
       |> expect
       |> toMatchSnapshot
     );
@@ -107,21 +111,20 @@ describe("DomTestingLibrary", () => {
     testPromise("works", () => {
       let number = ref(10);
       let timeout = Js.Math.floor(Js.Math.random() *. 300.);
-      let _ = setTimeout(() => { number := 100 }, timeout);
+      let _ = setTimeout(() => number := 100, timeout);
       let callback = () => assert(number^ == 100);
 
-      wait(~callback, ())
-        |> Js.Promise.then_(_ => Js.Promise.resolve(pass));
+      wait(~callback, ()) |> Js.Promise.then_(_ => Js.Promise.resolve(pass));
     });
 
     testPromise("supports timeout option", () => {
       let number = ref(10);
-      let _ = setTimeout(() => { number := 100 }, 1000);
+      let _ = setTimeout(() => number := 100, 1000);
       let callback = () => assert(number^ == 100);
       let options = Wait.makeOptions(~timeout=500, ());
 
       wait(~callback, ~options, ())
-        |> Js.Promise.catch(_ => Js.Promise.resolve(pass));
+      |> Js.Promise.catch(_ => Js.Promise.resolve(pass));
     });
 
     testPromise("supports interval option", () => {
@@ -130,7 +133,7 @@ describe("DomTestingLibrary", () => {
       let options = Wait.makeOptions(~interval=10, ~timeout=45, ());
 
       wait(~callback, ~options, ())
-        |> Js.Promise.catch(_ => Js.Promise.resolve(pass));
+      |> Js.Promise.catch(_ => Js.Promise.resolve(pass));
     });
   });
 
@@ -139,7 +142,7 @@ describe("DomTestingLibrary", () => {
       let node = document |> Document.createElement("button");
       let spy = JestJs.inferred_fn();
       let fn = spy |> MockJs.fn;
-      let clickHandler = _ => [@bs] fn("clicked!") |> ignore;
+      let clickHandler = _ => fn(. "clicked!") |> ignore;
 
       node |> Element.addEventListener("click", clickHandler);
 
@@ -152,12 +155,16 @@ describe("DomTestingLibrary", () => {
       let node = document |> Document.createElement("input");
       let spy = JestJs.inferred_fn();
       let fn = spy |> MockJs.fn;
-      let changeHandler = _ => [@bs] fn("changed!") |> ignore;
-      let event = Event.makeWithOptions("change", { "target": { "value": "1" } });
+      let changeHandler = _ => fn(. "changed!") |> ignore;
+      let eventInit = {
+        "target": {
+          "value": "1",
+        },
+      };
 
       node |> Element.addEventListener("change", changeHandler);
 
-      FireEvent.change(node, event);
+      FireEvent.change(~eventInit, node);
 
       expect(spy |> MockJs.calls) |> toEqual([|"changed!"|]);
     });
