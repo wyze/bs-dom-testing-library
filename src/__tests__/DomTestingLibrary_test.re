@@ -1,4 +1,23 @@
 open Jest;
+open Webapi.Dom;
+open Webapi.Dom.Element;
+
+let render = html => {
+  let body = Document.createElement("body", document);
+
+  body->setInnerHTML(html);
+
+  document->Document.unsafeAsHtmlDocument->HtmlDocument.setBody(body);
+
+  body;
+};
+
+afterEach(() =>
+  switch (document->Document.unsafeAsHtmlDocument->HtmlDocument.body) {
+  | Some(body) => body->setInnerHTML("")
+  | None => raise(Failure("Not document body found"))
+  }
+);
 
 type parser;
 
@@ -51,11 +70,13 @@ describe("DomTestingLibrary", () => {
     });
   });
 
-  test("getNodeText works", () => {
-    let actual = div |> getByTitle("greeting") |> getNodeText;
-
-    expect(actual) |> toMatchSnapshot;
-  });
+  test("getNodeText works", () =>
+    render({|<b title="greeting">Hello,</b>|})
+    |> getByTitle("greeting")
+    |> getNodeText
+    |> expect
+    |> toMatchSnapshot
+  );
 
   test("getByTestId works", () => {
     let actual = div |> getByTestId("world");
@@ -88,24 +109,26 @@ describe("DomTestingLibrary", () => {
   });
 
   describe("getByText", () => {
-    test("works with string matcher", () => {
-      let actual = div |> getByText(~matcher=`Str("Hello,"));
+    test("works with string matcher", () =>
+      render({|<b title="greeting">Hello,</b>|})
+      |> getByText(~matcher=`Str("Hello,"))
+      |> expect
+      |> toMatchSnapshot
+    );
 
-      expect(actual) |> toMatchSnapshot;
-    });
+    test("works with regex matcher", () =>
+      render({|<p data-testid="world"> World!</p>|})
+      |> getByText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+      |> expect
+      |> toMatchSnapshot
+    );
 
-    test("works with regex matcher", () => {
-      let actual = div |> getByText(~matcher=`RegExp([%bs.re "/\\w!/"]));
-
-      expect(actual) |> toMatchSnapshot;
-    });
-
-    test("works with function matcher", () => {
-      let matcher = ( _text, node ) => (node |> tagName) === "P";
-      let actual = div |> getByText(~matcher=`Func(matcher));
-
-      expect(actual) |> toMatchSnapshot;
-    });
+    test("works with function matcher", () =>
+      render({|<p data-testid="world"> World!</p>|})
+      |> getByText(~matcher=`Func(( _text, node ) => (node |> tagName) === "P"))
+      |> expect
+      |> toMatchSnapshot
+    );
   });
 
   describe("wait", () => {
@@ -141,8 +164,6 @@ describe("DomTestingLibrary", () => {
 
   describe("FireEvent", () => {
     test("click works", () => {
-      open Webapi.Dom;
-
       let node = document |> Document.createElement("button");
       let spy = JestJs.inferred_fn();
       let fn = spy |> MockJs.fn;
@@ -156,8 +177,6 @@ describe("DomTestingLibrary", () => {
     });
 
     test("change works", () => {
-      open Webapi.Dom;
-
       let node = document |> Document.createElement("input");
       let spy = JestJs.inferred_fn();
       let fn = spy |> MockJs.fn;
