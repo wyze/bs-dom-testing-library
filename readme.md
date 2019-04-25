@@ -78,12 +78,11 @@ $ yarn test
 
 > [Full Change Log](changelog.md)
 
-### [v0.4.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.4.0) (2019-04-05)
+### [v0.4.1](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.4.1) (2019-04-24)
 
-* Add the rest of the events and change method signature ([@wyze](https://github.com/wyze) in [0814ce1](https://github.com/wyze/bs-dom-testing-library/commit/0814ce1))
-* Change tests to use new render function ([@wyze](https://github.com/wyze) in [feeb021](https://github.com/wyze/bs-dom-testing-library/commit/feeb021))
-* Meta file updates ([@wyze](https://github.com/wyze) in [3ab333b](https://github.com/wyze/bs-dom-testing-library/commit/3ab333b))
-* Upgrade dependencies ([@wyze](https://github.com/wyze) in [bcded3e](https://github.com/wyze/bs-dom-testing-library/commit/bcded3e))
+* Add documentation link to readme ([@wyze](https://github.com/wyze) in [f5fb3dc](https://github.com/wyze/bs-dom-testing-library/commit/f5fb3dc))
+* Add `getByLabelText` query ([@wyze](https://github.com/wyze) in [48acf68](https://github.com/wyze/bs-dom-testing-library/commit/48acf68))
+* Run formatter ([@wyze](https://github.com/wyze) in [4fe146a](https://github.com/wyze/bs-dom-testing-library/commit/4fe146a))
 
 ## License
 
