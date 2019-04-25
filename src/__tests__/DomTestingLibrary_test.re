@@ -107,6 +107,33 @@ describe("DomTestingLibrary", () => {
     );
   });
 
+  describe("getByLabelText", () => {
+    test("works with string matcher", () =>
+      render({|<label>Hello, <input /></label>|})
+      |> getByLabelText(~matcher=`Str("Hello,"))
+      |> expect
+      |> toMatchSnapshot
+    );
+
+    test("works with regex matcher", () =>
+      render(
+        {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
+      )
+      |> getByLabelText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+      |> expect
+      |> toMatchSnapshot
+    );
+
+    test("works with function matcher", () =>
+      render({|<p aria-label="message"> World!</p>|})
+      |> getByLabelText(
+           ~matcher=`Func((_text, node) => node |> tagName === "P"),
+         )
+      |> expect
+      |> toMatchSnapshot
+    );
+  });
+
   describe("wait", () => {
     testPromise("works", () => {
       let number = ref(10);

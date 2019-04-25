@@ -106,3 +106,15 @@ let getByText:
     Dom.element
   ) =>
   Dom.element;
+
+let getByLabelText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Query.options=?,
+    Dom.element
+  ) =>
+  Dom.element;

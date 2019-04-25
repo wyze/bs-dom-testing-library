@@ -7,6 +7,31 @@ exports[`DomTestingLibrary getByAltText works 1`] = `
 />
 `;
 
+exports[`DomTestingLibrary getByLabelText works with function matcher 1`] = `
+<p
+  aria-label="message"
+>
+   World!
+</p>
+`;
+
+exports[`DomTestingLibrary getByLabelText works with regex matcher 1`] = `
+<section
+  aria-labelledby="section-one-header"
+>
+  <h3
+    id="section-one-header"
+  >
+    Section One!
+  </h3>
+  <p>
+    some content
+  </p>
+</section>
+`;
+
+exports[`DomTestingLibrary getByLabelText works with string matcher 1`] = `<input />`;
+
 exports[`DomTestingLibrary getByPlaceholderText works 1`] = `
 <input
   placeholder="Enter something"

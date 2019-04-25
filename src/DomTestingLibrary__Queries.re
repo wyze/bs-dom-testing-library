@@ -68,3 +68,24 @@ external _getByText:
 
 let getByText = (~matcher, ~options=?, element) =>
   _getByText(element, ~matcher, ~options=Js.Undefined.fromOption(options));
+
+[@bs.module "dom-testing-library"]
+external _getByLabelText:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Str(string)
+                | `RegExp(Js.Re.t)
+                | `Func((string, Dom.element) => bool)
+              ],
+    ~options: Js.undefined(Query.options)
+  ) =>
+  Dom.element =
+  "getByLabelText";
+
+let getByLabelText = (~matcher, ~options=?, element) =>
+  _getByLabelText(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
