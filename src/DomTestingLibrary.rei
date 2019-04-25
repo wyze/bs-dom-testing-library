@@ -10,7 +10,7 @@ module Query: {
     "ignore": Js.undefined(string),
   };
   [@bs.obj]
-  external makeOptions :
+  external makeOptions:
     (
       ~collapseWhitespace: bool=?,
       ~exact: bool=?,
@@ -29,7 +29,7 @@ module Wait: {
     "timeout": Js.undefined(int),
   };
   [@bs.obj]
-  external makeOptions : (~interval: int=?, ~timeout: int=?, unit) => options =
+  external makeOptions: (~interval: int=?, ~timeout: int=?, unit) => options =
     "";
 };
 module WaitForElement: {
@@ -48,7 +48,7 @@ module WaitForElement: {
     "timeout": Js.undefined(int),
   };
   [@bs.obj]
-  external makeOptions :
+  external makeOptions:
     (
       ~container: Dom.element=?,
       ~mutationObserverInit: mutationObserverOptions=?,
@@ -58,7 +58,7 @@ module WaitForElement: {
     options =
     "";
   [@bs.obj]
-  external makeMutationObserverOptions :
+  external makeMutationObserverOptions:
     (
       ~attributeFilter: array(string)=?,
       ~attributeOldValue: bool=?,
@@ -83,7 +83,7 @@ let waitForElement:
 let prettyDOM: (~maxLength: int=?, Dom.element) => string;
 
 [@bs.module "dom-testing-library"]
-external getNodeText : Dom.element => string = "";
+external getNodeText: Dom.element => string = "";
 
 let getByTestId: (string, Dom.element) => Dom.element;
 

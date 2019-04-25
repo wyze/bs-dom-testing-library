@@ -9,7 +9,7 @@ module Query = {
   };
 
   [@bs.obj]
-  external makeOptions :
+  external makeOptions:
     (
       ~collapseWhitespace: bool=?,
       ~exact: bool=?,
@@ -23,65 +23,37 @@ module Query = {
 };
 
 [@bs.module "dom-testing-library"]
-external getNodeText : Dom.element => string = "";
+external getNodeText: Dom.element => string = "";
 
 [@bs.module "dom-testing-library"]
-external _getByTestId :
- (
-   Dom.element,
-   string
- ) =>
- Dom.element =
- "getByTestId";
+external _getByTestId: (Dom.element, string) => Dom.element = "getByTestId";
 
 let getByTestId = (id, element) => _getByTestId(element, id);
 
 [@bs.module "dom-testing-library"]
-external _getByTitle :
- (
-   Dom.element,
-   string
- ) =>
- Dom.element =
- "getByTitle";
+external _getByTitle: (Dom.element, string) => Dom.element = "getByTitle";
 
 let getByTitle = (id, element) => _getByTitle(element, id);
 
 [@bs.module "dom-testing-library"]
-external _getByPlaceholderText :
- (
-   Dom.element,
-   string
- ) =>
- Dom.element =
- "getByPlaceholderText";
+external _getByPlaceholderText: (Dom.element, string) => Dom.element =
+  "getByPlaceholderText";
 
-let getByPlaceholderText = (id, element) => _getByPlaceholderText(element, id);
+let getByPlaceholderText = (id, element) =>
+  _getByPlaceholderText(element, id);
 
 [@bs.module "dom-testing-library"]
-external _getByAltText :
- (
-   Dom.element,
-   string
- ) =>
- Dom.element =
- "getByAltText";
+external _getByAltText: (Dom.element, string) => Dom.element = "getByAltText";
 
 let getByAltText = (id, element) => _getByAltText(element, id);
 
 [@bs.module "dom-testing-library"]
-external _getByValue :
- (
-   Dom.element,
-   string
- ) =>
- Dom.element =
- "getByValue";
+external _getByValue: (Dom.element, string) => Dom.element = "getByValue";
 
 let getByValue = (id, element) => _getByValue(element, id);
 
 [@bs.module "dom-testing-library"]
-external _getByText :
+external _getByText:
   (
     Dom.element,
     ~matcher: [@bs.unwrap] [

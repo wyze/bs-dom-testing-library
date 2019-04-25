@@ -6,7 +6,7 @@ module Wait = {
   };
 
   [@bs.obj]
-  external makeOptions : (~interval: int=?, ~timeout: int=?, unit) => options =
+  external makeOptions: (~interval: int=?, ~timeout: int=?, unit) => options =
     "";
 };
 
@@ -27,7 +27,7 @@ module WaitForElement = {
   };
 
   [@bs.obj]
-  external makeOptions :
+  external makeOptions:
     (
       ~container: Dom.element=?,
       ~mutationObserverInit: mutationObserverOptions=?,
@@ -38,7 +38,7 @@ module WaitForElement = {
     "";
 
   [@bs.obj]
-  external makeMutationObserverOptions :
+  external makeMutationObserverOptions:
     (
       ~attributeFilter: array(string)=?,
       ~attributeOldValue: bool=?,
@@ -53,7 +53,7 @@ module WaitForElement = {
 };
 
 [@bs.module "dom-testing-library"]
-external _wait :
+external _wait:
   (Js.undefined(unit => unit), Js.undefined(Wait.options)) =>
   Js.Promise.t('a) =
   "wait";
@@ -65,7 +65,7 @@ let wait = (~callback=?, ~options=?, ()) =>
   );
 
 [@bs.module "dom-testing-library"]
-external _waitForElement :
+external _waitForElement:
   (Js.undefined(unit => 'a), Js.undefined(WaitForElement.options)) =>
   Js.Promise.t('a) =
   "waitForElement";
@@ -77,8 +77,7 @@ let waitForElement = (~callback=?, ~options=?, ()) =>
   );
 
 [@bs.module "dom-testing-library"]
-external _prettyDOM : (Dom.element, Js.undefined(int)) => string =
-  "prettyDOM";
+external _prettyDOM: (Dom.element, Js.undefined(int)) => string = "prettyDOM";
 
 let prettyDOM = (~maxLength=?, element) =>
   _prettyDOM(element, Js.Undefined.fromOption(maxLength));
