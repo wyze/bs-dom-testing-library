@@ -52,7 +52,7 @@ module WaitForElement = {
     "";
 };
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _wait:
   (Js.undefined(unit => unit), Js.undefined(Wait.options)) =>
   Js.Promise.t('a) =
@@ -64,7 +64,7 @@ let wait = (~callback=?, ~options=?, ()) =>
     Js.Undefined.fromOption(options),
   );
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _waitForElement:
   (Js.undefined(unit => 'a), Js.undefined(WaitForElement.options)) =>
   Js.Promise.t('a) =
@@ -76,7 +76,7 @@ let waitForElement = (~callback=?, ~options=?, ()) =>
     Js.Undefined.fromOption(options),
   );
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _prettyDOM: (Dom.element, Js.undefined(int)) => string = "prettyDOM";
 
 let prettyDOM = (~maxLength=?, element) =>

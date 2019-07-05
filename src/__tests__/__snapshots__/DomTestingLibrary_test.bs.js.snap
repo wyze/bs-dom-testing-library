@@ -7,6 +7,13 @@ exports[`DomTestingLibrary getByAltText works 1`] = `
 />
 `;
 
+exports[`DomTestingLibrary getByDisplayValue works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
 exports[`DomTestingLibrary getByLabelText works with function matcher 1`] = `
 <p
   aria-label="message"
@@ -77,13 +84,6 @@ exports[`DomTestingLibrary getByTitle works 1`] = `
 >
   Hello,
 </b>
-`;
-
-exports[`DomTestingLibrary getByValue works 1`] = `
-<input
-  type="text"
-  value="Some value"
-/>
 `;
 
 exports[`DomTestingLibrary getNodeText works 1`] = `"Hello,"`;

@@ -22,37 +22,37 @@ module Query = {
     "";
 };
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "";
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _getByTestId: (Dom.element, string) => Dom.element = "getByTestId";
 
 let getByTestId = (id, element) => _getByTestId(element, id);
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _getByTitle: (Dom.element, string) => Dom.element = "getByTitle";
 
 let getByTitle = (id, element) => _getByTitle(element, id);
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _getByPlaceholderText: (Dom.element, string) => Dom.element =
   "getByPlaceholderText";
 
 let getByPlaceholderText = (id, element) =>
   _getByPlaceholderText(element, id);
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _getByAltText: (Dom.element, string) => Dom.element = "getByAltText";
 
 let getByAltText = (id, element) => _getByAltText(element, id);
 
-[@bs.module "dom-testing-library"]
-external _getByValue: (Dom.element, string) => Dom.element = "getByValue";
+[@bs.module "@testing-library/dom"]
+external _getByDisplayValue: (Dom.element, string) => Dom.element = "getByDisplayValue";
 
-let getByValue = (id, element) => _getByValue(element, id);
+let getByDisplayValue = (id, element) => _getByDisplayValue(element, id);
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _getByText:
   (
     Dom.element,
@@ -69,7 +69,7 @@ external _getByText:
 let getByText = (~matcher, ~options=?, element) =>
   _getByText(element, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external _getByLabelText:
   (
     Dom.element,
