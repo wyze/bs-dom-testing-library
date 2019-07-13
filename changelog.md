@@ -1,10 +1,5 @@
 ## Change Log
 
-### [v0.5.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.5.0) (2019-07-05)
-
-* Upgrade `dom-testing-library` to 5.0 ([@jihchi](https://github.com/jihchi) in [#8](https://github.com/wyze/bs-dom-testing-library/pull/8))
-* Rename `getByValue` to `getByDisplayValue` ([@jihchi](https://github.com/jihchi) in [#8](https://github.com/wyze/bs-dom-testing-library/pull/8))
-
 ### [v0.4.1](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.4.1) (2019-04-24)
 
 * Add documentation link to readme ([@wyze](https://github.com/wyze) in [f5fb3dc](https://github.com/wyze/bs-dom-testing-library/commit/f5fb3dc))
