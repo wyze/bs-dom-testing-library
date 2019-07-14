@@ -82,7 +82,7 @@ let waitForElement:
 
 let prettyDOM: (~maxLength: int=?, Dom.element) => string;
 
-[@bs.module "dom-testing-library"]
+[@bs.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "";
 
 let getByTestId: (string, Dom.element) => Dom.element;
@@ -93,7 +93,7 @@ let getByAltText: (string, Dom.element) => Dom.element;
 
 let getByTitle: (string, Dom.element) => Dom.element;
 
-let getByValue: (string, Dom.element) => Dom.element;
+let getByDisplayValue: (string, Dom.element) => Dom.element;
 
 let getByText:
   (

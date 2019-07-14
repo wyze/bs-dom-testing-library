@@ -75,9 +75,9 @@ describe("DomTestingLibrary", () => {
     |> toMatchSnapshot
   );
 
-  test("getByValue works", () =>
+  test("getByDisplayValue works", () =>
     render({|<input type="text" value="Some value" />|})
-    |> getByValue("Some value")
+    |> getByDisplayValue("Some value")
     |> expect
     |> toMatchSnapshot
   );
