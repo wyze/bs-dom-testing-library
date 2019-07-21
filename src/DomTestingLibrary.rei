@@ -82,8 +82,15 @@ let waitForElement:
 
 let prettyDOM: (~maxLength: int=?, Dom.element) => string;
 
+type configureOptions = {. "testIdAttribute": Js.undefined(string)};
+
 let configure:
-  (~update: [ | `Func(Js.t({..}) => Js.t({..})) | `Object(Js.t({..}))]) =>
+  (
+    ~update: [
+               | `Func(Js.t({..}) => Js.t({..}))
+               | `Object(configureOptions)
+             ]
+  ) =>
   unit;
 
 [@bs.module "@testing-library/dom"]

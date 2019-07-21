@@ -55,7 +55,12 @@ describe("DomTestingLibrary", () => {
   );
 
   test("getByTestId works with a custom test ID", () => {
-    configure(~update=`Object({"testIdAttribute": "data-custom-test-id"}));
+    configure(
+      ~update=
+        `Object({
+          "testIdAttribute": Js.Undefined.return("data-custom-test-id"),
+        }),
+    );
     render({|<p data-custom-test-id="world"> World!</p>|})
     |> getByTestId("world")
     |> expect
