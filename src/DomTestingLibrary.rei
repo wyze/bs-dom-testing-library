@@ -82,6 +82,10 @@ let waitForElement:
 
 let prettyDOM: (~maxLength: int=?, Dom.element) => string;
 
+let configure:
+  (~update: [ | `Func(Js.t({..}) => Js.t({..})) | `Object(Js.t({..}))]) =>
+  unit;
+
 [@bs.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "";
 

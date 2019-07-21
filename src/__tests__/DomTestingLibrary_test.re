@@ -54,6 +54,14 @@ describe("DomTestingLibrary", () => {
     |> toMatchSnapshot
   );
 
+  test("getByTestId works with a custom test ID", () => {
+    configure(~update=`Object({"testIdAttribute": "data-custom-test-id"}));
+    render({|<p data-custom-test-id="world"> World!</p>|})
+    |> getByTestId("world")
+    |> expect
+    |> toMatchSnapshot;
+  });
+
   test("getByPlaceholderText works", () =>
     render({|<input type="text" placeholder="Enter something" />|})
     |> getByPlaceholderText("Enter something")

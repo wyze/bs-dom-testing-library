@@ -54,6 +54,14 @@ exports[`DomTestingLibrary getByTestId works 1`] = `
 </p>
 `;
 
+exports[`DomTestingLibrary getByTestId works with a custom test ID 1`] = `
+<p
+  data-custom-test-id="world"
+>
+   World!
+</p>
+`;
+
 exports[`DomTestingLibrary getByText works with function matcher 1`] = `
 <p
   data-testid="world"
