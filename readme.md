@@ -78,11 +78,10 @@ $ yarn test
 
 > [Full Change Log](changelog.md)
 
-### [v0.4.1](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.4.1) (2019-04-24)
+### [v0.5.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.5.0) (2019-07-21)
 
-* Add documentation link to readme ([@wyze](https://github.com/wyze) in [f5fb3dc](https://github.com/wyze/bs-dom-testing-library/commit/f5fb3dc))
-* Add `getByLabelText` query ([@wyze](https://github.com/wyze) in [48acf68](https://github.com/wyze/bs-dom-testing-library/commit/48acf68))
-* Run formatter ([@wyze](https://github.com/wyze) in [4fe146a](https://github.com/wyze/bs-dom-testing-library/commit/4fe146a))
+* Upgrade dependencies ([@wyze](https://github.com/wyze) in [6a209e0](https://github.com/wyze/bs-dom-testing-library/commit/6a209e0))
+* Upgrade dom-testing-library to v5 ([@jihchi](https://github.com/jihchi) in [#8](https://github.com/wyze/bs-dom-testing-library/pull/8))
 
 ## License
 
