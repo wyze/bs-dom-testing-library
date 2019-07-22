@@ -87,7 +87,7 @@ type configureOptions = {. "testIdAttribute": Js.undefined(string)};
 let configure:
   (
     ~update: [
-               | `Func(Js.t({..}) => Js.t({..}))
+               | `Func(configureOptions => configureOptions)
                | `Object(configureOptions)
              ]
   ) =>

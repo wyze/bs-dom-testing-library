@@ -93,7 +93,7 @@ external configureWithObject: configureOptions => unit = "configure";
 let configure =
     (
       ~update: [
-         | `Func(Js.t({..}) => Js.t({..}))
+         | `Func(configureOptions => configureOptions)
          | `Object(configureOptions)
        ],
     ) => {

@@ -54,17 +54,35 @@ describe("DomTestingLibrary", () => {
     |> toMatchSnapshot
   );
 
-  test("getByTestId works with a custom test ID", () => {
-    configure(
-      ~update=
-        `Object({
-          "testIdAttribute": Js.Undefined.return("data-custom-test-id"),
-        }),
-    );
-    render({|<p data-custom-test-id="world"> World!</p>|})
-    |> getByTestId("world")
-    |> expect
-    |> toMatchSnapshot;
+  describe("configure works", () => {
+    test("using an object", () => {
+      configure(
+        ~update=
+          `Object({
+            "testIdAttribute": Js.Undefined.return("data-custom-test-id"),
+          }),
+      );
+      render({|<p data-custom-test-id="world"> World!</p>|})
+      |> getByTestId("world")
+      |> expect
+      |> toMatchSnapshot;
+    });
+
+    test("using a function", () => {
+      configure(
+        ~update=
+          `Func(
+            _ =>
+              {
+                "testIdAttribute": Js.Undefined.return("data-custom-test-id"),
+              },
+          ),
+      );
+      render({|<p data-custom-test-id="world"> World!</p>|})
+      |> getByTestId("world")
+      |> expect
+      |> toMatchSnapshot;
+    });
   });
 
   test("getByPlaceholderText works", () =>
