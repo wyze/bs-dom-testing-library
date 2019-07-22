@@ -78,10 +78,9 @@ $ yarn test
 
 > [Full Change Log](changelog.md)
 
-### [v0.5.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.5.0) (2019-07-21)
+### [v0.5.1](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.5.1) (2019-07-22)
 
-* Upgrade dependencies ([@wyze](https://github.com/wyze) in [6a209e0](https://github.com/wyze/bs-dom-testing-library/commit/6a209e0))
-* Upgrade dom-testing-library to v5 ([@jihchi](https://github.com/jihchi) in [#8](https://github.com/wyze/bs-dom-testing-library/pull/8))
+* Add bindings for `configure` ([@leeor](https://github.com/leeor) in [#10](https://github.com/wyze/bs-dom-testing-library/pull/10))
 
 ## License
 
