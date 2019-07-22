@@ -82,6 +82,17 @@ let waitForElement:
 
 let prettyDOM: (~maxLength: int=?, Dom.element) => string;
 
+type configureOptions = {. "testIdAttribute": Js.undefined(string)};
+
+let configure:
+  (
+    ~update: [
+               | `Func(configureOptions => configureOptions)
+               | `Object(configureOptions)
+             ]
+  ) =>
+  unit;
+
 [@bs.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "";
 

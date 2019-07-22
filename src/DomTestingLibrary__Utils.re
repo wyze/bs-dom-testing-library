@@ -81,3 +81,24 @@ external _prettyDOM: (Dom.element, Js.undefined(int)) => string = "prettyDOM";
 
 let prettyDOM = (~maxLength=?, element) =>
   _prettyDOM(element, Js.Undefined.fromOption(maxLength));
+
+type configureOptions = {. "testIdAttribute": Js.undefined(string)};
+
+[@bs.module "@testing-library/dom"]
+external configureWithFn: (Js.t({..}) => Js.t({..})) => unit = "configure";
+
+[@bs.module "@testing-library/dom"]
+external configureWithObject: configureOptions => unit = "configure";
+
+let configure =
+    (
+      ~update: [
+         | `Func(configureOptions => configureOptions)
+         | `Object(configureOptions)
+       ],
+    ) => {
+  switch (update) {
+  | `Func(fn) => configureWithFn(fn)
+  | `Object(obj) => configureWithObject(obj)
+  };
+};
