@@ -1,17 +1,5 @@
-module Wait = {
+module MutationObserver = {
   type options = {
-    .
-    "interval": Js.undefined(int),
-    "timeout": Js.undefined(int),
-  };
-
-  [@bs.obj]
-  external makeOptions: (~interval: int=?, ~timeout: int=?, unit) => options =
-    "";
-};
-
-module WaitForElement = {
-  type mutationObserverOptions = {
     .
     "attributeFilter": Js.undefined(array(string)),
     "attributeOldValue": Js.undefined(bool),
@@ -20,6 +8,45 @@ module WaitForElement = {
     "characterDataOldValue": Js.undefined(bool),
     "subtree": Js.undefined(bool),
   };
+
+  [@bs.obj]
+  external makeOptions:
+    (
+      ~attributeFilter: array(string)=?,
+      ~attributeOldValue: bool=?,
+      ~attributes: bool=?,
+      ~characterData: bool=?,
+      ~characterDataOldValue: bool=?,
+      ~subtree: bool=?,
+      unit
+    ) =>
+    options =
+    "";
+};
+
+module WaitFor = {
+  type options = {
+    .
+    "container": Js.undefined(Dom.element),
+    "interval": Js.undefined(int),
+    "timeout": Js.undefined(int),
+    "mutationObserverOptions": Js.undefined(MutationObserver.options),
+  };
+
+  [@bs.obj]
+  external makeOptions:
+    (
+      ~container: Dom.element=?,
+      ~interval: int=?,
+      ~timeout: int=?,
+      ~mutationObserverOptions: MutationObserver.options=?,
+      unit
+    ) =>
+    options =
+    "";
+};
+
+module WaitForElement = {
   type options = {
     .
     "container": Js.undefined(Dom.element),
@@ -30,36 +57,22 @@ module WaitForElement = {
   external makeOptions:
     (
       ~container: Dom.element=?,
-      ~mutationObserverInit: mutationObserverOptions=?,
+      ~mutationObserverInit: MutationObserver.options=?,
       ~timeout: int=?,
       unit
     ) =>
     options =
     "";
-
-  [@bs.obj]
-  external makeMutationObserverOptions:
-    (
-      ~attributeFilter: array(string)=?,
-      ~attributeOldValue: bool=?,
-      ~attributes: bool=?,
-      ~characterData: bool=?,
-      ~characterDataOldValue: bool=?,
-      ~subtree: bool=?,
-      unit
-    ) =>
-    mutationObserverOptions =
-    "";
 };
 
 [@bs.module "@testing-library/dom"]
-external _wait:
-  (Js.undefined(unit => unit), Js.undefined(Wait.options)) =>
+external _waitFor:
+  (Js.undefined(unit => unit), Js.undefined(WaitFor.options)) =>
   Js.Promise.t('a) =
-  "wait";
+  "waitFor";
 
-let wait = (~callback=?, ~options=?, ()) =>
-  _wait(
+let waitFor = (~callback=?, ~options=?, ()) =>
+  _waitFor(
     Js.Undefined.fromOption(callback),
     Js.Undefined.fromOption(options),
   );
