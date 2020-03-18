@@ -630,6 +630,22 @@ Array [
 ]
 `;
 
+exports[`DomTestingLibrary configure works using a function 1`] = `
+<p
+  data-custom-test-id="world"
+>
+   World!
+</p>
+`;
+
+exports[`DomTestingLibrary configure works using an object 1`] = `
+<p
+  data-custom-test-id="world"
+>
+   World!
+</p>
+`;
+
 exports[`DomTestingLibrary getNodeText works 1`] = `"Hello,"`;
 
 exports[`DomTestingLibrary prettyDOM works 1`] = `

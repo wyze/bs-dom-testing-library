@@ -41,6 +41,15 @@ describe("DomTestingLibrary", () => {
   });
 
   describe("configure works", () => {
+    afterAll(() => {
+      configure(
+        ~update=
+          `Object({
+            "testIdAttribute": Js.Undefined.return("data-testid"),
+          }),
+      );
+    });
+
     test("using an object", () => {
       configure(
         ~update=
