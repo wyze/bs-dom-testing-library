@@ -108,6 +108,9 @@ let configure:
 [@bs.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "";
 
+/**
+ * ByLabelText
+ */
 let getByLabelText:
   (
     ~matcher: [
@@ -180,6 +183,9 @@ let findAllByLabelText:
   ) =>
   Js.Promise.t(array(Dom.element));
 
+/**
+ * ByPlaceholderText
+ */
 let getByPlaceholderText: (string, Dom.element) => Dom.element;
 let getAllByPlaceholderText: (string, Dom.element) => Dom.element;
 let queryByPlaceholderText: (string, Dom.element) => Dom.element;
@@ -188,6 +194,9 @@ let findByPlaceholderText: (string, Dom.element) => Js.Promise.t(Dom.element);
 let findAllByPlaceholderText:
   (string, Dom.element) => Js.Promise.t(array(Dom.element));
 
+/**
+ * ByText
+ */
 let getByText:
   (
     ~matcher: [
@@ -260,6 +269,9 @@ let findAllByText:
   ) =>
   Js.Promise.t(array(Dom.element));
 
+/**
+ * ByAltText
+ */
 let getByAltText: (string, Dom.element) => Dom.element;
 let getAllByAltText: (string, Dom.element) => Dom.element;
 let queryByAltText: (string, Dom.element) => Dom.element;
@@ -268,6 +280,9 @@ let findByAltText: (string, Dom.element) => Js.Promise.t(Dom.element);
 let findAllByAltText:
   (string, Dom.element) => Js.Promise.t(array(Dom.element));
 
+/**
+ * ByTitle
+ */
 let getByTitle: (string, Dom.element) => Dom.element;
 let getAllByTitle: (string, Dom.element) => Dom.element;
 let queryByTitle: (string, Dom.element) => Dom.element;
@@ -276,6 +291,9 @@ let findByTitle: (string, Dom.element) => Js.Promise.t(Dom.element);
 let findAllByTitle:
   (string, Dom.element) => Js.Promise.t(array(Dom.element));
 
+/**
+ * ByDisplayValue
+ */
 let getByDisplayValue: (string, Dom.element) => Dom.element;
 let getAllByDisplayValue: (string, Dom.element) => Dom.element;
 let queryByDisplayValue: (string, Dom.element) => Dom.element;
@@ -284,6 +302,9 @@ let findByDisplayValue: (string, Dom.element) => Js.Promise.t(Dom.element);
 let findAllByDisplayValue:
   (string, Dom.element) => Js.Promise.t(array(Dom.element));
 
+/**
+ * ByRole
+ */
 let getByRole: (string, Dom.element) => Dom.element;
 let getAllByRole: (string, Dom.element) => Dom.element;
 let queryByRole: (string, Dom.element) => Dom.element;
@@ -291,6 +312,9 @@ let queryAllByRole: (string, Dom.element) => Dom.element;
 let findByRole: (string, Dom.element) => Js.Promise.t(Dom.element);
 let findAllByRole: (string, Dom.element) => Js.Promise.t(array(Dom.element));
 
+/**
+ * ByTestId
+ */
 let getByTestId: (string, Dom.element) => Dom.element;
 let getAllByTestId: (string, Dom.element) => Dom.element;
 let queryByTestId: (string, Dom.element) => Dom.element;
