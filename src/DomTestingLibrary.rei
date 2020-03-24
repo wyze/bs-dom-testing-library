@@ -18,6 +18,17 @@ module ByLabelTextQuery: {
     options =
     "";
 };
+module ByPlaceholderTextQuery: {
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+  [@bs.obj]
+  external makeOptions:
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
+    "";
+};
 module ByTextQuery: {
   type options = {
     .
@@ -202,13 +213,77 @@ let findAllByLabelText:
 /**
  * ByPlaceholderText
  */
-let getByPlaceholderText: (string, Dom.element) => Dom.element;
-let getAllByPlaceholderText: (string, Dom.element) => Dom.element;
-let queryByPlaceholderText: (string, Dom.element) => Dom.element;
-let queryAllByPlaceholderText: (string, Dom.element) => Dom.element;
-let findByPlaceholderText: (string, Dom.element) => Js.Promise.t(Dom.element);
+let getByPlaceholderText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByPlaceholderTextQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let getAllByPlaceholderText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByPlaceholderTextQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryByPlaceholderText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByPlaceholderTextQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryAllByPlaceholderText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByPlaceholderTextQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let findByPlaceholderText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByPlaceholderTextQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(Dom.element);
+
 let findAllByPlaceholderText:
-  (string, Dom.element) => Js.Promise.t(array(Dom.element));
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByPlaceholderTextQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(array(Dom.element));
 
 /**
  * ByText

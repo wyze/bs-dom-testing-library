@@ -4,6 +4,7 @@ open Webapi.Dom;
 open Webapi.Dom.Element;
 
 [@bs.get] external tagName: Dom.element => string = "";
+[@bs.get] external name: Dom.element => string = "";
 
 [@bs.val] external setTimeout: (unit => unit, int) => float = "setTimeout";
 
@@ -41,14 +42,12 @@ describe("DomTestingLibrary", () => {
   });
 
   describe("configure works", () => {
-    afterAll(() => {
+    afterAll(() =>
       configure(
         ~update=
-          `Object({
-            "testIdAttribute": Js.Undefined.return("data-testid"),
-          }),
-      );
-    });
+          `Object({"testIdAttribute": Js.Undefined.return("data-testid")}),
+      )
+    );
 
     test("using an object", () => {
       configure(
@@ -233,45 +232,155 @@ describe("DomTestingLibrary", () => {
   });
 
   describe("ByPlaceholderText", () => {
-    test("get works", () =>
-      render({|<input type="text" placeholder="Enter something" />|})
-      |> getByPlaceholderText("Enter something")
-      |> expect
-      |> toMatchSnapshot
-    );
+    describe("string matcher", () => {
+      test("get works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> getByPlaceholderText(~matcher=`Str("Enter something"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("getAll works", () =>
-      render({|<input type="text" placeholder="Enter something" />|})
-      |> getAllByPlaceholderText("Enter something")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("getAll works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> getAllByPlaceholderText(~matcher=`Str("Enter something"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("query works", () =>
-      render({|<input type="text" placeholder="Enter something" />|})
-      |> queryByPlaceholderText("Enter something")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("query works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> queryByPlaceholderText(~matcher=`Str("Enter something"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("queryAll works", () =>
-      render({|<input type="text" placeholder="Enter something" />|})
-      |> queryAllByPlaceholderText("Enter something")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("queryAll works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> queryAllByPlaceholderText(~matcher=`Str("Enter something"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    testPromise("find works", () =>
-      render({|<input type="text" placeholder="Enter something" />|})
-      |> findByPlaceholderText("Enter something")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("find works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> findByPlaceholderText(~matcher=`Str("Enter something"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
 
-    testPromise("findAll works", () =>
-      render({|<input type="text" placeholder="Enter something" />|})
-      |> findAllByPlaceholderText("Enter something")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("findAll works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> findAllByPlaceholderText(~matcher=`Str("Enter something"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+
+    describe("regex matcher", () => {
+      test("get works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> getByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> getAllByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> queryByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> queryAllByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> findByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<input type="text" placeholder="Enter something" />|})
+        |> findAllByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+
+    describe("function matcher", () => {
+      test("get works", () =>
+        render(
+          {|<input type="text" name="my-input" placeholder="Enter something" />|},
+        )
+        |> getByPlaceholderText(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render(
+          {|<input type="text" name="my-input" placeholder="Enter something" />|},
+        )
+        |> getAllByPlaceholderText(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render(
+          {|<input type="text" name="my-input" placeholder="Enter something" />|},
+        )
+        |> queryByPlaceholderText(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render(
+          {|<input type="text" name="my-input" placeholder="Enter something" />|},
+        )
+        |> queryAllByPlaceholderText(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render(
+          {|<input type="text" name="my-input" placeholder="Enter something" />|},
+        )
+        |> findByPlaceholderText(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render(
+          {|<input type="text" name="my-input" placeholder="Enter something" />|},
+        )
+        |> findAllByPlaceholderText(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
   });
 
   describe("ByText", () => {

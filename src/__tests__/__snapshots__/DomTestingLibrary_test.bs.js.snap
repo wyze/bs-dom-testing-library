@@ -270,14 +270,68 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText find works 1`] = `
+exports[`DomTestingLibrary ByPlaceholderText function matcher find works 1`] = `
+<input
+  name="my-input"
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher findAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher get works 1`] = `
+<input
+  name="my-input"
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher getAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher query works 1`] = `
+<input
+  name="my-input"
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher queryAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText regex matcher find works 1`] = `
 <input
   placeholder="Enter something"
   type="text"
 />
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText findAll works 1`] = `
+exports[`DomTestingLibrary ByPlaceholderText regex matcher findAll works 1`] = `
 Array [
   <input
     placeholder="Enter something"
@@ -286,14 +340,14 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText get works 1`] = `
+exports[`DomTestingLibrary ByPlaceholderText regex matcher get works 1`] = `
 <input
   placeholder="Enter something"
   type="text"
 />
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText getAll works 1`] = `
+exports[`DomTestingLibrary ByPlaceholderText regex matcher getAll works 1`] = `
 Array [
   <input
     placeholder="Enter something"
@@ -302,14 +356,62 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText query works 1`] = `
+exports[`DomTestingLibrary ByPlaceholderText regex matcher query works 1`] = `
 <input
   placeholder="Enter something"
   type="text"
 />
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText queryAll works 1`] = `
+exports[`DomTestingLibrary ByPlaceholderText regex matcher queryAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher find works 1`] = `
+<input
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher findAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher get works 1`] = `
+<input
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher getAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher query works 1`] = `
+<input
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher queryAll works 1`] = `
 Array [
   <input
     placeholder="Enter something"
