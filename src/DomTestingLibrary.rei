@@ -3,20 +3,18 @@ module FireEvent = DomTestingLibrary__FireEvent;
 module Query: {
   type options = {
     .
-    "collapseWhitespace": Js.undefined(bool),
     "exact": Js.undefined(bool),
     "selector": Js.undefined(string),
-    "trim": Js.undefined(bool),
     "ignore": Js.undefined(string),
+    "normalizer": Js.undefined(string => string),
   };
   [@bs.obj]
   external makeOptions:
     (
-      ~collapseWhitespace: bool=?,
       ~exact: bool=?,
       ~selector: string=?,
-      ~trim: bool=?,
       ~ignore: string=?,
+      ~normalizer: string => string=?,
       unit
     ) =>
     options =
