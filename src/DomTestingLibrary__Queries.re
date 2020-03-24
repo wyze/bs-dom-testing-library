@@ -1,4 +1,23 @@
-module Query = {
+module ByLabelTextQuery = {
+  type options = {
+    .
+    "selector": Js.undefined(string),
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+
+  [@bs.obj]
+  external makeOptions:
+    (
+      ~selector: string=?,
+      ~exact: bool=?,
+      ~normalizer: string => string=?,
+      unit
+    ) =>
+    options =
+    "";
+};
+module ByTextQuery = {
   type options = {
     .
     "exact": Js.undefined(bool),
@@ -35,7 +54,7 @@ external _getByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
   Dom.element =
   "getByLabelText";
@@ -56,7 +75,7 @@ external _getAllByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
   Dom.element =
   "getAllByLabelText";
@@ -77,7 +96,7 @@ external _queryByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
   Dom.element =
   "queryByLabelText";
@@ -98,7 +117,7 @@ external _queryAllByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
   Dom.element =
   "queryAllByLabelText";
@@ -119,7 +138,7 @@ external _findByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
   Js.Promise.t(Dom.element) =
   "findByLabelText";
@@ -140,7 +159,7 @@ external _findAllByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByLabelText";
@@ -211,7 +230,7 @@ external _getByText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByTextQuery.options)
   ) =>
   Dom.element =
   "getByText";
@@ -228,7 +247,7 @@ external _getAllByText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByTextQuery.options)
   ) =>
   Dom.element =
   "getAllByText";
@@ -249,7 +268,7 @@ external _queryByText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByTextQuery.options)
   ) =>
   Dom.element =
   "queryByText";
@@ -266,7 +285,7 @@ external _queryAllByText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByTextQuery.options)
   ) =>
   Dom.element =
   "queryAllByText";
@@ -287,7 +306,7 @@ external _findByText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByTextQuery.options)
   ) =>
   Js.Promise.t(Dom.element) =
   "findByText";
@@ -304,7 +323,7 @@ external _findAllByText:
                 | `RegExp(Js.Re.t)
                 | `Func((string, Dom.element) => bool)
               ],
-    ~options: Js.undefined(Query.options)
+    ~options: Js.undefined(ByTextQuery.options)
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByText";

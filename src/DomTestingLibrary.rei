@@ -1,6 +1,24 @@
 module FireEvent = DomTestingLibrary__FireEvent;
 
-module Query: {
+module ByLabelTextQuery: {
+  type options = {
+    .
+    "selector": Js.undefined(string),
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+  [@bs.obj]
+  external makeOptions:
+    (
+      ~selector: string=?,
+      ~exact: bool=?,
+      ~normalizer: string => string=?,
+      unit
+    ) =>
+    options =
+    "";
+};
+module ByTextQuery: {
   type options = {
     .
     "exact": Js.undefined(bool),
@@ -116,7 +134,7 @@ let getByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
   Dom.element;
@@ -128,7 +146,7 @@ let getAllByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
   Dom.element;
@@ -140,7 +158,7 @@ let queryByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
   Dom.element;
@@ -152,7 +170,7 @@ let queryAllByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
   Dom.element;
@@ -164,7 +182,7 @@ let findByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
   Js.Promise.t(Dom.element);
@@ -176,7 +194,7 @@ let findAllByLabelText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
   Js.Promise.t(array(Dom.element));
@@ -202,7 +220,7 @@ let getByText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
   Dom.element;
@@ -214,7 +232,7 @@ let getAllByText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
   Dom.element;
@@ -226,7 +244,7 @@ let queryByText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
   Dom.element;
@@ -238,7 +256,7 @@ let queryAllByText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
   Dom.element;
@@ -250,7 +268,7 @@ let findByText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
   Js.Promise.t(Dom.element);
@@ -262,7 +280,7 @@ let findAllByText:
                 | `RegExp(Js.Re.t)
                 | `Str(string)
               ],
-    ~options: Query.options=?,
+    ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
   Js.Promise.t(array(Dom.element));
