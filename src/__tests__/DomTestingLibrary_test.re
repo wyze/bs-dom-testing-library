@@ -524,45 +524,143 @@ describe("DomTestingLibrary", () => {
   });
 
   describe("ByAltText", () => {
-    test("get works", () =>
-      render({|<img src="" alt="Alt text" />|})
-      |> getByAltText("Alt text")
-      |> expect
-      |> toMatchSnapshot
-    );
+    describe("string matcher", () => {
+      test("get works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> getByAltText(~matcher=`Str("Alt text"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("getAll works", () =>
-      render({|<img src="" alt="Alt text" />|})
-      |> getAllByAltText("Alt text")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("getAll works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> getAllByAltText(~matcher=`Str("Alt text"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("query works", () =>
-      render({|<img src="" alt="Alt text" />|})
-      |> queryByAltText("Alt text")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("query works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> queryByAltText(~matcher=`Str("Alt text"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("queryAll works", () =>
-      render({|<img src="" alt="Alt text" />|})
-      |> queryAllByAltText("Alt text")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("queryAll works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> queryAllByAltText(~matcher=`Str("Alt text"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    testPromise("find works", () =>
-      render({|<img src="" alt="Alt text" />|})
-      |> findByAltText("Alt text")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("find works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> findByAltText(~matcher=`Str("Alt text"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
 
-    testPromise("findAll works", () =>
-      render({|<img src="" alt="Alt text" />|})
-      |> findAllByAltText("Alt text")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("findAll works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> findAllByAltText(~matcher=`Str("Alt text"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+
+    describe("regex matcher", () => {
+      test("get works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> getByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> getAllByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> queryByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> queryAllByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> findByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<img src="" alt="Alt text" />|})
+        |> findAllByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+
+    describe("function matcher", () => {
+      test("get works", () =>
+        render({|<img name="my-img" src="" alt="Alt text" />|})
+        |> getByAltText(
+             ~matcher=`Func((_text, node) => node |> name === "my-img"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<img name="my-img" src="" alt="Alt text" />|})
+        |> getAllByAltText(
+             ~matcher=`Func((_text, node) => node |> name === "my-img"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<img name="my-img" src="" alt="Alt text" />|})
+        |> queryByAltText(
+             ~matcher=`Func((_text, node) => node |> name === "my-img"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<img name="my-img" src="" alt="Alt text" />|})
+        |> queryAllByAltText(
+             ~matcher=`Func((_text, node) => node |> name === "my-img"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<img name="my-img" src="" alt="Alt text" />|})
+        |> findByAltText(
+             ~matcher=`Func((_text, node) => node |> name === "my-img"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<img name="my-img" src="" alt="Alt text" />|})
+        |> findAllByAltText(
+             ~matcher=`Func((_text, node) => node |> name === "my-img"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
   });
 
   describe("ByTitle", () => {

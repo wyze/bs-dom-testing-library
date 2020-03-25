@@ -50,6 +50,18 @@ module ByTextQuery = {
     options =
     "";
 };
+module ByAltTextQuery = {
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+
+  [@bs.obj]
+  external makeOptions:
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
+    "";
+};
 
 [@bs.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "";
@@ -433,40 +445,130 @@ let findAllByText = (~matcher, ~options=?, element) =>
  * ByAltText
  */
 [@bs.module "@testing-library/dom"]
-external _getByAltText: (Dom.element, string) => Dom.element = "getByAltText";
+external _getByAltText:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByAltTextQuery.options)
+  ) =>
+  Dom.element =
+  "getByAltText";
 
-let getByAltText = (id, element) => _getByAltText(element, id);
+let getByAltText = (~matcher, ~options=?, element) =>
+  _getByAltText(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _getAllByAltText: (Dom.element, string) => Dom.element =
+external _getAllByAltText:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByAltTextQuery.options)
+  ) =>
+  Dom.element =
   "getAllByAltText";
 
-let getAllByAltText = (id, element) => _getAllByAltText(element, id);
+let getAllByAltText = (~matcher, ~options=?, element) =>
+  _getAllByAltText(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryByAltText: (Dom.element, string) => Dom.element =
+external _queryByAltText:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByAltTextQuery.options)
+  ) =>
+  Dom.element =
   "queryByAltText";
 
-let queryByAltText = (id, element) => _queryByAltText(element, id);
+let queryByAltText = (~matcher, ~options=?, element) =>
+  _queryByAltText(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryAllByAltText: (Dom.element, string) => Dom.element =
+external _queryAllByAltText:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByAltTextQuery.options)
+  ) =>
+  Dom.element =
   "queryAllByAltText";
 
-let queryAllByAltText = (id, element) => _queryAllByAltText(element, id);
+let queryAllByAltText = (~matcher, ~options=?, element) =>
+  _queryAllByAltText(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _findByAltText: (Dom.element, string) => Js.Promise.t(Dom.element) =
+external _findByAltText:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByAltTextQuery.options)
+  ) =>
+  Js.Promise.t(Dom.element) =
   "findByAltText";
 
-let findByAltText = (id, element) => _findByAltText(element, id);
+let findByAltText = (~matcher, ~options=?, element) =>
+  _findByAltText(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
 external _findAllByAltText:
-  (Dom.element, string) => Js.Promise.t(array(Dom.element)) =
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByAltTextQuery.options)
+  ) =>
+  Js.Promise.t(array(Dom.element)) =
   "findAllByAltText";
 
-let findAllByAltText = (id, element) => _findAllByAltText(element, id);
+let findAllByAltText = (~matcher, ~options=?, element) =>
+  _findAllByAltText(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 /**
  * ByTitle

@@ -1,13 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DomTestingLibrary ByAltText find works 1`] = `
+exports[`DomTestingLibrary ByAltText function matcher find works 1`] = `
+<img
+  alt="Alt text"
+  name="my-img"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText function matcher findAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    name="my-img"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText function matcher get works 1`] = `
+<img
+  alt="Alt text"
+  name="my-img"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText function matcher getAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    name="my-img"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText function matcher query works 1`] = `
+<img
+  alt="Alt text"
+  name="my-img"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText function matcher queryAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    name="my-img"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText regex matcher find works 1`] = `
 <img
   alt="Alt text"
   src=""
 />
 `;
 
-exports[`DomTestingLibrary ByAltText findAll works 1`] = `
+exports[`DomTestingLibrary ByAltText regex matcher findAll works 1`] = `
 Array [
   <img
     alt="Alt text"
@@ -16,14 +70,14 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByAltText get works 1`] = `
+exports[`DomTestingLibrary ByAltText regex matcher get works 1`] = `
 <img
   alt="Alt text"
   src=""
 />
 `;
 
-exports[`DomTestingLibrary ByAltText getAll works 1`] = `
+exports[`DomTestingLibrary ByAltText regex matcher getAll works 1`] = `
 Array [
   <img
     alt="Alt text"
@@ -32,14 +86,62 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByAltText query works 1`] = `
+exports[`DomTestingLibrary ByAltText regex matcher query works 1`] = `
 <img
   alt="Alt text"
   src=""
 />
 `;
 
-exports[`DomTestingLibrary ByAltText queryAll works 1`] = `
+exports[`DomTestingLibrary ByAltText regex matcher queryAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher find works 1`] = `
+<img
+  alt="Alt text"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher findAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher get works 1`] = `
+<img
+  alt="Alt text"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher getAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher query works 1`] = `
+<img
+  alt="Alt text"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher queryAll works 1`] = `
 Array [
   <img
     alt="Alt text"

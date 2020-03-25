@@ -49,6 +49,17 @@ module ByTextQuery: {
     options =
     "";
 };
+module ByAltTextQuery: {
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+  [@bs.obj]
+  external makeOptions:
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
+    "";
+};
 module MutationObserver: {
   type options = {
     .
@@ -363,13 +374,77 @@ let findAllByText:
 /**
  * ByAltText
  */
-let getByAltText: (string, Dom.element) => Dom.element;
-let getAllByAltText: (string, Dom.element) => Dom.element;
-let queryByAltText: (string, Dom.element) => Dom.element;
-let queryAllByAltText: (string, Dom.element) => Dom.element;
-let findByAltText: (string, Dom.element) => Js.Promise.t(Dom.element);
+let getByAltText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByAltTextQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let getAllByAltText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByAltTextQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryByAltText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByAltTextQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryAllByAltText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByAltTextQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let findByAltText:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByAltTextQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(Dom.element);
+
 let findAllByAltText:
-  (string, Dom.element) => Js.Promise.t(array(Dom.element));
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByAltTextQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(array(Dom.element));
 
 /**
  * ByTitle
