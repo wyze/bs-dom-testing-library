@@ -60,6 +60,17 @@ module ByAltTextQuery: {
     (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
     "";
 };
+module ByTitleQuery: {
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+  [@bs.obj]
+  external makeOptions:
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
+    "";
+};
 module MutationObserver: {
   type options = {
     .
@@ -449,13 +460,77 @@ let findAllByAltText:
 /**
  * ByTitle
  */
-let getByTitle: (string, Dom.element) => Dom.element;
-let getAllByTitle: (string, Dom.element) => Dom.element;
-let queryByTitle: (string, Dom.element) => Dom.element;
-let queryAllByTitle: (string, Dom.element) => Dom.element;
-let findByTitle: (string, Dom.element) => Js.Promise.t(Dom.element);
+let getByTitle:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTitleQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let getAllByTitle:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTitleQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryByTitle:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTitleQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryAllByTitle:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTitleQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let findByTitle:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTitleQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(Dom.element);
+
 let findAllByTitle:
-  (string, Dom.element) => Js.Promise.t(array(Dom.element));
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTitleQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(array(Dom.element));
 
 /**
  * ByDisplayValue

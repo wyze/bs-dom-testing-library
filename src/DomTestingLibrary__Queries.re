@@ -62,6 +62,18 @@ module ByAltTextQuery = {
     (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
     "";
 };
+module ByTitleQuery = {
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+
+  [@bs.obj]
+  external makeOptions:
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
+    "";
+};
 
 [@bs.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "";
@@ -574,39 +586,122 @@ let findAllByAltText = (~matcher, ~options=?, element) =>
  * ByTitle
  */
 [@bs.module "@testing-library/dom"]
-external _getByTitle: (Dom.element, string) => Dom.element = "getByTitle";
+external _getByTitle:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTitleQuery.options)
+  ) =>
+  Dom.element =
+  "getByTitle";
 
-let getByTitle = (id, element) => _getByTitle(element, id);
+let getByTitle = (~matcher, ~options=?, element) =>
+  _getByTitle(element, ~matcher, ~options=Js.Undefined.fromOption(options));
 
 [@bs.module "@testing-library/dom"]
-external _getAllByTitle: (Dom.element, string) => Dom.element =
+external _getAllByTitle:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTitleQuery.options)
+  ) =>
+  Dom.element =
   "getAllByTitle";
 
-let getAllByTitle = (id, element) => _getAllByTitle(element, id);
+let getAllByTitle = (~matcher, ~options=?, element) =>
+  _getAllByTitle(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryByTitle: (Dom.element, string) => Dom.element = "queryByTitle";
+external _queryByTitle:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTitleQuery.options)
+  ) =>
+  Dom.element =
+  "queryByTitle";
 
-let queryByTitle = (id, element) => _queryByTitle(element, id);
+let queryByTitle = (~matcher, ~options=?, element) =>
+  _queryByTitle(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryAllByTitle: (Dom.element, string) => Dom.element =
+external _queryAllByTitle:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTitleQuery.options)
+  ) =>
+  Dom.element =
   "queryAllByTitle";
 
-let queryAllByTitle = (id, element) => _queryAllByTitle(element, id);
+let queryAllByTitle = (~matcher, ~options=?, element) =>
+  _queryAllByTitle(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _findByTitle: (Dom.element, string) => Js.Promise.t(Dom.element) =
+external _findByTitle:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTitleQuery.options)
+  ) =>
+  Js.Promise.t(Dom.element) =
   "findByTitle";
 
-let findByTitle = (id, element) => _findByTitle(element, id);
+let findByTitle = (~matcher, ~options=?, element) =>
+  _findByTitle(element, ~matcher, ~options=Js.Undefined.fromOption(options));
 
 [@bs.module "@testing-library/dom"]
 external _findAllByTitle:
-  (Dom.element, string) => Js.Promise.t(array(Dom.element)) =
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTitleQuery.options)
+  ) =>
+  Js.Promise.t(array(Dom.element)) =
   "findAllByTitle";
 
-let findAllByTitle = (id, element) => _findAllByTitle(element, id);
+let findAllByTitle = (~matcher, ~options=?, element) =>
+  _findAllByTitle(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 /**
  * ByDisplayValue

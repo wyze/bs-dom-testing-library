@@ -664,45 +664,143 @@ describe("DomTestingLibrary", () => {
   });
 
   describe("ByTitle", () => {
-    test("get works", () =>
-      render({|<b title="greeting">Hello,</b>|})
-      |> getByTitle("greeting")
-      |> expect
-      |> toMatchSnapshot
-    );
+    describe("string matcher", () => {
+      test("get works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> getByTitle(~matcher=`Str("greeting"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("getAll works", () =>
-      render({|<b title="greeting">Hello,</b>|})
-      |> getAllByTitle("greeting")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("getAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> getAllByTitle(~matcher=`Str("greeting"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("query works", () =>
-      render({|<b title="greeting">Hello,</b>|})
-      |> queryByTitle("greeting")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("query works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> queryByTitle(~matcher=`Str("greeting"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("queryAll works", () =>
-      render({|<b title="greeting">Hello,</b>|})
-      |> queryAllByTitle("greeting")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("queryAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> queryAllByTitle(~matcher=`Str("greeting"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    testPromise("find works", () =>
-      render({|<b title="greeting">Hello,</b>|})
-      |> findByTitle("greeting")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("find works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> findByTitle(~matcher=`Str("greeting"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
 
-    testPromise("findAll works", () =>
-      render({|<b title="greeting">Hello,</b>|})
-      |> findAllByTitle("greeting")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("findAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> findAllByTitle(~matcher=`Str("greeting"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+
+    describe("regexp matcher", () => {
+      test("get works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> getByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> getAllByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> queryByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> queryAllByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> findByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> findAllByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+
+    describe("function matcher", () => {
+      test("get works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> getByTitle(
+             ~matcher=`Func((_text, node) => node |> tagName === "B"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> getAllByTitle(
+             ~matcher=`Func((_text, node) => node |> tagName === "B"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> queryByTitle(
+             ~matcher=`Func((_text, node) => node |> tagName === "B"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> queryAllByTitle(
+             ~matcher=`Func((_text, node) => node |> tagName === "B"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> findByTitle(
+             ~matcher=`Func((_text, node) => node |> tagName === "B"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<b title="greeting">Hello,</b>|})
+        |> findAllByTitle(
+             ~matcher=`Func((_text, node) => node |> tagName === "B"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
   });
 
   describe("ByDisplayValue", () => {
@@ -833,7 +931,7 @@ describe("DomTestingLibrary", () => {
 
   test("getNodeText works", () =>
     render({|<b title="greeting">Hello,</b>|})
-    |> getByTitle("greeting")
+    |> getByTitle(~matcher=`Str("greeting"))
     |> getNodeText
     |> expect
     |> toMatchSnapshot

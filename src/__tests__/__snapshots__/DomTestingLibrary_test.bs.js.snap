@@ -780,7 +780,7 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByTitle find works 1`] = `
+exports[`DomTestingLibrary ByTitle function matcher find works 1`] = `
 <b
   title="greeting"
 >
@@ -788,7 +788,7 @@ exports[`DomTestingLibrary ByTitle find works 1`] = `
 </b>
 `;
 
-exports[`DomTestingLibrary ByTitle findAll works 1`] = `
+exports[`DomTestingLibrary ByTitle function matcher findAll works 1`] = `
 Array [
   <b
     title="greeting"
@@ -798,7 +798,7 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByTitle get works 1`] = `
+exports[`DomTestingLibrary ByTitle function matcher get works 1`] = `
 <b
   title="greeting"
 >
@@ -806,7 +806,7 @@ exports[`DomTestingLibrary ByTitle get works 1`] = `
 </b>
 `;
 
-exports[`DomTestingLibrary ByTitle getAll works 1`] = `
+exports[`DomTestingLibrary ByTitle function matcher getAll works 1`] = `
 Array [
   <b
     title="greeting"
@@ -816,7 +816,7 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByTitle query works 1`] = `
+exports[`DomTestingLibrary ByTitle function matcher query works 1`] = `
 <b
   title="greeting"
 >
@@ -824,7 +824,115 @@ exports[`DomTestingLibrary ByTitle query works 1`] = `
 </b>
 `;
 
-exports[`DomTestingLibrary ByTitle queryAll works 1`] = `
+exports[`DomTestingLibrary ByTitle function matcher queryAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher find works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher findAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher get works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher getAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher query works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher queryAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher find works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher findAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher get works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher getAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher query works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher queryAll works 1`] = `
 Array [
   <b
     title="greeting"
