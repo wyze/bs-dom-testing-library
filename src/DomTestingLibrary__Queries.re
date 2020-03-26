@@ -74,6 +74,96 @@ module ByTitleQuery = {
     (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
     "";
 };
+module ByDisplayValueQuery = {
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+
+  [@bs.obj]
+  external makeOptions:
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
+    "";
+};
+module ByRoleQuery = {
+  module NameStr = {
+    type options = {
+      .
+      "exact": Js.undefined(bool),
+      "hidden": Js.undefined(bool),
+      "name": Js.undefined(string),
+      "normalizer": Js.undefined(string => string),
+    };
+
+    [@bs.obj]
+    external makeOptions:
+      (
+        ~exact: bool=?,
+        ~hidden: bool=?,
+        ~name: string=?,
+        ~normalizer: string => string=?,
+        unit
+      ) =>
+      options =
+      "";
+  };
+
+  module NameRegExp = {
+    type options = {
+      .
+      "exact": Js.undefined(bool),
+      "hidden": Js.undefined(bool),
+      "name": Js.undefined(Js.Re.t),
+      "normalizer": Js.undefined(string => string),
+    };
+
+    [@bs.obj]
+    external makeOptions:
+      (
+        ~exact: bool=?,
+        ~hidden: bool=?,
+        ~name: Js.Re.t=?,
+        ~normalizer: string => string=?,
+        unit
+      ) =>
+      options =
+      "";
+  };
+  module NameFunc = {
+    type options = {
+      .
+      "exact": Js.undefined(bool),
+      "hidden": Js.undefined(bool),
+      "name": Js.undefined((string, Dom.element) => bool),
+      "normalizer": Js.undefined(string => string),
+    };
+
+    [@bs.obj]
+    external makeOptions:
+      (
+        ~exact: bool=?,
+        ~hidden: bool=?,
+        ~name: (string, Dom.element) => bool=?,
+        ~normalizer: string => string=?,
+        unit
+      ) =>
+      options =
+      "";
+  };
+};
+module ByTestIdQuery = {
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "normalizer": Js.undefined(string => string),
+  };
+
+  [@bs.obj]
+  external makeOptions:
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
+    "";
+};
 
 [@bs.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "";
