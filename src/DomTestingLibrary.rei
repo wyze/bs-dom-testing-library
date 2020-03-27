@@ -83,68 +83,25 @@ module ByDisplayValueQuery: {
     "";
 };
 module ByRoleQuery: {
-  module NameStr: {
-    type options = {
-      .
-      "exact": Js.undefined(bool),
-      "hidden": Js.undefined(bool),
-      "name": Js.undefined(string),
-      "normalizer": Js.undefined(string => string),
-    };
-    [@bs.obj]
-    external makeOptions:
-      (
-        ~exact: bool=?,
-        ~hidden: bool=?,
-        ~name: string=?,
-        ~normalizer: string => string=?,
-        unit
-      ) =>
-      options =
-      "";
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "hidden": Js.undefined(bool),
+    // TODO: add supports for TextMatch
+    "name": Js.undefined(string),
+    "normalizer": Js.undefined(string => string),
   };
-
-  module NameRegExp: {
-    type options = {
-      .
-      "exact": Js.undefined(bool),
-      "hidden": Js.undefined(bool),
-      "name": Js.undefined(Js.Re.t),
-      "normalizer": Js.undefined(string => string),
-    };
-    [@bs.obj]
-    external makeOptions:
-      (
-        ~exact: bool=?,
-        ~hidden: bool=?,
-        ~name: Js.Re.t=?,
-        ~normalizer: string => string=?,
-        unit
-      ) =>
-      options =
-      "";
-  };
-
-  module NameFunc: {
-    type options = {
-      .
-      "exact": Js.undefined(bool),
-      "hidden": Js.undefined(bool),
-      "name": Js.undefined((string, Dom.element) => bool),
-      "normalizer": Js.undefined(string => string),
-    };
-    [@bs.obj]
-    external makeOptions:
-      (
-        ~exact: bool=?,
-        ~hidden: bool=?,
-        ~name: (string, Dom.element) => bool=?,
-        ~normalizer: string => string=?,
-        unit
-      ) =>
-      options =
-      "";
-  };
+  [@bs.obj]
+  external makeOptions:
+    (
+      ~exact: bool=?,
+      ~hidden: bool=?,
+      ~name: string=?,
+      ~normalizer: string => string=?,
+      unit
+    ) =>
+    options =
+    "";
 };
 module ByTestIdQuery: {
   type options = {
@@ -621,31 +578,224 @@ let findAllByTitle:
 /**
  * ByDisplayValue
  */
-let getByDisplayValue: (string, Dom.element) => Dom.element;
-let getAllByDisplayValue: (string, Dom.element) => Dom.element;
-let queryByDisplayValue: (string, Dom.element) => Dom.element;
-let queryAllByDisplayValue: (string, Dom.element) => Dom.element;
-let findByDisplayValue: (string, Dom.element) => Js.Promise.t(Dom.element);
+let getByDisplayValue:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByDisplayValueQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let getAllByDisplayValue:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByDisplayValueQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryByDisplayValue:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByDisplayValueQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryAllByDisplayValue:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByDisplayValueQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let findByDisplayValue:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByDisplayValueQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(Dom.element);
+
 let findAllByDisplayValue:
-  (string, Dom.element) => Js.Promise.t(array(Dom.element));
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByDisplayValueQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(array(Dom.element));
 
 /**
  * ByRole
  */
-let getByRole: (string, Dom.element) => Dom.element;
-let getAllByRole: (string, Dom.element) => Dom.element;
-let queryByRole: (string, Dom.element) => Dom.element;
-let queryAllByRole: (string, Dom.element) => Dom.element;
-let findByRole: (string, Dom.element) => Js.Promise.t(Dom.element);
-let findAllByRole: (string, Dom.element) => Js.Promise.t(array(Dom.element));
+let getByRole:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByRoleQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let getAllByRole:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByRoleQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryByRole:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByRoleQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryAllByRole:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByRoleQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let findByRole:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByRoleQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(Dom.element);
+
+let findAllByRole:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByRoleQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(array(Dom.element));
 
 /**
  * ByTestId
  */
-let getByTestId: (string, Dom.element) => Dom.element;
-let getAllByTestId: (string, Dom.element) => Dom.element;
-let queryByTestId: (string, Dom.element) => Dom.element;
-let queryAllByTestId: (string, Dom.element) => Dom.element;
-let findByTestId: (string, Dom.element) => Js.Promise.t(Dom.element);
+let getByTestId:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTestIdQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let getAllByTestId:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTestIdQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryByTestId:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTestIdQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let queryAllByTestId:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTestIdQuery.options=?,
+    Dom.element
+  ) =>
+  Dom.element;
+
+let findByTestId:
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTestIdQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(Dom.element);
+
 let findAllByTestId:
-  (string, Dom.element) => Js.Promise.t(array(Dom.element));
+  (
+    ~matcher: [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: ByTestIdQuery.options=?,
+    Dom.element
+  ) =>
+  Js.Promise.t(array(Dom.element));

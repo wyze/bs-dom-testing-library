@@ -87,70 +87,25 @@ module ByDisplayValueQuery = {
     "";
 };
 module ByRoleQuery = {
-  module NameStr = {
-    type options = {
-      .
-      "exact": Js.undefined(bool),
-      "hidden": Js.undefined(bool),
-      "name": Js.undefined(string),
-      "normalizer": Js.undefined(string => string),
-    };
-
-    [@bs.obj]
-    external makeOptions:
-      (
-        ~exact: bool=?,
-        ~hidden: bool=?,
-        ~name: string=?,
-        ~normalizer: string => string=?,
-        unit
-      ) =>
-      options =
-      "";
+  type options = {
+    .
+    "exact": Js.undefined(bool),
+    "hidden": Js.undefined(bool),
+    "name": Js.undefined(string),
+    "normalizer": Js.undefined(string => string),
   };
 
-  module NameRegExp = {
-    type options = {
-      .
-      "exact": Js.undefined(bool),
-      "hidden": Js.undefined(bool),
-      "name": Js.undefined(Js.Re.t),
-      "normalizer": Js.undefined(string => string),
-    };
-
-    [@bs.obj]
-    external makeOptions:
-      (
-        ~exact: bool=?,
-        ~hidden: bool=?,
-        ~name: Js.Re.t=?,
-        ~normalizer: string => string=?,
-        unit
-      ) =>
-      options =
-      "";
-  };
-  module NameFunc = {
-    type options = {
-      .
-      "exact": Js.undefined(bool),
-      "hidden": Js.undefined(bool),
-      "name": Js.undefined((string, Dom.element) => bool),
-      "normalizer": Js.undefined(string => string),
-    };
-
-    [@bs.obj]
-    external makeOptions:
-      (
-        ~exact: bool=?,
-        ~hidden: bool=?,
-        ~name: (string, Dom.element) => bool=?,
-        ~normalizer: string => string=?,
-        unit
-      ) =>
-      options =
-      "";
-  };
+  [@bs.obj]
+  external makeOptions:
+    (
+      ~exact: bool=?,
+      ~hidden: bool=?,
+      ~name: string=?,
+      ~normalizer: string => string=?,
+      unit
+    ) =>
+    options =
+    "";
 };
 module ByTestIdQuery = {
   type options = {
@@ -797,118 +752,369 @@ let findAllByTitle = (~matcher, ~options=?, element) =>
  * ByDisplayValue
  */
 [@bs.module "@testing-library/dom"]
-external _getByDisplayValue: (Dom.element, string) => Dom.element =
+external _getByDisplayValue:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByDisplayValueQuery.options)
+  ) =>
+  Dom.element =
   "getByDisplayValue";
 
-let getByDisplayValue = (id, element) => _getByDisplayValue(element, id);
+let getByDisplayValue = (~matcher, ~options=?, element) =>
+  _getByDisplayValue(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _getAllByDisplayValue: (Dom.element, string) => Dom.element =
+external _getAllByDisplayValue:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByDisplayValueQuery.options)
+  ) =>
+  Dom.element =
   "getAllByDisplayValue";
 
-let getAllByDisplayValue = (id, element) =>
-  _getAllByDisplayValue(element, id);
+let getAllByDisplayValue = (~matcher, ~options=?, element) =>
+  _getAllByDisplayValue(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryByDisplayValue: (Dom.element, string) => Dom.element =
+external _queryByDisplayValue:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByDisplayValueQuery.options)
+  ) =>
+  Dom.element =
   "queryByDisplayValue";
 
-let queryByDisplayValue = (id, element) => _queryByDisplayValue(element, id);
+let queryByDisplayValue = (~matcher, ~options=?, element) =>
+  _queryByDisplayValue(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryAllByDisplayValue: (Dom.element, string) => Dom.element =
+external _queryAllByDisplayValue:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByDisplayValueQuery.options)
+  ) =>
+  Dom.element =
   "queryAllByDisplayValue";
 
-let queryAllByDisplayValue = (id, element) =>
-  _queryAllByDisplayValue(element, id);
+let queryAllByDisplayValue = (~matcher, ~options=?, element) =>
+  _queryAllByDisplayValue(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
 external _findByDisplayValue:
-  (Dom.element, string) => Js.Promise.t(Dom.element) =
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByDisplayValueQuery.options)
+  ) =>
+  Js.Promise.t(Dom.element) =
   "findByDisplayValue";
 
-let findByDisplayValue = (id, element) => _findByDisplayValue(element, id);
+let findByDisplayValue = (~matcher, ~options=?, element) =>
+  _findByDisplayValue(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
 external _findAllByDisplayValue:
-  (Dom.element, string) => Js.Promise.t(array(Dom.element)) =
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByDisplayValueQuery.options)
+  ) =>
+  Js.Promise.t(array(Dom.element)) =
   "findAllByDisplayValue";
 
-let findAllByDisplayValue = (id, element) =>
-  _findAllByDisplayValue(element, id);
+let findAllByDisplayValue = (~matcher, ~options=?, element) =>
+  _findAllByDisplayValue(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 /**
  * ByRole
  */
 [@bs.module "@testing-library/dom"]
-external _getByRole: (Dom.element, string) => Dom.element = "getByRole";
+external _getByRole:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByRoleQuery.options)
+  ) =>
+  Dom.element =
+  "getByRole";
 
-let getByRole = (id, element) => _getByRole(element, id);
+let getByRole = (~matcher, ~options=?, element) =>
+  _getByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options));
 
 [@bs.module "@testing-library/dom"]
-external _getAllByRole: (Dom.element, string) => Dom.element = "getAllByRole";
+external _getAllByRole:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByRoleQuery.options)
+  ) =>
+  Dom.element =
+  "getAllByRole";
 
-let getAllByRole = (id, element) => _getAllByRole(element, id);
+let getAllByRole = (~matcher, ~options=?, element) =>
+  _getAllByRole(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryByRole: (Dom.element, string) => Dom.element = "queryByRole";
+external _queryByRole:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByRoleQuery.options)
+  ) =>
+  Dom.element =
+  "queryByRole";
 
-let queryByRole = (id, element) => _queryByRole(element, id);
+let queryByRole = (~matcher, ~options=?, element) =>
+  _queryByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options));
 
 [@bs.module "@testing-library/dom"]
-external _queryAllByRole: (Dom.element, string) => Dom.element =
+external _queryAllByRole:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByRoleQuery.options)
+  ) =>
+  Dom.element =
   "queryAllByRole";
 
-let queryAllByRole = (id, element) => _queryAllByRole(element, id);
+let queryAllByRole = (~matcher, ~options=?, element) =>
+  _queryAllByRole(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _findByRole: (Dom.element, string) => Js.Promise.t(Dom.element) =
+external _findByRole:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByRoleQuery.options)
+  ) =>
+  Js.Promise.t(Dom.element) =
   "findByRole";
 
-let findByRole = (id, element) => _findByRole(element, id);
+let findByRole = (~matcher, ~options=?, element) =>
+  _findByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options));
 
 [@bs.module "@testing-library/dom"]
 external _findAllByRole:
-  (Dom.element, string) => Js.Promise.t(array(Dom.element)) =
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByRoleQuery.options)
+  ) =>
+  Js.Promise.t(array(Dom.element)) =
   "findAllByRole";
 
-let findAllByRole = (id, element) => _findAllByRole(element, id);
+let findAllByRole = (~matcher, ~options=?, element) =>
+  _findAllByRole(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 /**
  * ByTestId
  */
 [@bs.module "@testing-library/dom"]
-external _getByTestId: (Dom.element, string) => Dom.element = "getByTestId";
+external _getByTestId:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTestIdQuery.options)
+  ) =>
+  Dom.element =
+  "getByTestId";
 
-let getByTestId = (id, element) => _getByTestId(element, id);
+let getByTestId = (~matcher, ~options=?, element) =>
+  _getByTestId(element, ~matcher, ~options=Js.Undefined.fromOption(options));
 
 [@bs.module "@testing-library/dom"]
-external _getAllByTestId: (Dom.element, string) => Dom.element =
+external _getAllByTestId:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTestIdQuery.options)
+  ) =>
+  Dom.element =
   "getAllByTestId";
 
-let getAllByTestId = (id, element) => _getAllByTestId(element, id);
+let getAllByTestId = (~matcher, ~options=?, element) =>
+  _getAllByTestId(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryByTestId: (Dom.element, string) => Dom.element =
+external _queryByTestId:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTestIdQuery.options)
+  ) =>
+  Dom.element =
   "queryByTestId";
 
-let queryByTestId = (id, element) => _queryByTestId(element, id);
+let queryByTestId = (~matcher, ~options=?, element) =>
+  _queryByTestId(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _queryAllByTestId: (Dom.element, string) => Dom.element =
+external _queryAllByTestId:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTestIdQuery.options)
+  ) =>
+  Dom.element =
   "queryAllByTestId";
 
-let queryAllByTestId = (id, element) => _queryAllByTestId(element, id);
+let queryAllByTestId = (~matcher, ~options=?, element) =>
+  _queryAllByTestId(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
-external _findByTestId: (Dom.element, string) => Js.Promise.t(Dom.element) =
+external _findByTestId:
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTestIdQuery.options)
+  ) =>
+  Js.Promise.t(Dom.element) =
   "findByTestId";
 
-let findByTestId = (id, element) => _findByTestId(element, id);
+let findByTestId = (~matcher, ~options=?, element) =>
+  _findByTestId(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );
 
 [@bs.module "@testing-library/dom"]
 external _findAllByTestId:
-  (Dom.element, string) => Js.Promise.t(array(Dom.element)) =
+  (
+    Dom.element,
+    ~matcher: [@bs.unwrap] [
+                | `Func((string, Dom.element) => bool)
+                | `RegExp(Js.Re.t)
+                | `Str(string)
+              ],
+    ~options: Js.undefined(ByTestIdQuery.options)
+  ) =>
+  Js.Promise.t(array(Dom.element)) =
   "findAllByTestId";
 
-let findAllByTestId = (id, element) => _findAllByTestId(element, id);
+let findAllByTestId = (~matcher, ~options=?, element) =>
+  _findAllByTestId(
+    element,
+    ~matcher,
+    ~options=Js.Undefined.fromOption(options),
+  );

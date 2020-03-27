@@ -57,7 +57,7 @@ describe("DomTestingLibrary", () => {
           }),
       );
       render({|<p data-custom-test-id="world"> World!</p>|})
-      |> getByTestId("world")
+      |> getByTestId(~matcher=`Str("world"))
       |> expect
       |> toMatchSnapshot;
     });
@@ -73,7 +73,7 @@ describe("DomTestingLibrary", () => {
           ),
       );
       render({|<p data-custom-test-id="world"> World!</p>|})
-      |> getByTestId("world")
+      |> getByTestId(~matcher=`Str("world"))
       |> expect
       |> toMatchSnapshot;
     });
@@ -804,129 +804,418 @@ describe("DomTestingLibrary", () => {
   });
 
   describe("ByDisplayValue", () => {
-    test("get works", () =>
-      render({|<input type="text" value="Some value" />|})
-      |> getByDisplayValue("Some value")
-      |> expect
-      |> toMatchSnapshot
-    );
+    describe("string matcher", () => {
+      test("get works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> getByDisplayValue(~matcher=`Str("Some value"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("getAll works", () =>
-      render({|<input type="text" value="Some value" />|})
-      |> getAllByDisplayValue("Some value")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("getAll works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> getAllByDisplayValue(~matcher=`Str("Some value"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("query works", () =>
-      render({|<input type="text" value="Some value" />|})
-      |> queryByDisplayValue("Some value")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("query works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> queryByDisplayValue(~matcher=`Str("Some value"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("queryAll works", () =>
-      render({|<input type="text" value="Some value" />|})
-      |> queryAllByDisplayValue("Some value")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("queryAll works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> queryAllByDisplayValue(~matcher=`Str("Some value"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    testPromise("find works", () =>
-      render({|<input type="text" value="Some value" />|})
-      |> findByDisplayValue("Some value")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("find works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> findByDisplayValue(~matcher=`Str("Some value"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
 
-    testPromise("findAll works", () =>
-      render({|<input type="text" value="Some value" />|})
-      |> findAllByDisplayValue("Some value")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("findAll works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> findAllByDisplayValue(~matcher=`Str("Some value"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+
+    describe("regex matcher", () => {
+      test("get works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> getByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> getAllByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> queryByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> queryAllByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> findByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<input type="text" value="Some value" />|})
+        |> findAllByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+    describe("function matcher", () => {
+      test("get works", () =>
+        render({|<input name="my-input" type="text" value="Some value" />|})
+        |> getByDisplayValue(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<input name="my-input" type="text" value="Some value" />|})
+        |> getAllByDisplayValue(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<input name="my-input" type="text" value="Some value" />|})
+        |> queryByDisplayValue(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<input name="my-input" type="text" value="Some value" />|})
+        |> queryAllByDisplayValue(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<input name="my-input" type="text" value="Some value" />|})
+        |> findByDisplayValue(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<input name="my-input" type="text" value="Some value" />|})
+        |> findAllByDisplayValue(
+             ~matcher=`Func((_text, node) => node |> name === "my-input"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
   });
 
   describe("ByRole", () => {
-    test("get works", () =>
-      render({|<button>World!</button>|})
-      |> getByRole("button")
-      |> expect
-      |> toMatchSnapshot
-    );
+    describe("string matcher", () => {
+      test("get works", () =>
+        render({|<button>World!</button>|})
+        |> getByRole(~matcher=`Str("button"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("getAll works", () =>
-      render({|<button>World!</button>|})
-      |> getAllByRole("button")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("getAll works", () =>
+        render({|<button>World!</button>|})
+        |> getAllByRole(~matcher=`Str("button"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("query works", () =>
-      render({|<button>World!</button>|})
-      |> queryByRole("button")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("query works", () =>
+        render({|<button>World!</button>|})
+        |> queryByRole(~matcher=`Str("button"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("queryAll works", () =>
-      render({|<button>World!</button>|})
-      |> queryAllByRole("button")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("queryAll works", () =>
+        render({|<button>World!</button>|})
+        |> queryAllByRole(~matcher=`Str("button"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    testPromise("find works", () =>
-      render({|<button>World!</button>|})
-      |> findByRole("button")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("find works", () =>
+        render({|<button>World!</button>|})
+        |> findByRole(~matcher=`Str("button"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
 
-    testPromise("findAll works", () =>
-      render({|<button>World!</button>|})
-      |> findAllByRole("button")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("findAll works", () =>
+        render({|<button>World!</button>|})
+        |> findAllByRole(~matcher=`Str("button"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+    describe("regex matcher", () => {
+      test("get works", () =>
+        render({|<button>World!</button>|})
+        |> getByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<button>World!</button>|})
+        |> getAllByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<button>World!</button>|})
+        |> queryByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<button>World!</button>|})
+        |> queryAllByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<button>World!</button>|})
+        |> findByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<button>World!</button>|})
+        |> findAllByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+    describe("function matcher", () => {
+      test("get works", () =>
+        render({|<button>World!</button>|})
+        |> getByRole(
+             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<button>World!</button>|})
+        |> getAllByRole(
+             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<button>World!</button>|})
+        |> queryByRole(
+             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<button>World!</button>|})
+        |> queryAllByRole(
+             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<button>World!</button>|})
+        |> findByRole(
+             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<button>World!</button>|})
+        |> findAllByRole(
+             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
   });
 
   describe("ByTestId", () => {
-    test("get works", () =>
-      render({|<p data-testid="world">World!</p>|})
-      |> getByTestId("world")
-      |> expect
-      |> toMatchSnapshot
-    );
+    describe("string matcher", () => {
+      test("get works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> getByTestId(~matcher=`Str("world"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("getAll works", () =>
-      render({|<p data-testid="world">World!</p>|})
-      |> getAllByTestId("world")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("getAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> getAllByTestId(~matcher=`Str("world"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("query works", () =>
-      render({|<p data-testid="world">World!</p>|})
-      |> queryByTestId("world")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("query works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> queryByTestId(~matcher=`Str("world"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    test("queryAll works", () =>
-      render({|<p data-testid="world">World!</p>|})
-      |> queryAllByTestId("world")
-      |> expect
-      |> toMatchSnapshot
-    );
+      test("queryAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> queryAllByTestId(~matcher=`Str("world"))
+        |> expect
+        |> toMatchSnapshot
+      );
 
-    testPromise("find works", () =>
-      render({|<p data-testid="world">World!</p>|})
-      |> findByTestId("world")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("find works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> findByTestId(~matcher=`Str("world"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
 
-    testPromise("findAll works", () =>
-      render({|<p data-testid="world">World!</p>|})
-      |> findAllByTestId("world")
-      |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-    );
+      testPromise("findAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> findAllByTestId(~matcher=`Str("world"))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+    describe("regex matcher", () => {
+      test("get works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> getByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> getAllByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> queryByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> queryAllByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> findByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> findAllByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+    describe("function matcher", () => {
+      test("get works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> getByTestId(
+             ~matcher=`Func((_text, node) => node |> tagName === "P"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> getAllByTestId(
+             ~matcher=`Func((_text, node) => node |> tagName === "P"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> queryByTestId(
+             ~matcher=`Func((_text, node) => node |> tagName === "P"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> queryAllByTestId(
+             ~matcher=`Func((_text, node) => node |> tagName === "P"),
+           )
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> findByTestId(
+             ~matcher=`Func((_text, node) => node |> tagName === "P"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<p data-testid="world">World!</p>|})
+        |> findAllByTestId(
+             ~matcher=`Func((_text, node) => node |> tagName === "P"),
+           )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
   });
 
   test("getNodeText works", () =>

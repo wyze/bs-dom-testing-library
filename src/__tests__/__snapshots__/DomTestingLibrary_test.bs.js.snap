@@ -166,6 +166,60 @@ Array [
 ]
 `;
 
+exports[`DomTestingLibrary ByDisplayValue function matcher find works 1`] = `
+<input
+  name="my-input"
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher findAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher get works 1`] = `
+<input
+  name="my-input"
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher getAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher query works 1`] = `
+<input
+  name="my-input"
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher queryAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
 exports[`DomTestingLibrary ByDisplayValue get works 1`] = `
 <input
   type="text"
@@ -190,6 +244,102 @@ exports[`DomTestingLibrary ByDisplayValue query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue queryAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher find works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher findAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher get works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher getAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher query works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher queryAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher find works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher findAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher get works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher getAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher query works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher queryAll works 1`] = `
 Array [
   <input
     type="text"
@@ -536,6 +686,48 @@ Array [
 ]
 `;
 
+exports[`DomTestingLibrary ByRole function matcher find works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole function matcher findAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole function matcher get works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole function matcher getAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole function matcher query works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole function matcher queryAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
 exports[`DomTestingLibrary ByRole get works 1`] = `
 <button>
   World!
@@ -564,6 +756,90 @@ Array [
 ]
 `;
 
+exports[`DomTestingLibrary ByRole regex matcher find works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher findAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher get works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher getAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher query works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher queryAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole string matcher find works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole string matcher findAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole string matcher get works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole string matcher getAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole string matcher query works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole string matcher queryAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
 exports[`DomTestingLibrary ByTestId find works 1`] = `
 <p
   data-testid="world"
@@ -573,6 +849,60 @@ exports[`DomTestingLibrary ByTestId find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher find works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher get works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher getAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher query works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher queryAll works 1`] = `
 Array [
   <p
     data-testid="world"
@@ -609,6 +939,114 @@ exports[`DomTestingLibrary ByTestId query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId queryAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher find works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher get works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher getAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher query works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher queryAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher find works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher get works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher getAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher query works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher queryAll works 1`] = `
 Array [
   <p
     data-testid="world"
