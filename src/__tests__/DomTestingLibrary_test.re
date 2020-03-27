@@ -3,8 +3,8 @@ open Jest;
 open Webapi.Dom;
 open Webapi.Dom.Element;
 
-[@bs.get] external tagName: Dom.element => string = "";
-[@bs.get] external name: Dom.element => string = "";
+[@bs.get] external tagName: Dom.element => string = "tagName";
+[@bs.get] external name: Dom.element => string = "name";
 
 [@bs.val] external setTimeout: (unit => unit, int) => float = "setTimeout";
 

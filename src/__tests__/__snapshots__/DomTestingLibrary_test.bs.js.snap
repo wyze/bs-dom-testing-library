@@ -150,22 +150,6 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByDisplayValue find works 1`] = `
-<input
-  type="text"
-  value="Some value"
-/>
-`;
-
-exports[`DomTestingLibrary ByDisplayValue findAll works 1`] = `
-Array [
-  <input
-    type="text"
-    value="Some value"
-  />,
-]
-`;
-
 exports[`DomTestingLibrary ByDisplayValue function matcher find works 1`] = `
 <input
   name="my-input"
@@ -214,38 +198,6 @@ exports[`DomTestingLibrary ByDisplayValue function matcher queryAll works 1`] = 
 Array [
   <input
     name="my-input"
-    type="text"
-    value="Some value"
-  />,
-]
-`;
-
-exports[`DomTestingLibrary ByDisplayValue get works 1`] = `
-<input
-  type="text"
-  value="Some value"
-/>
-`;
-
-exports[`DomTestingLibrary ByDisplayValue getAll works 1`] = `
-Array [
-  <input
-    type="text"
-    value="Some value"
-  />,
-]
-`;
-
-exports[`DomTestingLibrary ByDisplayValue query works 1`] = `
-<input
-  type="text"
-  value="Some value"
-/>
-`;
-
-exports[`DomTestingLibrary ByDisplayValue queryAll works 1`] = `
-Array [
-  <input
     type="text"
     value="Some value"
   />,
@@ -672,20 +624,6 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByRole find works 1`] = `
-<button>
-  World!
-</button>
-`;
-
-exports[`DomTestingLibrary ByRole findAll works 1`] = `
-Array [
-  <button>
-    World!
-  </button>,
-]
-`;
-
 exports[`DomTestingLibrary ByRole function matcher find works 1`] = `
 <button>
   World!
@@ -721,34 +659,6 @@ exports[`DomTestingLibrary ByRole function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole function matcher queryAll works 1`] = `
-Array [
-  <button>
-    World!
-  </button>,
-]
-`;
-
-exports[`DomTestingLibrary ByRole get works 1`] = `
-<button>
-  World!
-</button>
-`;
-
-exports[`DomTestingLibrary ByRole getAll works 1`] = `
-Array [
-  <button>
-    World!
-  </button>,
-]
-`;
-
-exports[`DomTestingLibrary ByRole query works 1`] = `
-<button>
-  World!
-</button>
-`;
-
-exports[`DomTestingLibrary ByRole queryAll works 1`] = `
 Array [
   <button>
     World!
@@ -840,24 +750,6 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByTestId find works 1`] = `
-<p
-  data-testid="world"
->
-  World!
-</p>
-`;
-
-exports[`DomTestingLibrary ByTestId findAll works 1`] = `
-Array [
-  <p
-    data-testid="world"
-  >
-    World!
-  </p>,
-]
-`;
-
 exports[`DomTestingLibrary ByTestId function matcher find works 1`] = `
 <p
   data-testid="world"
@@ -903,42 +795,6 @@ exports[`DomTestingLibrary ByTestId function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId function matcher queryAll works 1`] = `
-Array [
-  <p
-    data-testid="world"
-  >
-    World!
-  </p>,
-]
-`;
-
-exports[`DomTestingLibrary ByTestId get works 1`] = `
-<p
-  data-testid="world"
->
-  World!
-</p>
-`;
-
-exports[`DomTestingLibrary ByTestId getAll works 1`] = `
-Array [
-  <p
-    data-testid="world"
-  >
-    World!
-  </p>,
-]
-`;
-
-exports[`DomTestingLibrary ByTestId query works 1`] = `
-<p
-  data-testid="world"
->
-  World!
-</p>
-`;
-
-exports[`DomTestingLibrary ByTestId queryAll works 1`] = `
 Array [
   <p
     data-testid="world"

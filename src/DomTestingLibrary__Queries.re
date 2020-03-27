@@ -121,7 +121,7 @@ module ByTestIdQuery = {
 };
 
 [@bs.module "@testing-library/dom"]
-external getNodeText: Dom.element => string = "";
+external getNodeText: Dom.element => string = "getNodeText";
 
 /**
  * ByLabelText
