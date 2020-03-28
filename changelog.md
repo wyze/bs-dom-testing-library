@@ -1,5 +1,12 @@
 ## Change Log
 
+### [v0.6.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.6.0) (2020-03-27)
+
+* Add back override and change from OCaml to Reason ([@wyze](https://github.com/wyze) in [67052c2](https://github.com/wyze/bs-dom-testing-library/commit/67052c2))
+* Remove linguist language override ([@wyze](https://github.com/wyze) in [c0ae165](https://github.com/wyze/bs-dom-testing-library/commit/c0ae165))
+* Upgrade devDependencies to latest versions ([@wyze](https://github.com/wyze) in [f89533e](https://github.com/wyze/bs-dom-testing-library/commit/f89533e))
+* Upgrade @testing-library/dom to latest (7.1) version ([@jihchi](https://github.com/jihchi) in [#13](https://github.com/wyze/bs-dom-testing-library/pull/13))
+
 ### [v0.5.1](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.5.1) (2019-07-22)
 
 * Add bindings for `configure` ([@leeor](https://github.com/leeor) in [#10](https://github.com/wyze/bs-dom-testing-library/pull/10))
