@@ -1,44 +1,360 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DomTestingLibrary configure works using a function 1`] = `
-<p
-  data-custom-test-id="world"
->
-   World!
-</p>
+exports[`DomTestingLibrary ByAltText function matcher find works 1`] = `
+<img
+  alt="Alt text"
+  name="my-img"
+  src=""
+/>
 `;
 
-exports[`DomTestingLibrary configure works using an object 1`] = `
-<p
-  data-custom-test-id="world"
->
-   World!
-</p>
+exports[`DomTestingLibrary ByAltText function matcher findAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    name="my-img"
+    src=""
+  />,
+]
 `;
 
-exports[`DomTestingLibrary getByAltText works 1`] = `
+exports[`DomTestingLibrary ByAltText function matcher get works 1`] = `
+<img
+  alt="Alt text"
+  name="my-img"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText function matcher getAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    name="my-img"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText function matcher query works 1`] = `
+<img
+  alt="Alt text"
+  name="my-img"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText function matcher queryAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    name="my-img"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText regex matcher find works 1`] = `
 <img
   alt="Alt text"
   src=""
 />
 `;
 
-exports[`DomTestingLibrary getByDisplayValue works 1`] = `
+exports[`DomTestingLibrary ByAltText regex matcher findAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText regex matcher get works 1`] = `
+<img
+  alt="Alt text"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText regex matcher getAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText regex matcher query works 1`] = `
+<img
+  alt="Alt text"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText regex matcher queryAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher find works 1`] = `
+<img
+  alt="Alt text"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher findAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher get works 1`] = `
+<img
+  alt="Alt text"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher getAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher query works 1`] = `
+<img
+  alt="Alt text"
+  src=""
+/>
+`;
+
+exports[`DomTestingLibrary ByAltText string matcher queryAll works 1`] = `
+Array [
+  <img
+    alt="Alt text"
+    src=""
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher find works 1`] = `
+<input
+  name="my-input"
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher findAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher get works 1`] = `
+<input
+  name="my-input"
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher getAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher query works 1`] = `
+<input
+  name="my-input"
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue function matcher queryAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher find works 1`] = `
 <input
   type="text"
   value="Some value"
 />
 `;
 
-exports[`DomTestingLibrary getByLabelText works with function matcher 1`] = `
+exports[`DomTestingLibrary ByDisplayValue regex matcher findAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher get works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher getAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher query works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue regex matcher queryAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher find works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher findAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher get works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher getAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher query works 1`] = `
+<input
+  type="text"
+  value="Some value"
+/>
+`;
+
+exports[`DomTestingLibrary ByDisplayValue string matcher queryAll works 1`] = `
+Array [
+  <input
+    type="text"
+    value="Some value"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByLabelText function matcher find works 1`] = `
 <p
   aria-label="message"
 >
-   World!
+  World!
 </p>
 `;
 
-exports[`DomTestingLibrary getByLabelText works with regex matcher 1`] = `
+exports[`DomTestingLibrary ByLabelText function matcher findAll works 1`] = `
+Array [
+  <p
+    aria-label="message"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByLabelText function matcher get works 1`] = `
+<p
+  aria-label="message"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByLabelText function matcher getAll works 1`] = `
+Array [
+  <p
+    aria-label="message"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByLabelText function matcher query works 1`] = `
+<p
+  aria-label="message"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByLabelText function matcher queryAll works 1`] = `
+Array [
+  <p
+    aria-label="message"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByLabelText regex matcher find works 1`] = `
 <section
   aria-labelledby="section-one-header"
 >
@@ -53,40 +369,658 @@ exports[`DomTestingLibrary getByLabelText works with regex matcher 1`] = `
 </section>
 `;
 
-exports[`DomTestingLibrary getByLabelText works with string matcher 1`] = `<input />`;
+exports[`DomTestingLibrary ByLabelText regex matcher findAll works 1`] = `
+Array [
+  <section
+    aria-labelledby="section-one-header"
+  >
+    <h3
+      id="section-one-header"
+    >
+      Section One!
+    </h3>
+    <p>
+      some content
+    </p>
+  </section>,
+]
+`;
 
-exports[`DomTestingLibrary getByPlaceholderText works 1`] = `
+exports[`DomTestingLibrary ByLabelText regex matcher get works 1`] = `
+<section
+  aria-labelledby="section-one-header"
+>
+  <h3
+    id="section-one-header"
+  >
+    Section One!
+  </h3>
+  <p>
+    some content
+  </p>
+</section>
+`;
+
+exports[`DomTestingLibrary ByLabelText regex matcher getAll works 1`] = `
+Array [
+  <section
+    aria-labelledby="section-one-header"
+  >
+    <h3
+      id="section-one-header"
+    >
+      Section One!
+    </h3>
+    <p>
+      some content
+    </p>
+  </section>,
+]
+`;
+
+exports[`DomTestingLibrary ByLabelText regex matcher query works 1`] = `
+<section
+  aria-labelledby="section-one-header"
+>
+  <h3
+    id="section-one-header"
+  >
+    Section One!
+  </h3>
+  <p>
+    some content
+  </p>
+</section>
+`;
+
+exports[`DomTestingLibrary ByLabelText regex matcher queryAll works 1`] = `
+Array [
+  <section
+    aria-labelledby="section-one-header"
+  >
+    <h3
+      id="section-one-header"
+    >
+      Section One!
+    </h3>
+    <p>
+      some content
+    </p>
+  </section>,
+]
+`;
+
+exports[`DomTestingLibrary ByLabelText string matcher find works 1`] = `<input />`;
+
+exports[`DomTestingLibrary ByLabelText string matcher findAll works 1`] = `
+Array [
+  <input />,
+]
+`;
+
+exports[`DomTestingLibrary ByLabelText string matcher get works 1`] = `<input />`;
+
+exports[`DomTestingLibrary ByLabelText string matcher getAll works 1`] = `
+Array [
+  <input />,
+]
+`;
+
+exports[`DomTestingLibrary ByLabelText string matcher query works 1`] = `<input />`;
+
+exports[`DomTestingLibrary ByLabelText string matcher queryAll works 1`] = `
+Array [
+  <input />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher find works 1`] = `
+<input
+  name="my-input"
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher findAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher get works 1`] = `
+<input
+  name="my-input"
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher getAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher query works 1`] = `
+<input
+  name="my-input"
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText function matcher queryAll works 1`] = `
+Array [
+  <input
+    name="my-input"
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText regex matcher find works 1`] = `
 <input
   placeholder="Enter something"
   type="text"
 />
 `;
 
-exports[`DomTestingLibrary getByTestId works 1`] = `
+exports[`DomTestingLibrary ByPlaceholderText regex matcher findAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText regex matcher get works 1`] = `
+<input
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText regex matcher getAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText regex matcher query works 1`] = `
+<input
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText regex matcher queryAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher find works 1`] = `
+<input
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher findAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher get works 1`] = `
+<input
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher getAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher query works 1`] = `
+<input
+  placeholder="Enter something"
+  type="text"
+/>
+`;
+
+exports[`DomTestingLibrary ByPlaceholderText string matcher queryAll works 1`] = `
+Array [
+  <input
+    placeholder="Enter something"
+    type="text"
+  />,
+]
+`;
+
+exports[`DomTestingLibrary ByRole function matcher find works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole function matcher findAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole function matcher get works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole function matcher getAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole function matcher query works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole function matcher queryAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher find works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher findAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher get works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher getAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher query works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole regex matcher queryAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole string matcher find works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole string matcher findAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole string matcher get works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole string matcher getAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByRole string matcher query works 1`] = `
+<button>
+  World!
+</button>
+`;
+
+exports[`DomTestingLibrary ByRole string matcher queryAll works 1`] = `
+Array [
+  <button>
+    World!
+  </button>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher find works 1`] = `
 <p
   data-testid="world"
 >
-   World!
+  World!
 </p>
 `;
 
-exports[`DomTestingLibrary getByText works with function matcher 1`] = `
+exports[`DomTestingLibrary ByTestId function matcher findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher get works 1`] = `
 <p
   data-testid="world"
 >
-   World!
+  World!
 </p>
 `;
 
-exports[`DomTestingLibrary getByText works with regex matcher 1`] = `
+exports[`DomTestingLibrary ByTestId function matcher getAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId function matcher query works 1`] = `
 <p
   data-testid="world"
 >
-   World!
+  World!
 </p>
 `;
 
-exports[`DomTestingLibrary getByText works with string matcher 1`] = `
+exports[`DomTestingLibrary ByTestId function matcher queryAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher find works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher get works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher getAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher query works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId regex matcher queryAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher find works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher get works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher getAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher query works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByTestId string matcher queryAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByText function matcher find works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByText function matcher findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByText function matcher get works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByText function matcher getAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByText function matcher query works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByText function matcher queryAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByText regex matcher find works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByText regex matcher findAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByText regex matcher get works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByText regex matcher getAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByText regex matcher query works 1`] = `
+<p
+  data-testid="world"
+>
+  World!
+</p>
+`;
+
+exports[`DomTestingLibrary ByText regex matcher queryAll works 1`] = `
+Array [
+  <p
+    data-testid="world"
+  >
+    World!
+  </p>,
+]
+`;
+
+exports[`DomTestingLibrary ByText string matcher find works 1`] = `
 <b
   title="greeting"
 >
@@ -94,12 +1028,228 @@ exports[`DomTestingLibrary getByText works with string matcher 1`] = `
 </b>
 `;
 
-exports[`DomTestingLibrary getByTitle works 1`] = `
+exports[`DomTestingLibrary ByText string matcher findAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByText string matcher get works 1`] = `
 <b
   title="greeting"
 >
   Hello,
 </b>
+`;
+
+exports[`DomTestingLibrary ByText string matcher getAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByText string matcher query works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByText string matcher queryAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle function matcher find works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle function matcher findAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle function matcher get works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle function matcher getAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle function matcher query works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle function matcher queryAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher find works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher findAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher get works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher getAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher query works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle regexp matcher queryAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher find works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher findAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher get works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher getAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher query works 1`] = `
+<b
+  title="greeting"
+>
+  Hello,
+</b>
+`;
+
+exports[`DomTestingLibrary ByTitle string matcher queryAll works 1`] = `
+Array [
+  <b
+    title="greeting"
+  >
+    Hello,
+  </b>,
+]
+`;
+
+exports[`DomTestingLibrary configure works using a function 1`] = `
+<p
+  data-custom-test-id="world"
+>
+   World!
+</p>
+`;
+
+exports[`DomTestingLibrary configure works using an object 1`] = `
+<p
+  data-custom-test-id="world"
+>
+   World!
+</p>
 `;
 
 exports[`DomTestingLibrary getNodeText works 1`] = `"Hello,"`;
