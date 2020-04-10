@@ -158,7 +158,7 @@ external _getAllByLabelText:
               ],
     ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "getAllByLabelText";
 
 let getAllByLabelText = (~matcher, ~options=?, element) =>
@@ -179,7 +179,7 @@ external _queryByLabelText:
               ],
     ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
-  Dom.element =
+  Js.null(Dom.element) =
   "queryByLabelText";
 
 let queryByLabelText = (~matcher, ~options=?, element) =>
@@ -200,7 +200,7 @@ external _queryAllByLabelText:
               ],
     ~options: Js.undefined(ByLabelTextQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "queryAllByLabelText";
 
 let queryAllByLabelText = (~matcher, ~options=?, element) =>
@@ -287,7 +287,7 @@ external _getAllByPlaceholderText:
               ],
     ~options: Js.undefined(ByPlaceholderTextQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "getAllByPlaceholderText";
 
 let getAllByPlaceholderText = (~matcher, ~options=?, element) =>
@@ -308,7 +308,7 @@ external _queryByPlaceholderText:
               ],
     ~options: Js.undefined(ByPlaceholderTextQuery.options)
   ) =>
-  Dom.element =
+  Js.null(Dom.element) =
   "queryByPlaceholderText";
 
 let queryByPlaceholderText = (~matcher, ~options=?, element) =>
@@ -329,7 +329,7 @@ external _queryAllByPlaceholderText:
               ],
     ~options: Js.undefined(ByPlaceholderTextQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "queryAllByPlaceholderText";
 
 let queryAllByPlaceholderText = (~matcher, ~options=?, element) =>
@@ -412,7 +412,7 @@ external _getAllByText:
               ],
     ~options: Js.undefined(ByTextQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "getAllByText";
 
 let getAllByText = (~matcher, ~options=?, element) =>
@@ -433,7 +433,7 @@ external _queryByText:
               ],
     ~options: Js.undefined(ByTextQuery.options)
   ) =>
-  Dom.element =
+  Js.null(Dom.element) =
   "queryByText";
 
 let queryByText = (~matcher, ~options=?, element) =>
@@ -450,7 +450,7 @@ external _queryAllByText:
               ],
     ~options: Js.undefined(ByTextQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "queryAllByText";
 
 let queryAllByText = (~matcher, ~options=?, element) =>
@@ -533,7 +533,7 @@ external _getAllByAltText:
               ],
     ~options: Js.undefined(ByAltTextQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "getAllByAltText";
 
 let getAllByAltText = (~matcher, ~options=?, element) =>
@@ -554,7 +554,7 @@ external _queryByAltText:
               ],
     ~options: Js.undefined(ByAltTextQuery.options)
   ) =>
-  Dom.element =
+  Js.null(Dom.element) =
   "queryByAltText";
 
 let queryByAltText = (~matcher, ~options=?, element) =>
@@ -575,7 +575,7 @@ external _queryAllByAltText:
               ],
     ~options: Js.undefined(ByAltTextQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "queryAllByAltText";
 
 let queryAllByAltText = (~matcher, ~options=?, element) =>
@@ -658,7 +658,7 @@ external _getAllByTitle:
               ],
     ~options: Js.undefined(ByTitleQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "getAllByTitle";
 
 let getAllByTitle = (~matcher, ~options=?, element) =>
@@ -679,7 +679,7 @@ external _queryByTitle:
               ],
     ~options: Js.undefined(ByTitleQuery.options)
   ) =>
-  Dom.element =
+  Js.null(Dom.element) =
   "queryByTitle";
 
 let queryByTitle = (~matcher, ~options=?, element) =>
@@ -700,7 +700,7 @@ external _queryAllByTitle:
               ],
     ~options: Js.undefined(ByTitleQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "queryAllByTitle";
 
 let queryAllByTitle = (~matcher, ~options=?, element) =>
@@ -783,7 +783,7 @@ external _getAllByDisplayValue:
               ],
     ~options: Js.undefined(ByDisplayValueQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "getAllByDisplayValue";
 
 let getAllByDisplayValue = (~matcher, ~options=?, element) =>
@@ -804,7 +804,7 @@ external _queryByDisplayValue:
               ],
     ~options: Js.undefined(ByDisplayValueQuery.options)
   ) =>
-  Dom.element =
+  Js.null(Dom.element) =
   "queryByDisplayValue";
 
 let queryByDisplayValue = (~matcher, ~options=?, element) =>
@@ -825,7 +825,7 @@ external _queryAllByDisplayValue:
               ],
     ~options: Js.undefined(ByDisplayValueQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "queryAllByDisplayValue";
 
 let queryAllByDisplayValue = (~matcher, ~options=?, element) =>
@@ -908,7 +908,7 @@ external _getAllByRole:
               ],
     ~options: Js.undefined(ByRoleQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "getAllByRole";
 
 let getAllByRole = (~matcher, ~options=?, element) =>
@@ -929,7 +929,7 @@ external _queryByRole:
               ],
     ~options: Js.undefined(ByRoleQuery.options)
   ) =>
-  Dom.element =
+  Js.null(Dom.element) =
   "queryByRole";
 
 let queryByRole = (~matcher, ~options=?, element) =>
@@ -946,7 +946,7 @@ external _queryAllByRole:
               ],
     ~options: Js.undefined(ByRoleQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "queryAllByRole";
 
 let queryAllByRole = (~matcher, ~options=?, element) =>
@@ -1025,7 +1025,7 @@ external _getAllByTestId:
               ],
     ~options: Js.undefined(ByTestIdQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "getAllByTestId";
 
 let getAllByTestId = (~matcher, ~options=?, element) =>
@@ -1046,7 +1046,7 @@ external _queryByTestId:
               ],
     ~options: Js.undefined(ByTestIdQuery.options)
   ) =>
-  Dom.element =
+  Js.null(Dom.element) =
   "queryByTestId";
 
 let queryByTestId = (~matcher, ~options=?, element) =>
@@ -1067,7 +1067,7 @@ external _queryAllByTestId:
               ],
     ~options: Js.undefined(ByTestIdQuery.options)
   ) =>
-  Dom.element =
+  array(Dom.element) =
   "queryAllByTestId";
 
 let queryAllByTestId = (~matcher, ~options=?, element) =>

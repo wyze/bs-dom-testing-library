@@ -225,7 +225,7 @@ let getAllByLabelText:
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let queryByLabelText:
   (
@@ -237,7 +237,7 @@ let queryByLabelText:
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  Js.null(Dom.element);
 
 let queryAllByLabelText:
   (
@@ -249,7 +249,7 @@ let queryAllByLabelText:
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let findByLabelText:
   (
@@ -300,7 +300,7 @@ let getAllByPlaceholderText:
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let queryByPlaceholderText:
   (
@@ -312,7 +312,7 @@ let queryByPlaceholderText:
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  Js.null(Dom.element);
 
 let queryAllByPlaceholderText:
   (
@@ -324,7 +324,7 @@ let queryAllByPlaceholderText:
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let findByPlaceholderText:
   (
@@ -375,7 +375,7 @@ let getAllByText:
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let queryByText:
   (
@@ -387,7 +387,7 @@ let queryByText:
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  Js.null(Dom.element);
 
 let queryAllByText:
   (
@@ -399,7 +399,7 @@ let queryAllByText:
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let findByText:
   (
@@ -450,7 +450,7 @@ let getAllByAltText:
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let queryByAltText:
   (
@@ -462,7 +462,7 @@ let queryByAltText:
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  Js.null(Dom.element);
 
 let queryAllByAltText:
   (
@@ -474,7 +474,7 @@ let queryAllByAltText:
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let findByAltText:
   (
@@ -525,7 +525,7 @@ let getAllByTitle:
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let queryByTitle:
   (
@@ -537,7 +537,7 @@ let queryByTitle:
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  Js.null(Dom.element);
 
 let queryAllByTitle:
   (
@@ -549,7 +549,7 @@ let queryAllByTitle:
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let findByTitle:
   (
@@ -600,7 +600,7 @@ let getAllByDisplayValue:
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let queryByDisplayValue:
   (
@@ -612,7 +612,7 @@ let queryByDisplayValue:
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  Js.null(Dom.element);
 
 let queryAllByDisplayValue:
   (
@@ -624,7 +624,7 @@ let queryAllByDisplayValue:
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let findByDisplayValue:
   (
@@ -675,7 +675,7 @@ let getAllByRole:
     ~options: ByRoleQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let queryByRole:
   (
@@ -687,7 +687,7 @@ let queryByRole:
     ~options: ByRoleQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  Js.null(Dom.element);
 
 let queryAllByRole:
   (
@@ -699,7 +699,7 @@ let queryAllByRole:
     ~options: ByRoleQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let findByRole:
   (
@@ -750,7 +750,7 @@ let getAllByTestId:
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let queryByTestId:
   (
@@ -762,7 +762,7 @@ let queryByTestId:
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  Js.null(Dom.element);
 
 let queryAllByTestId:
   (
@@ -774,7 +774,7 @@ let queryAllByTestId:
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
-  Dom.element;
+  array(Dom.element);
 
 let findByTestId:
   (
