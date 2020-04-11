@@ -1,5 +1,9 @@
 ## Change Log
 
+### [v0.6.1](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.6.1) (2020-04-10)
+
+* Fix incorrect returning types ([@jihchi](https://github.com/jihchi) in [#16](https://github.com/wyze/bs-dom-testing-library/pull/16))
+
 ### [v0.6.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.6.0) (2020-03-27)
 
 * Add back override and change from OCaml to Reason ([@wyze](https://github.com/wyze) in [67052c2](https://github.com/wyze/bs-dom-testing-library/commit/67052c2))
