@@ -1,3 +1,5 @@
+[@coverage exclude_file];
+
 open Js.Promise;
 open Jest;
 open Webapi.Dom;
@@ -24,6 +26,8 @@ afterEach(() =>
   | None => raise(Failure("Not document body found"))
   }
 );
+
+afterAll(Bisect.Runtime.write_coverage_data);
 
 describe("DomTestingLibrary", () => {
   open DomTestingLibrary;
