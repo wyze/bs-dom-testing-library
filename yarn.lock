@@ -983,10 +983,10 @@ bs-platform@^7.2.2:
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.2.2.tgz#76fdc63e4889458ae3d257a0132107a792f2309c"
   integrity sha512-PWcFfN+jCTtT/rMaHDhKh+W9RUTpaRunmSF9vbLYcrJbpgCNW6aFKAY33u0P3mLxwuhshN3b4FxqGUBPj6exZQ==
 
-bs-webapi@^0.15.9:
-  version "0.15.9"
-  resolved "https://registry.yarnpkg.com/bs-webapi/-/bs-webapi-0.15.9.tgz#d1dcfbd40499a3b0914daacc4ceef47a0f3c906f"
-  integrity sha512-bmzO6na2HmK01a34qB7afMwfVSrPxkP3EGzUslWObuxbHIlLC0PAMDu4lA8ZL5NasBUctlwnA1QZxox+1aNWWw==
+bs-webapi@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/bs-webapi/-/bs-webapi-0.16.0.tgz#e3906140e7494fb3aa7e8536172d9958b08ff35a"
+  integrity sha512-2OYfX4Z42gEfr/L8b0c8mz9m5KviYwkm0TUYz8QjLjgaPSiVQmDXkAWK055vK0bmnTQXNRFMLHOCS6ga3kgERw==
 
 bser@^2.0.0:
   version "2.0.0"
