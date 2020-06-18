@@ -1,5 +1,12 @@
 ## Change Log
 
+### [v0.6.2](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.6.2) (2020-06-17)
+
+* Upgrade `kind-of` to resolve CVE-2019-20149 ([@wyze](https://github.com/wyze) in [896817b](https://github.com/wyze/bs-dom-testing-library/commit/896817b))
+* Upgrade devDependencies ([@wyze](https://github.com/wyze) in [429d91b](https://github.com/wyze/bs-dom-testing-library/commit/429d91b))
+* Fix JSX and bs-webapi to compile on BS 8 ([@johnridesabike](https://github.com/johnridesabike) in [#18](https://github.com/wyze/bs-dom-testing-library/pull/18))
+* Switch to GitHub actions ([@wyze](https://github.com/wyze) in [#17](https://github.com/wyze/bs-dom-testing-library/pull/17))
+
 ### [v0.6.1](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.6.1) (2020-04-10)
 
 * Fix incorrect returning types ([@jihchi](https://github.com/jihchi) in [#16](https://github.com/wyze/bs-dom-testing-library/pull/16))
