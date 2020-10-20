@@ -1303,6 +1303,48 @@ describe("DomTestingLibrary", () => {
     });
   });
 
+  describe("waitForElementToBeRemoved", () => {
+    testPromise("works", () => {
+      let body =
+        render(
+          {|<div data-testid="div"></div><div data-testid="div"></div>|},
+        );
+      let callback = `Func(() => queryAllByTestId(~matcher=`Str("div"), body));
+      let options = WaitFor.makeOptions(~timeout=200, ());
+      let divs = queryAllByTestId(~matcher=`Str("div"), body);
+
+      // first mutation
+      let _ =
+        setTimeout(
+          () => {
+            Belt.Array.forEach(divs, div => {
+              div |> setAttribute("id", "mutated")
+            })
+          },
+          1,
+        );
+
+      // removal
+      let _ =
+        setTimeout(
+          () => {
+            Belt.Array.forEach(divs, div => {
+              switch (div->parentElement) {
+              | Some(parent) =>
+                let _ = parent |> removeChild(div);
+                ();
+              | None => raise(Failure("No parent element found"))
+              }
+            })
+          },
+          100,
+        );
+
+      waitForElementToBeRemoved(~callback, ~options, ())
+      |> Js.Promise.then_(_ => Js.Promise.resolve(pass));
+    })
+  });
+
   describe("waitForPromise", () => {
     testPromise("works", () => {
       let number = ref(10);
