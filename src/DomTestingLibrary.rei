@@ -15,8 +15,7 @@ module ByLabelTextQuery: {
       ~normalizer: string => string=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 module ByPlaceholderTextQuery: {
   type options = {
@@ -26,8 +25,7 @@ module ByPlaceholderTextQuery: {
   };
   [@bs.obj]
   external makeOptions:
-    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
-    "";
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
 module ByTextQuery: {
   type options = {
@@ -46,8 +44,7 @@ module ByTextQuery: {
       ~normalizer: string => string=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 module ByAltTextQuery: {
   type options = {
@@ -57,8 +54,7 @@ module ByAltTextQuery: {
   };
   [@bs.obj]
   external makeOptions:
-    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
-    "";
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
 module ByTitleQuery: {
   type options = {
@@ -68,8 +64,7 @@ module ByTitleQuery: {
   };
   [@bs.obj]
   external makeOptions:
-    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
-    "";
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
 module ByDisplayValueQuery: {
   type options = {
@@ -79,8 +74,7 @@ module ByDisplayValueQuery: {
   };
   [@bs.obj]
   external makeOptions:
-    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
-    "";
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
 module ByRoleQuery: {
   type options = {
@@ -100,8 +94,7 @@ module ByRoleQuery: {
       ~normalizer: string => string=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 module ByTestIdQuery: {
   type options = {
@@ -111,8 +104,7 @@ module ByTestIdQuery: {
   };
   [@bs.obj]
   external makeOptions:
-    (~exact: bool=?, ~normalizer: string => string=?, unit) => options =
-    "";
+    (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
 module MutationObserver: {
   type options = {
@@ -122,6 +114,7 @@ module MutationObserver: {
     "attributes": Js.undefined(bool),
     "characterData": Js.undefined(bool),
     "characterDataOldValue": Js.undefined(bool),
+    "childList": Js.undefined(bool),
     "subtree": Js.undefined(bool),
   };
   [@bs.obj]
@@ -132,31 +125,36 @@ module MutationObserver: {
       ~attributes: bool=?,
       ~characterData: bool=?,
       ~characterDataOldValue: bool=?,
+      ~childList: bool=?,
       ~subtree: bool=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 module WaitFor: {
   type options = {
     .
     "container": Js.undefined(Dom.element),
     "interval": Js.undefined(int),
-    "timeout": Js.undefined(int),
     "mutationObserverOptions": Js.undefined(MutationObserver.options),
+    "onTimeout": Js.undefined(Js.Exn.t => Js.Exn.t),
+    "showOriginalStackTrace": Js.undefined(bool),
+    "stackTraceError": Js.undefined(Js.Exn.t),
+    "timeout": Js.undefined(int),
   };
   [@bs.obj]
   external makeOptions:
     (
       ~container: Dom.element=?,
       ~interval: int=?,
-      ~timeout: int=?,
       ~mutationObserverOptions: MutationObserver.options=?,
+      ~onTimeout: Js.Exn.t => Js.Exn.t=?,
+      ~showOriginalStackTrace: bool=?,
+      ~stackTraceError: Js.Exn.t=?,
+      ~timeout: int=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 module WaitForElement: {
   type options = {
@@ -172,13 +170,16 @@ module WaitForElement: {
       ~timeout: int=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 
 let waitFor:
-  (~callback: unit => unit=?, ~options: WaitFor.options=?, unit) =>
+  (~callback: unit => unit, ~options: WaitFor.options=?, unit) =>
   Js.Promise.t('a);
+
+let waitForPromise:
+  (~callback: unit => Js.Promise.t('a), ~options: WaitFor.options=?, unit) =>
+  Js.Promise.t('b);
 
 let waitForElement:
   (~callback: unit => 'a=?, ~options: WaitForElement.options=?, unit) =>
@@ -186,13 +187,45 @@ let waitForElement:
 
 let prettyDOM: (~maxLength: int=?, Dom.element) => string;
 
-type configureOptions = {. "testIdAttribute": Js.undefined(string)};
+let logDOM: (~maxLength: int=?, Dom.element) => unit;
+
+module Configure: {
+  type options = {
+    .
+    "_disableExpensiveErrorDiagnostics": Js.undefined(bool),
+    "asyncUtilTimeout": Js.undefined(int),
+    "asyncWrapper": Js.undefined(unit => unit),
+    "computedStyleSupportsPseudoElements": Js.undefined(bool),
+    "defaultHidden": Js.undefined(bool),
+    "eventWrapper": Js.undefined(unit => unit),
+    "getElementError": Js.undefined((string, Dom.element) => Js.Exn.t),
+    "showOriginalStackTrace": Js.undefined(bool),
+    "testIdAttribute": Js.undefined(string),
+    "throwSuggestions": Js.undefined(bool),
+  };
+  [@bs.obj]
+  external makeOptions:
+    (
+      ~_disableExpensiveErrorDiagnostics: bool=?,
+      ~asyncUtilTimeout: int=?,
+      ~asyncWrapper: unit => unit=?,
+      ~computedStyleSupportsPseudoElements: bool=?,
+      ~defaultHidden: bool=?,
+      ~eventWrapper: unit => unit=?,
+      ~getElementError: (string, Dom.element) => Js.Exn.t=?,
+      ~showOriginalStackTrace: bool=?,
+      ~testIdAttribute: string=?,
+      ~throwSuggestions: bool=?,
+      unit
+    ) =>
+    options;
+};
 
 let configure:
   (
     ~update: [
-               | `Func(configureOptions => configureOptions)
-               | `Object(configureOptions)
+               | `Func(Configure.options => Configure.options)
+               | `Object(Configure.options)
              ]
   ) =>
   unit;

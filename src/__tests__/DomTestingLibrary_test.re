@@ -49,16 +49,16 @@ describe("DomTestingLibrary", () => {
     afterAll(() =>
       configure(
         ~update=
-          `Object({"testIdAttribute": Js.Undefined.return("data-testid")}),
+          `Object(Configure.makeOptions(~testIdAttribute="data-testid", ())),
       )
     );
 
     test("using an object", () => {
       configure(
         ~update=
-          `Object({
-            "testIdAttribute": Js.Undefined.return("data-custom-test-id"),
-          }),
+          `Object(
+            Configure.makeOptions(~testIdAttribute="data-custom-test-id", ()),
+          ),
       );
       render({|<p data-custom-test-id="world"> World!</p>|})
       |> getByTestId(~matcher=`Str("world"))
@@ -71,9 +71,10 @@ describe("DomTestingLibrary", () => {
         ~update=
           `Func(
             _ =>
-              {
-                "testIdAttribute": Js.Undefined.return("data-custom-test-id"),
-              },
+              Configure.makeOptions(
+                ~testIdAttribute="data-custom-test-id",
+                (),
+              ),
           ),
       );
       render({|<p data-custom-test-id="world"> World!</p>|})
@@ -1281,13 +1282,28 @@ describe("DomTestingLibrary", () => {
       let options =
         WaitFor.makeOptions(
           ~mutationObserverOptions=
-            DomTestingLibrary.MutationObserver.makeOptions(~attributes=true, ()),
+            DomTestingLibrary.MutationObserver.makeOptions(
+              ~attributes=true,
+              (),
+            ),
           (),
         );
 
       waitFor(~callback, ~options, ())
       |> Js.Promise.catch(_ => Js.Promise.resolve(pass));
     });
+  });
+
+  describe("waitForPromise", () => {
+    testPromise("works", () => {
+      let number = ref(10);
+      let timeout = Js.Math.floor(Js.Math.random() *. 300.);
+      let _ = setTimeout(() => number := 100, timeout);
+      let callback = () => Js.Promise.resolve(assert(number^ == 100));
+
+      waitForPromise(~callback, ())
+      |> Js.Promise.then_(_ => Js.Promise.resolve(pass));
+    })
   });
 
   describe("FireEvent", () => {

@@ -6,6 +6,7 @@ module MutationObserver = {
     "attributes": Js.undefined(bool),
     "characterData": Js.undefined(bool),
     "characterDataOldValue": Js.undefined(bool),
+    "childList": Js.undefined(bool),
     "subtree": Js.undefined(bool),
   };
 
@@ -17,11 +18,11 @@ module MutationObserver = {
       ~attributes: bool=?,
       ~characterData: bool=?,
       ~characterDataOldValue: bool=?,
+      ~childList: bool=?,
       ~subtree: bool=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 
 module WaitFor = {
@@ -29,8 +30,11 @@ module WaitFor = {
     .
     "container": Js.undefined(Dom.element),
     "interval": Js.undefined(int),
-    "timeout": Js.undefined(int),
     "mutationObserverOptions": Js.undefined(MutationObserver.options),
+    "onTimeout": Js.undefined(Js.Exn.t => Js.Exn.t),
+    "showOriginalStackTrace": Js.undefined(bool),
+    "stackTraceError": Js.undefined(Js.Exn.t),
+    "timeout": Js.undefined(int),
   };
 
   [@bs.obj]
@@ -38,12 +42,14 @@ module WaitFor = {
     (
       ~container: Dom.element=?,
       ~interval: int=?,
-      ~timeout: int=?,
       ~mutationObserverOptions: MutationObserver.options=?,
+      ~onTimeout: Js.Exn.t => Js.Exn.t=?,
+      ~showOriginalStackTrace: bool=?,
+      ~stackTraceError: Js.Exn.t=?,
+      ~timeout: int=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 
 module WaitForElement = {
@@ -61,21 +67,25 @@ module WaitForElement = {
       ~timeout: int=?,
       unit
     ) =>
-    options =
-    "";
+    options;
 };
 
 [@bs.module "@testing-library/dom"]
 external _waitFor:
-  (Js.undefined(unit => unit), Js.undefined(WaitFor.options)) =>
-  Js.Promise.t('a) =
+  (unit => unit, Js.undefined(WaitFor.options)) => Js.Promise.t('a) =
   "waitFor";
 
-let waitFor = (~callback=?, ~options=?, ()) =>
-  _waitFor(
-    Js.Undefined.fromOption(callback),
-    Js.Undefined.fromOption(options),
-  );
+let waitFor = (~callback, ~options=?, ()) =>
+  _waitFor(callback, Js.Undefined.fromOption(options));
+
+[@bs.module "@testing-library/dom"]
+external _waitForPromise:
+  (unit => Js.Promise.t('a), Js.undefined(WaitFor.options)) =>
+  Js.Promise.t('b) =
+  "waitFor";
+
+let waitForPromise = (~callback, ~options=?, ()) =>
+  _waitForPromise(callback, Js.Undefined.fromOption(options));
 
 [@bs.module "@testing-library/dom"]
 external _waitForElement:
@@ -95,19 +105,56 @@ external _prettyDOM: (Dom.element, Js.undefined(int)) => string = "prettyDOM";
 let prettyDOM = (~maxLength=?, element) =>
   _prettyDOM(element, Js.Undefined.fromOption(maxLength));
 
-type configureOptions = {. "testIdAttribute": Js.undefined(string)};
+[@bs.module "@testing-library/dom"]
+external _logDOM: (Dom.element, Js.undefined(int)) => unit = "logDOM";
+
+let logDOM = (~maxLength=?, element) =>
+  _logDOM(element, Js.Undefined.fromOption(maxLength));
+
+module Configure = {
+  type options = {
+    .
+    "_disableExpensiveErrorDiagnostics": Js.undefined(bool),
+    "asyncUtilTimeout": Js.undefined(int),
+    "asyncWrapper": Js.undefined(unit => unit),
+    "computedStyleSupportsPseudoElements": Js.undefined(bool),
+    "defaultHidden": Js.undefined(bool),
+    "eventWrapper": Js.undefined(unit => unit),
+    "getElementError": Js.undefined((string, Dom.element) => Js.Exn.t),
+    "showOriginalStackTrace": Js.undefined(bool),
+    "testIdAttribute": Js.undefined(string),
+    "throwSuggestions": Js.undefined(bool),
+  };
+
+  [@bs.obj]
+  external makeOptions:
+    (
+      ~_disableExpensiveErrorDiagnostics: bool=?,
+      ~asyncUtilTimeout: int=?,
+      ~asyncWrapper: unit => unit=?,
+      ~computedStyleSupportsPseudoElements: bool=?,
+      ~defaultHidden: bool=?,
+      ~eventWrapper: unit => unit=?,
+      ~getElementError: (string, Dom.element) => Js.Exn.t=?,
+      ~showOriginalStackTrace: bool=?,
+      ~testIdAttribute: string=?,
+      ~throwSuggestions: bool=?,
+      unit
+    ) =>
+    options;
+};
 
 [@bs.module "@testing-library/dom"]
 external configureWithFn: (Js.t({..}) => Js.t({..})) => unit = "configure";
 
 [@bs.module "@testing-library/dom"]
-external configureWithObject: configureOptions => unit = "configure";
+external configureWithObject: Configure.options => unit = "configure";
 
 let configure =
     (
       ~update: [
-         | `Func(configureOptions => configureOptions)
-         | `Object(configureOptions)
+         | `Func(Configure.options => Configure.options)
+         | `Object(Configure.options)
        ],
     ) => {
   switch (update) {
