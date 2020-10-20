@@ -100,6 +100,18 @@ let waitForElement = (~callback=?, ~options=?, ()) =>
   );
 
 [@bs.module "@testing-library/dom"]
+external _waitForElementToBeRemoved:
+  (
+    ~callback: [@bs.unwrap] [ | `Func(unit => 'a) | `Value('a)],
+    Js.undefined(WaitFor.options)
+  ) =>
+  Js.Promise.t(unit) =
+  "waitForElementToBeRemoved";
+
+let waitForElementToBeRemoved = (~callback, ~options=?, ()) =>
+  _waitForElementToBeRemoved(~callback, Js.Undefined.fromOption(options));
+
+[@bs.module "@testing-library/dom"]
 external _prettyDOM: (Dom.element, Js.undefined(int)) => string = "prettyDOM";
 
 let prettyDOM = (~maxLength=?, element) =>

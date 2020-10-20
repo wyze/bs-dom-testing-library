@@ -198,6 +198,14 @@ let waitForElement:
   (~callback: unit => 'a=?, ~options: WaitForElement.options=?, unit) =>
   Js.Promise.t('a);
 
+let waitForElementToBeRemoved:
+  (
+    ~callback: [ | `Func(unit => 'a) | `Value('a)],
+    ~options: WaitFor.options=?,
+    unit
+  ) =>
+  Js.Promise.t(unit);
+
 let prettyDOM: (~maxLength: int=?, Dom.element) => string;
 
 let logDOM: (~maxLength: int=?, Dom.element) => unit;
