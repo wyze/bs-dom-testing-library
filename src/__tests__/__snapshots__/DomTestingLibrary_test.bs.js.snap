@@ -666,6 +666,12 @@ Array [
 ]
 `;
 
+exports[`DomTestingLibrary ByRole level option works 1`] = `
+<h3>
+  World!
+</h3>
+`;
+
 exports[`DomTestingLibrary ByRole regex matcher find works 1`] = `
 <button>
   World!

@@ -1083,6 +1083,15 @@ describe("DomTestingLibrary", () => {
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
+    test("level option works", () =>
+      render({|<h3>World!</h3>|})
+      |> getByRole(
+           ~matcher=`Str("heading"),
+           ~options=ByRoleQuery.makeOptions(~level=3, ()),
+         )
+      |> expect
+      |> toMatchSnapshot
+    );
   });
 
   describe("ByTestId", () => {

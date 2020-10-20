@@ -89,19 +89,33 @@ module ByDisplayValueQuery = {
 module ByRoleQuery = {
   type options = {
     .
+    "checked": Js.undefined(bool),
+    "collapseWhitespace": Js.undefined(bool),
     "exact": Js.undefined(bool),
     "hidden": Js.undefined(bool),
+    "level": Js.undefined(int),
+    "pressed": Js.undefined(bool),
     "name": Js.undefined(string),
     "normalizer": Js.undefined(string => string),
+    "queryFallbacks": Js.undefined(bool),
+    "selected": Js.undefined(bool),
+    "trim": Js.undefined(bool),
   };
 
   [@bs.obj]
   external makeOptions:
     (
+      ~checked: bool=?,
+      ~collapseWhitespace: bool=?,
       ~exact: bool=?,
       ~hidden: bool=?,
+      ~level: int=?,
+      ~pressed: bool=?,
       ~name: string=?,
       ~normalizer: string => string=?,
+      ~queryFallbacks: bool=?,
+      ~selected: bool=?,
+      ~trim: bool=?,
       unit
     ) =>
     options =
