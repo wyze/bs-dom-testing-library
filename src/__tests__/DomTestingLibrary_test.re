@@ -1281,7 +1281,7 @@ describe("DomTestingLibrary", () => {
       let options =
         WaitFor.makeOptions(
           ~mutationObserverOptions=
-            DomTestingLibrary.MutationObserver.makeOptions(),
+            DomTestingLibrary.MutationObserver.makeOptions(~attributes=true, ()),
           (),
         );
 
