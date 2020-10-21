@@ -1,5 +1,13 @@
 ## Change Log
 
+### [v0.7.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.7.0) (2020-10-21)
+
+* Add waitForElementToBeRemoved ([@wyze](https://github.com/wyze) in [#23](https://github.com/wyze/bs-dom-testing-library/pull/23))
+* Add more ByRole options ([@wyze](https://github.com/wyze) in [#22](https://github.com/wyze/bs-dom-testing-library/pull/22))
+* Update some of the utility functions ([@wyze](https://github.com/wyze) in [#21](https://github.com/wyze/bs-dom-testing-library/pull/21))
+* Add sponsor button ([@wyze](https://github.com/wyze) in [dec1dab](https://github.com/wyze/bs-dom-testing-library/commit/dec1dab))
+* Upgrade to latest dependencies ([@wyze](https://github.com/wyze) in [#20](https://github.com/wyze/bs-dom-testing-library/pull/20))
+
 ### [v0.6.2](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.6.2) (2020-06-17)
 
 * Upgrade `kind-of` to resolve CVE-2019-20149 ([@wyze](https://github.com/wyze) in [896817b](https://github.com/wyze/bs-dom-testing-library/commit/896817b))
