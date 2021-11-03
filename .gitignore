@@ -12,7 +12,7 @@
 node_modules
 
 # Build
-_coverage
+coverage
 src/**/*.bs.js
 lib
 .bsb.lock

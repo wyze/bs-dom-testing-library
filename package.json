@@ -34,7 +34,7 @@
   ],
   "dependencies": {
     "@testing-library/dom": "^7.26.3",
-    "jest": "25.1.0"
+    "jest": "^27.3.1"
   },
   "devDependencies": {
     "@glennsl/bs-jest": "^0.7.0",
