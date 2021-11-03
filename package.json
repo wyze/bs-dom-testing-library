@@ -38,10 +38,13 @@
     "jest": "^27.3.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
     "@glennsl/bs-jest": "^0.7.0",
     "@sheerun/mutationobserver-shim": "^0.3.3",
     "@wyze/changelog": "^1.0.0",
     "@wyze/github-release": "^1.1.1",
+    "babel-jest": "^27.3.1",
     "bisect_ppx": "^2.6.3",
     "bs-webapi": "^0.19.1",
     "rescript": "^9.1.4",

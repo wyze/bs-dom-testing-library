@@ -14,7 +14,9 @@ node_modules
 # Build
 coverage
 lib
-src/**/*.bs.js
+src/**/*.bs.mjs
+src/**/*.mjs
+src/**/*.snap
 .bsb.lock
 .merlin
 *.coverage
