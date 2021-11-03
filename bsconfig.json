@@ -8,7 +8,9 @@
     "number": "+A-48-42",
     "error": "+A-3-44-102"
   },
-  "refmt": 3,
+  "reason": {
+    "react-jsx": 3
+  },
   "package-specs": {
     "module": "commonjs",
     "in-source": true

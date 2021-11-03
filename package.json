@@ -15,10 +15,11 @@
     "bsconfig.json"
   ],
   "scripts": {
-    "build": "rescript build -with-deps",
+    "build": "rescript build",
     "clean": "run-p clean:rescript clean:project",
     "clean:rescript": "rescript clean",
     "clean:project": "rimraf _coverage lib .merlin *.coverage",
+    "convert": "rescript convert -all",
     "jest": "jest",
     "postversion": "github-release",
     "prebuild": "yarn clean",
