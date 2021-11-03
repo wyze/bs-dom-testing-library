@@ -33,7 +33,7 @@
     "testing"
   ],
   "dependencies": {
-    "@testing-library/dom": "^7.26.3",
+    "@testing-library/dom": "^8.11.0",
     "jest": "^27.3.1"
   },
   "devDependencies": {
