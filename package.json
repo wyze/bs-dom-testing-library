@@ -1,7 +1,7 @@
 {
-  "name": "bs-dom-testing-library",
+  "name": "rescript-dom-testing-library",
   "version": "0.7.0",
-  "description": "BuckleScript bindings for dom-testing-library.",
+  "description": "REScript bindings for dom-testing-library.",
   "repository": "wyze/bs-dom-testing-library",
   "author": {
     "name": "Neil Kistner",
@@ -10,8 +10,8 @@
   },
   "license": "MIT",
   "files": [
-    "src/*.re",
-    "src/*.rei",
+    "src/*.res",
+    "src/*.resi",
     "bsconfig.json"
   ],
   "scripts": {
