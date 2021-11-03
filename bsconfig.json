@@ -1,5 +1,5 @@
 {
-  "name": "bs-dom-testing-library",
+  "name": "rescript-dom-testing-library",
   "bsc-flags": [
     "-bs-no-version-header",
     "-bs-super-errors"
