@@ -1,8 +1,8 @@
 {
   "name": "rescript-dom-testing-library",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "ReScript bindings for Neil Kistner's bs-dom-testing-library.",
-  "repository": "sacarr/rescript-dom-testing-library",
+  "repository": "wyze/bs-dom-testing-library",
   "author": {
     "name": "Neil Kistner",
     "email": "neil.kistner@gmail.com",
@@ -16,21 +16,20 @@
   ],
   "scripts": {
     "build": "rescript build",
-    "clean": "run-p clean:rescript clean:project",
+    "clean": "run-s clean:rescript clean:project",
     "clean:rescript": "rescript clean",
     "clean:project": "rimraf _coverage lib .merlin *.coverage",
     "convert": "rescript convert -all",
-    "jest": "jest",
     "postversion": "github-release",
-    "prebuild": "yarn clean",
-    "pretest": "yarn build",
-    "preversion": "yarn build",
-    "test": "yarn jest",
-    "test:coverage": "BISECT_ENABLE=yes yarn test",
+    "prebuild": "npm run clean",
+    "pretest": "npm run build",
+    "preversion": "npm run build",
+    "test": "npm run jest",
+    "test:coverage": "BISECT_ENABLE=yes npm run test",
     "version": "changelog"
   },
   "keywords": [
-    "bucklescript",
+    "Rescript",
     "testing"
   ],
   "dependencies": {
@@ -47,9 +46,8 @@
     "babel-jest": "^27.3.1",
     "bisect_ppx": "^2.6.3",
     "bs-webapi": "^0.19.1",
+    "npm-run-all": "^4.1.5",
     "rescript": "^9.1.4",
-    "rimraf": "^3.0.2",
-    "yarn-run-all": "^3.1.1"
-  },
-  "packageManager": "yarn@3.1.0"
+    "rimraf": "^3.0.2"
+  }
 }

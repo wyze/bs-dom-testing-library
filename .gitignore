@@ -8,6 +8,10 @@
 !.yarn/sdks
 !.yarn/versions
 
+#Rescript
+src/**/*.bs.js
+src/**/*.mjs
+
 # Dependencies
 node_modules
 

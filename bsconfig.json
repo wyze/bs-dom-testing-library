@@ -1,5 +1,5 @@
 {
-  "name": "rescript-dom-testing-library",
+  "name": "bs-dom-testing-library",
   "bsc-flags": [
     "-bs-no-version-header",
     "-bs-super-errors"
@@ -12,10 +12,10 @@
     "react-jsx": 3
   },
   "package-specs": {
-    "module": "es6",
+    "module": "commonjs",
     "in-source": true
   },
-  "suffix": ".mjs",
+  "suffix": ".bs.js",
   "sources": [
     {
       "dir": "src",
