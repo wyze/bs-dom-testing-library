@@ -1,71 +1,71 @@
-let abort: (~eventInit: {..}=?, Dom.element) => unit
-let animationEnd: (~eventInit: {..}=?, Dom.element) => unit
-let animationIteration: (~eventInit: {..}=?, Dom.element) => unit
-let animationStart: (~eventInit: {..}=?, Dom.element) => unit
-let blur: (~eventInit: {..}=?, Dom.element) => unit
-let canPlay: (~eventInit: {..}=?, Dom.element) => unit
-let canPlayThrough: (~eventInit: {..}=?, Dom.element) => unit
-let change: (~eventInit: {..}=?, Dom.element) => unit
-let click: (~eventInit: {..}=?, Dom.element) => unit
-let compositionEnd: (~eventInit: {..}=?, Dom.element) => unit
-let compositionStart: (~eventInit: {..}=?, Dom.element) => unit
-let compositionUpdate: (~eventInit: {..}=?, Dom.element) => unit
-let contextMenu: (~eventInit: {..}=?, Dom.element) => unit
-let copy: (~eventInit: {..}=?, Dom.element) => unit
-let cut: (~eventInit: {..}=?, Dom.element) => unit
-let dblClick: (~eventInit: {..}=?, Dom.element) => unit
-let doubleClick: (~eventInit: {..}=?, Dom.element) => unit
-let drag: (~eventInit: {..}=?, Dom.element) => unit
-let dragEnd: (~eventInit: {..}=?, Dom.element) => unit
-let dragEnter: (~eventInit: {..}=?, Dom.element) => unit
-let dragExit: (~eventInit: {..}=?, Dom.element) => unit
-let dragLeave: (~eventInit: {..}=?, Dom.element) => unit
-let dragOver: (~eventInit: {..}=?, Dom.element) => unit
-let dragStart: (~eventInit: {..}=?, Dom.element) => unit
-let drop: (~eventInit: {..}=?, Dom.element) => unit
-let durationChange: (~eventInit: {..}=?, Dom.element) => unit
-let emptied: (~eventInit: {..}=?, Dom.element) => unit
-let encrypted: (~eventInit: {..}=?, Dom.element) => unit
-let ended: (~eventInit: {..}=?, Dom.element) => unit
-let error: (~eventInit: {..}=?, Dom.element) => unit
-let focus: (~eventInit: {..}=?, Dom.element) => unit
-let focusIn: (~eventInit: {..}=?, Dom.element) => unit
-let focusOut: (~eventInit: {..}=?, Dom.element) => unit
-let input: (~eventInit: {..}=?, Dom.element) => unit
-let invalid: (~eventInit: {..}=?, Dom.element) => unit
-let keyDown: (~eventInit: {..}=?, Dom.element) => unit
-let keyPress: (~eventInit: {..}=?, Dom.element) => unit
-let keyUp: (~eventInit: {..}=?, Dom.element) => unit
-let load: (~eventInit: {..}=?, Dom.element) => unit
-let loadStart: (~eventInit: {..}=?, Dom.element) => unit
-let loadedData: (~eventInit: {..}=?, Dom.element) => unit
-let loadedMetadata: (~eventInit: {..}=?, Dom.element) => unit
-let mouseDown: (~eventInit: {..}=?, Dom.element) => unit
-let mouseEnter: (~eventInit: {..}=?, Dom.element) => unit
-let mouseLeave: (~eventInit: {..}=?, Dom.element) => unit
-let mouseMove: (~eventInit: {..}=?, Dom.element) => unit
-let mouseOut: (~eventInit: {..}=?, Dom.element) => unit
-let mouseOver: (~eventInit: {..}=?, Dom.element) => unit
-let mouseUp: (~eventInit: {..}=?, Dom.element) => unit
-let paste: (~eventInit: {..}=?, Dom.element) => unit
-let pause: (~eventInit: {..}=?, Dom.element) => unit
-let play: (~eventInit: {..}=?, Dom.element) => unit
-let playing: (~eventInit: {..}=?, Dom.element) => unit
-let progress: (~eventInit: {..}=?, Dom.element) => unit
-let rateChange: (~eventInit: {..}=?, Dom.element) => unit
-let scroll: (~eventInit: {..}=?, Dom.element) => unit
-let seeked: (~eventInit: {..}=?, Dom.element) => unit
-let seeking: (~eventInit: {..}=?, Dom.element) => unit
-let select: (~eventInit: {..}=?, Dom.element) => unit
-let stalled: (~eventInit: {..}=?, Dom.element) => unit
-let submit: (~eventInit: {..}=?, Dom.element) => unit
-let suspend: (~eventInit: {..}=?, Dom.element) => unit
-let timeUpdate: (~eventInit: {..}=?, Dom.element) => unit
-let touchCancel: (~eventInit: {..}=?, Dom.element) => unit
-let touchEnd: (~eventInit: {..}=?, Dom.element) => unit
-let touchMove: (~eventInit: {..}=?, Dom.element) => unit
-let touchStart: (~eventInit: {..}=?, Dom.element) => unit
-let transitionEnd: (~eventInit: {..}=?, Dom.element) => unit
-let volumeChange: (~eventInit: {..}=?, Dom.element) => unit
-let waiting: (~eventInit: {..}=?, Dom.element) => unit
-let wheel: (~eventInit: {..}=?, Dom.element) => unit
+let abort: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let animationEnd: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let animationIteration: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let animationStart: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let blur: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let canPlay: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let canPlayThrough: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let change: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let click: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let compositionEnd: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let compositionStart: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let compositionUpdate: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let contextMenu: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let copy: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let cut: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let dblClick: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let doubleClick: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let drag: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let dragEnd: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let dragEnter: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let dragExit: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let dragLeave: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let dragOver: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let dragStart: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let drop: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let durationChange: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let emptied: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let encrypted: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let ended: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let error: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let focus: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let focusIn: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let focusOut: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let input: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let invalid: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let keyDown: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let keyPress: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let keyUp: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let load: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let loadStart: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let loadedData: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let loadedMetadata: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let mouseDown: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let mouseEnter: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let mouseLeave: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let mouseMove: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let mouseOut: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let mouseOver: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let mouseUp: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let paste: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let pause: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let play: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let playing: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let progress: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let rateChange: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let scroll: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let seeked: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let seeking: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let select: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let stalled: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let submit: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let suspend: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let timeUpdate: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let touchCancel: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let touchEnd: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let touchMove: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let touchStart: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let transitionEnd: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let volumeChange: (Dom.element,  ~eventInit: {..}=?, unit) => unit
+let waiting: (Dom.element, ~eventInit: {..}=?, unit) => unit
+let wheel: (Dom.element, ~eventInit: {..}=?, unit) => unit

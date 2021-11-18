@@ -1,6 +1,6 @@
 # bs-dom-testing-library &middot; [![Build Status][circleci-image]][circleci-url] [![npm][npm-image]][npm-url] [![Coveralls][codecov-image]][codecov-url]
 
-> [BuckleScript](//github.com/BuckleScript/bucklescript) bindings for [dom-testing-library](//github.com/testing-library/dom-testing-library).
+> [Rescript](//github.com/BuckleScript/bucklescript) bindings for [dom-testing-library](//github.com/testing-library/dom-testing-library).
 
 ## Documentation
 
@@ -41,7 +41,7 @@ open Webapi.Dom.Element;
 test("header exists", () => {
   let div = Document.createElement("div", document);
 
-  div->setInnerHTML({|<h1>Hello, World!</h1>|});
+  div -> setInnerHTML({|<h1>Hello, World!</h1>|});
 
   div
   |> getByText(~matcher=`Str("Hello, World!"))

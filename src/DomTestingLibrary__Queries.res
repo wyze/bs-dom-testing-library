@@ -5,8 +5,7 @@ module ByLabelTextQuery = {
     "normalizer": Js.undefined<string => string>,
   }
 
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~selector: string=?,
     ~exact: bool=?,
     ~normalizer: string => string=?,
@@ -16,8 +15,7 @@ module ByLabelTextQuery = {
 module ByPlaceholderTextQuery = {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
 
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 module ByTextQuery = {
   type options = {
@@ -27,8 +25,7 @@ module ByTextQuery = {
     "normalizer": Js.undefined<string => string>,
   }
 
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~exact: bool=?,
     ~selector: string=?,
     ~ignore: string=?,
@@ -39,20 +36,17 @@ module ByTextQuery = {
 module ByAltTextQuery = {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
 
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 module ByTitleQuery = {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
 
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 module ByDisplayValueQuery = {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
 
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 module ByRoleQuery = {
   type options = {
@@ -69,8 +63,7 @@ module ByRoleQuery = {
     "trim": Js.undefined<bool>,
   }
 
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~checked: bool=?,
     ~collapseWhitespace: bool=?,
     ~exact: bool=?,
@@ -88,8 +81,7 @@ module ByRoleQuery = {
 module ByTestIdQuery = {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
 
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 
 @module("@testing-library/dom")
@@ -110,7 +102,7 @@ external _getByLabelText: (
   ~options: Js.undefined<ByLabelTextQuery.options>,
 ) => Dom.element = "getByLabelText"
 
-let getByLabelText = (~matcher, ~options=?, element) =>
+let getByLabelText = (element, ~matcher, ~options=?, ()) =>
   _getByLabelText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -125,7 +117,7 @@ external _getAllByLabelText: (
   ~options: Js.undefined<ByLabelTextQuery.options>,
 ) => array<Dom.element> = "getAllByLabelText"
 
-let getAllByLabelText = (~matcher, ~options=?, element) =>
+let getAllByLabelText = (element, ~matcher, ~options=?, ()) =>
   _getAllByLabelText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -140,7 +132,7 @@ external _queryByLabelText: (
   ~options: Js.undefined<ByLabelTextQuery.options>,
 ) => Js.null<Dom.element> = "queryByLabelText"
 
-let queryByLabelText = (~matcher, ~options=?, element) =>
+let queryByLabelText = (element, ~matcher, ~options=?, ()) =>
   _queryByLabelText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -155,7 +147,7 @@ external _queryAllByLabelText: (
   ~options: Js.undefined<ByLabelTextQuery.options>,
 ) => array<Dom.element> = "queryAllByLabelText"
 
-let queryAllByLabelText = (~matcher, ~options=?, element) =>
+let queryAllByLabelText = (element, ~matcher, ~options=?, ()) =>
   _queryAllByLabelText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -168,9 +160,9 @@ external _findByLabelText: (
     | #Func((string, Dom.element) => bool)
   ],
   ~options: Js.undefined<ByLabelTextQuery.options>,
-) => Js.Promise.t<Dom.element> = "findByLabelText"
+) => Promise.t<Dom.element> = "findByLabelText"
 
-let findByLabelText = (~matcher, ~options=?, element) =>
+let findByLabelText = (element, ~matcher, ~options=?, ()) =>
   _findByLabelText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -183,9 +175,9 @@ external _findAllByLabelText: (
     | #Func((string, Dom.element) => bool)
   ],
   ~options: Js.undefined<ByLabelTextQuery.options>,
-) => Js.Promise.t<array<Dom.element>> = "findAllByLabelText"
+) => Promise.t<array<Dom.element>> = "findAllByLabelText"
 
-let findAllByLabelText = (~matcher, ~options=?, element) =>
+let findAllByLabelText = (element, ~matcher, ~options=?, ()) =>
   _findAllByLabelText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @ocaml.doc("
@@ -203,7 +195,7 @@ external _getByPlaceholderText: (
   ~options: Js.undefined<ByPlaceholderTextQuery.options>,
 ) => Dom.element = "getByPlaceholderText"
 
-let getByPlaceholderText = (~matcher, ~options=?, element) =>
+let getByPlaceholderText = (element, ~matcher, ~options=?, ()) =>
   _getByPlaceholderText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -218,7 +210,7 @@ external _getAllByPlaceholderText: (
   ~options: Js.undefined<ByPlaceholderTextQuery.options>,
 ) => array<Dom.element> = "getAllByPlaceholderText"
 
-let getAllByPlaceholderText = (~matcher, ~options=?, element) =>
+let getAllByPlaceholderText = (element, ~matcher, ~options=?, ()) =>
   _getAllByPlaceholderText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -233,7 +225,7 @@ external _queryByPlaceholderText: (
   ~options: Js.undefined<ByPlaceholderTextQuery.options>,
 ) => Js.null<Dom.element> = "queryByPlaceholderText"
 
-let queryByPlaceholderText = (~matcher, ~options=?, element) =>
+let queryByPlaceholderText = (element, ~matcher, ~options=?, ()) =>
   _queryByPlaceholderText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -248,7 +240,7 @@ external _queryAllByPlaceholderText: (
   ~options: Js.undefined<ByPlaceholderTextQuery.options>,
 ) => array<Dom.element> = "queryAllByPlaceholderText"
 
-let queryAllByPlaceholderText = (~matcher, ~options=?, element) =>
+let queryAllByPlaceholderText = (element, ~matcher, ~options=?, ()) =>
   _queryAllByPlaceholderText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -261,9 +253,9 @@ external _findByPlaceholderText: (
     | #Func((string, Dom.element) => bool)
   ],
   ~options: Js.undefined<ByPlaceholderTextQuery.options>,
-) => Js.Promise.t<Dom.element> = "findByPlaceholderText"
+) => Promise.t<Dom.element> = "findByPlaceholderText"
 
-let findByPlaceholderText = (~matcher, ~options=?, element) =>
+let findByPlaceholderText = (element, ~matcher, ~options=?, ()) =>
   _findByPlaceholderText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -276,9 +268,9 @@ external _findAllByPlaceholderText: (
     | #Func((string, Dom.element) => bool)
   ],
   ~options: Js.undefined<ByPlaceholderTextQuery.options>,
-) => Js.Promise.t<array<Dom.element>> = "findAllByPlaceholderText"
+) => Promise.t<array<Dom.element>> = "findAllByPlaceholderText"
 
-let findAllByPlaceholderText = (~matcher, ~options=?, element) =>
+let findAllByPlaceholderText = (element, ~matcher, ~options=?, ()) =>
   _findAllByPlaceholderText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @ocaml.doc("
@@ -296,7 +288,7 @@ external _getByText: (
   ~options: Js.undefined<ByTextQuery.options>,
 ) => Dom.element = "getByText"
 
-let getByText = (~matcher, ~options=?, element) =>
+let getByText = (element, ~matcher, ~options=?, ()) =>
   _getByText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -311,7 +303,7 @@ external _getAllByText: (
   ~options: Js.undefined<ByTextQuery.options>,
 ) => array<Dom.element> = "getAllByText"
 
-let getAllByText = (~matcher, ~options=?, element) =>
+let getAllByText = (element, ~matcher, ~options=?, ()) =>
   _getAllByText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -326,7 +318,7 @@ external _queryByText: (
   ~options: Js.undefined<ByTextQuery.options>,
 ) => Js.null<Dom.element> = "queryByText"
 
-let queryByText = (~matcher, ~options=?, element) =>
+let queryByText = (element, ~matcher, ~options=?, ()) =>
   _queryByText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -341,7 +333,7 @@ external _queryAllByText: (
   ~options: Js.undefined<ByTextQuery.options>,
 ) => array<Dom.element> = "queryAllByText"
 
-let queryAllByText = (~matcher, ~options=?, element) =>
+let queryAllByText = (element, ~matcher, ~options=?, ()) =>
   _queryAllByText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -354,9 +346,9 @@ external _findByText: (
     | #Func((string, Dom.element) => bool)
   ],
   ~options: Js.undefined<ByTextQuery.options>,
-) => Js.Promise.t<Dom.element> = "findByText"
+) => Promise.t<Dom.element> = "findByText"
 
-let findByText = (~matcher, ~options=?, element) =>
+let findByText = (element, ~matcher, ~options=?, ()) =>
   _findByText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -369,9 +361,9 @@ external _findAllByText: (
     | #Func((string, Dom.element) => bool)
   ],
   ~options: Js.undefined<ByTextQuery.options>,
-) => Js.Promise.t<array<Dom.element>> = "findAllByText"
+) => Promise.t<array<Dom.element>> = "findAllByText"
 
-let findAllByText = (~matcher, ~options=?, element) =>
+let findAllByText = (element, ~matcher, ~options=?, ()) =>
   _findAllByText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @ocaml.doc("
@@ -389,7 +381,7 @@ external _getByAltText: (
   ~options: Js.undefined<ByAltTextQuery.options>,
 ) => Dom.element = "getByAltText"
 
-let getByAltText = (~matcher, ~options=?, element) =>
+let getByAltText = (element, ~matcher, ~options=?, ()) =>
   _getByAltText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -404,7 +396,7 @@ external _getAllByAltText: (
   ~options: Js.undefined<ByAltTextQuery.options>,
 ) => array<Dom.element> = "getAllByAltText"
 
-let getAllByAltText = (~matcher, ~options=?, element) =>
+let getAllByAltText = (element, ~matcher, ~options=?, ()) =>
   _getAllByAltText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -419,7 +411,7 @@ external _queryByAltText: (
   ~options: Js.undefined<ByAltTextQuery.options>,
 ) => Js.null<Dom.element> = "queryByAltText"
 
-let queryByAltText = (~matcher, ~options=?, element) =>
+let queryByAltText = (element, ~matcher, ~options=?, ()) =>
   _queryByAltText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -434,7 +426,7 @@ external _queryAllByAltText: (
   ~options: Js.undefined<ByAltTextQuery.options>,
 ) => array<Dom.element> = "queryAllByAltText"
 
-let queryAllByAltText = (~matcher, ~options=?, element) =>
+let queryAllByAltText = (element, ~matcher, ~options=?, ()) =>
   _queryAllByAltText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -447,9 +439,9 @@ external _findByAltText: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByAltTextQuery.options>,
-) => Js.Promise.t<Dom.element> = "findByAltText"
+) => Promise.t<Dom.element> = "findByAltText"
 
-let findByAltText = (~matcher, ~options=?, element) =>
+let findByAltText = (element, ~matcher, ~options=?, ()) =>
   _findByAltText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -462,9 +454,9 @@ external _findAllByAltText: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByAltTextQuery.options>,
-) => Js.Promise.t<array<Dom.element>> = "findAllByAltText"
+) => Promise.t<array<Dom.element>> = "findAllByAltText"
 
-let findAllByAltText = (~matcher, ~options=?, element) =>
+let findAllByAltText = (element, ~matcher, ~options=?, ()) =>
   _findAllByAltText(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @ocaml.doc("
@@ -482,7 +474,7 @@ external _getByTitle: (
   ~options: Js.undefined<ByTitleQuery.options>,
 ) => Dom.element = "getByTitle"
 
-let getByTitle = (~matcher, ~options=?, element) =>
+let getByTitle = (element, ~matcher, ~options=?, ()) =>
   _getByTitle(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -497,7 +489,7 @@ external _getAllByTitle: (
   ~options: Js.undefined<ByTitleQuery.options>,
 ) => array<Dom.element> = "getAllByTitle"
 
-let getAllByTitle = (~matcher, ~options=?, element) =>
+let getAllByTitle = (element, ~matcher, ~options=?, ()) =>
   _getAllByTitle(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -512,7 +504,7 @@ external _queryByTitle: (
   ~options: Js.undefined<ByTitleQuery.options>,
 ) => Js.null<Dom.element> = "queryByTitle"
 
-let queryByTitle = (~matcher, ~options=?, element) =>
+let queryByTitle = (element, ~matcher, ~options=?, ()) =>
   _queryByTitle(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -527,7 +519,7 @@ external _queryAllByTitle: (
   ~options: Js.undefined<ByTitleQuery.options>,
 ) => array<Dom.element> = "queryAllByTitle"
 
-let queryAllByTitle = (~matcher, ~options=?, element) =>
+let queryAllByTitle = (element, ~matcher, ~options=?, ()) =>
   _queryAllByTitle(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -540,9 +532,9 @@ external _findByTitle: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByTitleQuery.options>,
-) => Js.Promise.t<Dom.element> = "findByTitle"
+) => Promise.t<Dom.element> = "findByTitle"
 
-let findByTitle = (~matcher, ~options=?, element) =>
+let findByTitle = (element, ~matcher, ~options=?, ()) =>
   _findByTitle(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -555,9 +547,9 @@ external _findAllByTitle: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByTitleQuery.options>,
-) => Js.Promise.t<array<Dom.element>> = "findAllByTitle"
+) => Promise.t<array<Dom.element>> = "findAllByTitle"
 
-let findAllByTitle = (~matcher, ~options=?, element) =>
+let findAllByTitle = (element, ~matcher, ~options=?, ()) =>
   _findAllByTitle(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @ocaml.doc("
@@ -575,7 +567,7 @@ external _getByDisplayValue: (
   ~options: Js.undefined<ByDisplayValueQuery.options>,
 ) => Dom.element = "getByDisplayValue"
 
-let getByDisplayValue = (~matcher, ~options=?, element) =>
+let getByDisplayValue = (element, ~matcher, ~options=?, ()) =>
   _getByDisplayValue(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -590,7 +582,7 @@ external _getAllByDisplayValue: (
   ~options: Js.undefined<ByDisplayValueQuery.options>,
 ) => array<Dom.element> = "getAllByDisplayValue"
 
-let getAllByDisplayValue = (~matcher, ~options=?, element) =>
+let getAllByDisplayValue = (element, ~matcher, ~options=?, ()) =>
   _getAllByDisplayValue(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -605,7 +597,7 @@ external _queryByDisplayValue: (
   ~options: Js.undefined<ByDisplayValueQuery.options>,
 ) => Js.null<Dom.element> = "queryByDisplayValue"
 
-let queryByDisplayValue = (~matcher, ~options=?, element) =>
+let queryByDisplayValue = (element, ~matcher, ~options=?, ()) =>
   _queryByDisplayValue(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -620,7 +612,7 @@ external _queryAllByDisplayValue: (
   ~options: Js.undefined<ByDisplayValueQuery.options>,
 ) => array<Dom.element> = "queryAllByDisplayValue"
 
-let queryAllByDisplayValue = (~matcher, ~options=?, element) =>
+let queryAllByDisplayValue = (element, ~matcher, ~options=?, ()) =>
   _queryAllByDisplayValue(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -633,9 +625,9 @@ external _findByDisplayValue: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByDisplayValueQuery.options>,
-) => Js.Promise.t<Dom.element> = "findByDisplayValue"
+) => Promise.t<Dom.element> = "findByDisplayValue"
 
-let findByDisplayValue = (~matcher, ~options=?, element) =>
+let findByDisplayValue = (element, ~matcher, ~options=?, ()) =>
   _findByDisplayValue(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -648,9 +640,9 @@ external _findAllByDisplayValue: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByDisplayValueQuery.options>,
-) => Js.Promise.t<array<Dom.element>> = "findAllByDisplayValue"
+) => Promise.t<array<Dom.element>> = "findAllByDisplayValue"
 
-let findAllByDisplayValue = (~matcher, ~options=?, element) =>
+let findAllByDisplayValue = (element, ~matcher, ~options=?, ()) =>
   _findAllByDisplayValue(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @ocaml.doc("
@@ -668,7 +660,7 @@ external _getByRole: (
   ~options: Js.undefined<ByRoleQuery.options>,
 ) => Dom.element = "getByRole"
 
-let getByRole = (~matcher, ~options=?, element) =>
+let getByRole = (element, ~matcher, ~options=?, ()) =>
   _getByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -683,7 +675,7 @@ external _getAllByRole: (
   ~options: Js.undefined<ByRoleQuery.options>,
 ) => array<Dom.element> = "getAllByRole"
 
-let getAllByRole = (~matcher, ~options=?, element) =>
+let getAllByRole = (element, ~matcher, ~options=?, ()) =>
   _getAllByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -698,7 +690,7 @@ external _queryByRole: (
   ~options: Js.undefined<ByRoleQuery.options>,
 ) => Js.null<Dom.element> = "queryByRole"
 
-let queryByRole = (~matcher, ~options=?, element) =>
+let queryByRole = (element, ~matcher, ~options=?, ()) =>
   _queryByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -713,7 +705,7 @@ external _queryAllByRole: (
   ~options: Js.undefined<ByRoleQuery.options>,
 ) => array<Dom.element> = "queryAllByRole"
 
-let queryAllByRole = (~matcher, ~options=?, element) =>
+let queryAllByRole = (element, ~matcher, ~options=?, ()) =>
   _queryAllByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -726,9 +718,9 @@ external _findByRole: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByRoleQuery.options>,
-) => Js.Promise.t<Dom.element> = "findByRole"
+) => Promise.t<Dom.element> = "findByRole"
 
-let findByRole = (~matcher, ~options=?, element) =>
+let findByRole = (element, ~matcher, ~options=?, ()) =>
   _findByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -741,9 +733,9 @@ external _findAllByRole: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByRoleQuery.options>,
-) => Js.Promise.t<array<Dom.element>> = "findAllByRole"
+) => Promise.t<array<Dom.element>> = "findAllByRole"
 
-let findAllByRole = (~matcher, ~options=?, element) =>
+let findAllByRole = (element, ~matcher, ~options=?, ()) =>
   _findAllByRole(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @ocaml.doc("
@@ -761,7 +753,7 @@ external _getByTestId: (
   ~options: Js.undefined<ByTestIdQuery.options>,
 ) => Dom.element = "getByTestId"
 
-let getByTestId = (~matcher, ~options=?, element) =>
+let getByTestId = (element, ~matcher, ~options=?, ()) =>
   _getByTestId(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -776,7 +768,7 @@ external _getAllByTestId: (
   ~options: Js.undefined<ByTestIdQuery.options>,
 ) => array<Dom.element> = "getAllByTestId"
 
-let getAllByTestId = (~matcher, ~options=?, element) =>
+let getAllByTestId = (element, ~matcher, ~options=?, ()) =>
   _getAllByTestId(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -791,7 +783,7 @@ external _queryByTestId: (
   ~options: Js.undefined<ByTestIdQuery.options>,
 ) => Js.null<Dom.element> = "queryByTestId"
 
-let queryByTestId = (~matcher, ~options=?, element) =>
+let queryByTestId = (element, ~matcher, ~options=?, ()) =>
   _queryByTestId(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -806,7 +798,7 @@ external _queryAllByTestId: (
   ~options: Js.undefined<ByTestIdQuery.options>,
 ) => array<Dom.element> = "queryAllByTestId"
 
-let queryAllByTestId = (~matcher, ~options=?, element) =>
+let queryAllByTestId = (element, ~matcher, ~options=?, ()) =>
   _queryAllByTestId(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -819,9 +811,9 @@ external _findByTestId: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByTestIdQuery.options>,
-) => Js.Promise.t<Dom.element> = "findByTestId"
+) => Promise.t<Dom.element> = "findByTestId"
 
-let findByTestId = (~matcher, ~options=?, element) =>
+let findByTestId = (element, ~matcher, ~options=?, ()) =>
   _findByTestId(element, ~matcher, ~options=Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
@@ -834,7 +826,7 @@ external _findAllByTestId: (
     | #Str(string)
   ],
   ~options: Js.undefined<ByTestIdQuery.options>,
-) => Js.Promise.t<array<Dom.element>> = "findAllByTestId"
+) => Promise.t<array<Dom.element>> = "findAllByTestId"
 
-let findAllByTestId = (~matcher, ~options=?, element) =>
+let findAllByTestId = (element, ~matcher, ~options=?, ()) =>
   _findAllByTestId(element, ~matcher, ~options=Js.Undefined.fromOption(options))

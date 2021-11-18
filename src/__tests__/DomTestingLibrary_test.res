@@ -1,6 +1,5 @@
 @@coverage(exclude_file)
 
-open Js.Promise
 open Jest
 open Webapi.Dom
 open Webapi.Dom.Element
@@ -11,7 +10,7 @@ open Webapi.Dom.Element
 @val external setTimeout: (unit => unit, int) => float = "setTimeout"
 
 let render = html => {
-  let body = Document.createElement("body", document)
+  let body = document -> Document.createElement("body")
 
   body->setInnerHTML(html)
 
@@ -36,10 +35,10 @@ describe("DomTestingLibrary", () => {
   describe("prettyDOM", () => {
     let html = `<b title="greeting">Hello,</b><p data-testid="world"> World!</p><input type="text" placeholder="Enter something" /><input type="text" value="Some value" /><img src="" alt="Alt text" />`
 
-    test("works", () => render(html) |> prettyDOM |> expect |> toMatchSnapshot)
+    test("works", () => render(html) -> prettyDOM -> expect -> toMatchSnapshot)
 
     test("works with maxLength", () =>
-      render(html) |> prettyDOM(~maxLength=60) |> expect |> toMatchSnapshot
+      render(html) -> prettyDOM(~maxLength=60) -> expect -> toMatchSnapshot
     )
   })
 
@@ -51,9 +50,9 @@ describe("DomTestingLibrary", () => {
     test("using an object", () => {
       configure(~update=#Object(Configure.makeOptions(~testIdAttribute="data-custom-test-id", ())))
       render(`<p data-custom-test-id="world"> World!</p>`)
-      |> getByTestId(~matcher=#Str("world"))
-      |> expect
-      |> toMatchSnapshot
+      -> getByTestId(~matcher=#Str("world"))
+      -> expect
+      -> toMatchSnapshot
     })
 
     test("using a function", () => {
@@ -61,9 +60,9 @@ describe("DomTestingLibrary", () => {
         ~update=#Func(_ => Configure.makeOptions(~testIdAttribute="data-custom-test-id", ())),
       )
       render(`<p data-custom-test-id="world"> World!</p>`)
-      |> getByTestId(~matcher=#Str("world"))
-      |> expect
-      |> toMatchSnapshot
+      -> getByTestId(~matcher=#Str("world"))
+      -> expect
+      -> toMatchSnapshot
     })
   })
 
@@ -71,126 +70,126 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render(`<label>Hello, <input /></label>`)
-        |> getByLabelText(~matcher=#Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByLabelText(~matcher=#Str("Hello,"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<label>Hello, <input /></label>`)
-        |> getAllByLabelText(~matcher=#Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByLabelText(~matcher=#Str("Hello,"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<label>Hello, <input /></label>`)
-        |> queryByLabelText(~matcher=#Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByLabelText(~matcher=#Str("Hello,"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<label>Hello, <input /></label>`)
-        |> queryAllByLabelText(~matcher=#Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByLabelText(~matcher=#Str("Hello,"))
+        -> expect
+        -> toMatchSnapshot
       )
 
-      testPromise("find works", () =>
+      testPromise("find works", () => {
         render(`<label>Hello, <input /></label>`)
-        |> findByLabelText(~matcher=#Str("Hello,"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-      )
+        -> findByLabelText(~matcher=#Str("Hello,"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
+      })
 
       testPromise("findAll works", () =>
         render(`<label>Hello, <input /></label>`)
-        |> findAllByLabelText(~matcher=#Str("Hello,"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByLabelText(~matcher=#Str("Hello,"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("regex matcher", () => {
       test("get works", () =>
         render(`<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>`)
-        |> getByLabelText(~matcher=#RegExp(%re("/\\w!/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getByLabelText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>`)
-        |> getAllByLabelText(~matcher=#RegExp(%re("/\\w!/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByLabelText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>`)
-        |> queryByLabelText(~matcher=#RegExp(%re("/\\w!/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByLabelText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>`)
-        |> queryAllByLabelText(~matcher=#RegExp(%re("/\\w!/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByLabelText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>`)
-        |> findByLabelText(~matcher=#RegExp(%re("/\\w!/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByLabelText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>`)
-        |> findAllByLabelText(~matcher=#RegExp(%re("/\\w!/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByLabelText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("function matcher", () => {
       test("get works", () =>
         render(`<p aria-label="message">World!</p>`)
-        |> getByLabelText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByLabelText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<p aria-label="message">World!</p>`)
-        |> getAllByLabelText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByLabelText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<p aria-label="message">World!</p>`)
-        |> queryByLabelText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByLabelText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<p aria-label="message">World!</p>`)
-        |> queryAllByLabelText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByLabelText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<p aria-label="message">World!</p>`)
-        |> findByLabelText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByLabelText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<p aria-label="message">World!</p>`)
-        |> findAllByLabelText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByLabelText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
   })
@@ -199,126 +198,126 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> getByPlaceholderText(~matcher=#Str("Enter something"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByPlaceholderText(~matcher=#Str("Enter something"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> getAllByPlaceholderText(~matcher=#Str("Enter something"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByPlaceholderText(~matcher=#Str("Enter something"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> queryByPlaceholderText(~matcher=#Str("Enter something"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByPlaceholderText(~matcher=#Str("Enter something"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> queryAllByPlaceholderText(~matcher=#Str("Enter something"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByPlaceholderText(~matcher=#Str("Enter something"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> findByPlaceholderText(~matcher=#Str("Enter something"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByPlaceholderText(~matcher=#Str("Enter something"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> findAllByPlaceholderText(~matcher=#Str("Enter something"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByPlaceholderText(~matcher=#Str("Enter something"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("regex matcher", () => {
       test("get works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> getByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> getAllByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> queryByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> queryAllByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> findByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<input type="text" placeholder="Enter something" />`)
-        |> findAllByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByPlaceholderText(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("function matcher", () => {
       test("get works", () =>
         render(`<input type="text" name="my-input" placeholder="Enter something" />`)
-        |> getByPlaceholderText(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByPlaceholderText(~matcher=#Func((_text, node) => node -> name === "my-input"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<input type="text" name="my-input" placeholder="Enter something" />`)
-        |> getAllByPlaceholderText(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByPlaceholderText(~matcher=#Func((_text, node) => node -> name === "my-input"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<input type="text" name="my-input" placeholder="Enter something" />`)
-        |> queryByPlaceholderText(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByPlaceholderText(~matcher=#Func((_text, node) => node -> name === "my-input"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<input type="text" name="my-input" placeholder="Enter something" />`)
-        |> queryAllByPlaceholderText(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByPlaceholderText(~matcher=#Func((_text, node) => node -> name === "my-input"))
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<input type="text" name="my-input" placeholder="Enter something" />`)
-        |> findByPlaceholderText(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByPlaceholderText(~matcher=#Func((_text, node) => node -> name === "my-input"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<input type="text" name="my-input" placeholder="Enter something" />`)
-        |> findAllByPlaceholderText(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByPlaceholderText(~matcher=#Func((_text, node) => node -> name === "my-input"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
   })
@@ -327,126 +326,126 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> getByText(~matcher=#Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByText(~matcher=#Str("Hello,"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> getAllByText(~matcher=#Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByText(~matcher=#Str("Hello,"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> queryByText(~matcher=#Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByText(~matcher=#Str("Hello,"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> queryAllByText(~matcher=#Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByText(~matcher=#Str("Hello,"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> findByText(~matcher=#Str("Hello,"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByText(~matcher=#Str("Hello,"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> findAllByText(~matcher=#Str("Hello,"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByText(~matcher=#Str("Hello,"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("regex matcher", () => {
       test("get works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getByText(~matcher=#RegExp(%re("/\\w!/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getByText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getAllByText(~matcher=#RegExp(%re("/\\w!/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryByText(~matcher=#RegExp(%re("/\\w!/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryAllByText(~matcher=#RegExp(%re("/\\w!/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findByText(~matcher=#RegExp(%re("/\\w!/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findAllByText(~matcher=#RegExp(%re("/\\w!/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByText(~matcher=#RegExp(%re("/\\w!/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("function matcher", () => {
       test("get works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getByText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getAllByText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryByText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryAllByText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findByText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findAllByText(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByText(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
   })
@@ -455,126 +454,126 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> getByAltText(~matcher=#Str("Alt text"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByAltText(~matcher=#Str("Alt text"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> getAllByAltText(~matcher=#Str("Alt text"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByAltText(~matcher=#Str("Alt text"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> queryByAltText(~matcher=#Str("Alt text"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByAltText(~matcher=#Str("Alt text"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> queryAllByAltText(~matcher=#Str("Alt text"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByAltText(~matcher=#Str("Alt text"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> findByAltText(~matcher=#Str("Alt text"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByAltText(~matcher=#Str("Alt text"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> findAllByAltText(~matcher=#Str("Alt text"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByAltText(~matcher=#Str("Alt text"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("regex matcher", () => {
       test("get works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> getByAltText(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getByAltText(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> getAllByAltText(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByAltText(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> queryByAltText(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByAltText(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> queryAllByAltText(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByAltText(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> findByAltText(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByAltText(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<img src="" alt="Alt text" />`)
-        |> findAllByAltText(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByAltText(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("function matcher", () => {
       test("get works", () =>
         render(`<img name="my-img" src="" alt="Alt text" />`)
-        |> getByAltText(~matcher=#Func((_text, node) => node |> name === "my-img"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByAltText(~matcher=#Func((_text, node) => node -> name === "my-img"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<img name="my-img" src="" alt="Alt text" />`)
-        |> getAllByAltText(~matcher=#Func((_text, node) => node |> name === "my-img"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByAltText(~matcher=#Func((_text, node) => node -> name === "my-img"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<img name="my-img" src="" alt="Alt text" />`)
-        |> queryByAltText(~matcher=#Func((_text, node) => node |> name === "my-img"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByAltText(~matcher=#Func((_text, node) => node -> name === "my-img"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<img name="my-img" src="" alt="Alt text" />`)
-        |> queryAllByAltText(~matcher=#Func((_text, node) => node |> name === "my-img"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByAltText(~matcher=#Func((_text, node) => node -> name === "my-img"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<img name="my-img" src="" alt="Alt text" />`)
-        |> findByAltText(~matcher=#Func((_text, node) => node |> name === "my-img"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByAltText(~matcher=#Func((_text, node) => node -> name === "my-img"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<img name="my-img" src="" alt="Alt text" />`)
-        |> findAllByAltText(~matcher=#Func((_text, node) => node |> name === "my-img"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByAltText(~matcher=#Func((_text, node) => node -> name === "my-img"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
   })
@@ -583,126 +582,126 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> getByTitle(~matcher=#Str("greeting"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByTitle(~matcher=#Str("greeting"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> getAllByTitle(~matcher=#Str("greeting"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByTitle(~matcher=#Str("greeting"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> queryByTitle(~matcher=#Str("greeting"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByTitle(~matcher=#Str("greeting"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> queryAllByTitle(~matcher=#Str("greeting"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByTitle(~matcher=#Str("greeting"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> findByTitle(~matcher=#Str("greeting"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByTitle(~matcher=#Str("greeting"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> findAllByTitle(~matcher=#Str("greeting"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByTitle(~matcher=#Str("greeting"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("regexp matcher", () => {
       test("get works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> getByTitle(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getByTitle(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> getAllByTitle(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByTitle(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> queryByTitle(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByTitle(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> queryAllByTitle(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByTitle(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> findByTitle(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByTitle(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> findAllByTitle(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByTitle(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("function matcher", () => {
       test("get works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> getByTitle(~matcher=#Func((_text, node) => node |> tagName === "B"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByTitle(~matcher=#Func((_text, node) => node -> tagName === "B"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> getAllByTitle(~matcher=#Func((_text, node) => node |> tagName === "B"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByTitle(~matcher=#Func((_text, node) => node -> tagName === "B"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> queryByTitle(~matcher=#Func((_text, node) => node |> tagName === "B"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByTitle(~matcher=#Func((_text, node) => node -> tagName === "B"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> queryAllByTitle(~matcher=#Func((_text, node) => node |> tagName === "B"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByTitle(~matcher=#Func((_text, node) => node -> tagName === "B"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> findByTitle(~matcher=#Func((_text, node) => node |> tagName === "B"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByTitle(~matcher=#Func((_text, node) => node -> tagName === "B"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<b title="greeting">Hello,</b>`)
-        |> findAllByTitle(~matcher=#Func((_text, node) => node |> tagName === "B"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByTitle(~matcher=#Func((_text, node) => node -> tagName === "B"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
   })
@@ -711,125 +710,125 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> getByDisplayValue(~matcher=#Str("Some value"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByDisplayValue(~matcher=#Str("Some value"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> getAllByDisplayValue(~matcher=#Str("Some value"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByDisplayValue(~matcher=#Str("Some value"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> queryByDisplayValue(~matcher=#Str("Some value"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByDisplayValue(~matcher=#Str("Some value"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> queryAllByDisplayValue(~matcher=#Str("Some value"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByDisplayValue(~matcher=#Str("Some value"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> findByDisplayValue(~matcher=#Str("Some value"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByDisplayValue(~matcher=#Str("Some value"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> findAllByDisplayValue(~matcher=#Str("Some value"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByDisplayValue(~matcher=#Str("Some value"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
 
     describe("regex matcher", () => {
       test("get works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> getByDisplayValue(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getByDisplayValue(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> getAllByDisplayValue(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByDisplayValue(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> queryByDisplayValue(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByDisplayValue(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> queryAllByDisplayValue(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByDisplayValue(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> findByDisplayValue(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByDisplayValue(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<input type="text" value="Some value" />`)
-        |> findAllByDisplayValue(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByDisplayValue(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
     describe("function matcher", () => {
       test("get works", () =>
         render(`<input name="my-input" type="text" value="Some value" />`)
-        |> getByDisplayValue(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByDisplayValue(~matcher=#Func((_text, node) => node -> name === "my-input"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<input name="my-input" type="text" value="Some value" />`)
-        |> getAllByDisplayValue(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByDisplayValue(~matcher=#Func((_text, node) => node -> name === "my-input"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<input name="my-input" type="text" value="Some value" />`)
-        |> queryByDisplayValue(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByDisplayValue(~matcher=#Func((_text, node) => node -> name === "my-input"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<input name="my-input" type="text" value="Some value" />`)
-        |> queryAllByDisplayValue(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByDisplayValue(~matcher=#Func((_text, node) => node -> name === "my-input"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<input name="my-input" type="text" value="Some value" />`)
-        |> findByDisplayValue(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByDisplayValue(~matcher=#Func((_text, node) => node -> name === "my-input"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<input name="my-input" type="text" value="Some value" />`)
-        |> findAllByDisplayValue(~matcher=#Func((_text, node) => node |> name === "my-input"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByDisplayValue(~matcher=#Func((_text, node) => node -> name === "my-input"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
   })
@@ -838,131 +837,131 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render(`<button>World!</button>`)
-        |> getByRole(~matcher=#Str("button"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByRole(~matcher=#Str("button"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<button>World!</button>`)
-        |> getAllByRole(~matcher=#Str("button"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByRole(~matcher=#Str("button"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<button>World!</button>`)
-        |> queryByRole(~matcher=#Str("button"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByRole(~matcher=#Str("button"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<button>World!</button>`)
-        |> queryAllByRole(~matcher=#Str("button"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByRole(~matcher=#Str("button"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<button>World!</button>`)
-        |> findByRole(~matcher=#Str("button"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByRole(~matcher=#Str("button"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<button>World!</button>`)
-        |> findAllByRole(~matcher=#Str("button"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByRole(~matcher=#Str("button"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
     describe("regex matcher", () => {
       test("get works", () =>
         render(`<button>World!</button>`)
-        |> getByRole(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getByRole(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<button>World!</button>`)
-        |> getAllByRole(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByRole(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<button>World!</button>`)
-        |> queryByRole(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByRole(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<button>World!</button>`)
-        |> queryAllByRole(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByRole(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<button>World!</button>`)
-        |> findByRole(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByRole(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<button>World!</button>`)
-        |> findAllByRole(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByRole(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
     describe("function matcher", () => {
       test("get works", () =>
         render(`<button>World!</button>`)
-        |> getByRole(~matcher=#Func((_text, node) => node |> tagName === "BUTTON"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByRole(~matcher=#Func((_text, node) => node -> tagName === "BUTTON"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<button>World!</button>`)
-        |> getAllByRole(~matcher=#Func((_text, node) => node |> tagName === "BUTTON"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByRole(~matcher=#Func((_text, node) => node -> tagName === "BUTTON"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<button>World!</button>`)
-        |> queryByRole(~matcher=#Func((_text, node) => node |> tagName === "BUTTON"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByRole(~matcher=#Func((_text, node) => node -> tagName === "BUTTON"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<button>World!</button>`)
-        |> queryAllByRole(~matcher=#Func((_text, node) => node |> tagName === "BUTTON"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByRole(~matcher=#Func((_text, node) => node -> tagName === "BUTTON"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<button>World!</button>`)
-        |> findByRole(~matcher=#Func((_text, node) => node |> tagName === "BUTTON"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByRole(~matcher=#Func((_text, node) => node -> tagName === "BUTTON"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<button>World!</button>`)
-        |> findAllByRole(~matcher=#Func((_text, node) => node |> tagName === "BUTTON"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByRole(~matcher=#Func((_text, node) => node -> tagName === "BUTTON"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
     test("level option works", () =>
       render(`<h3>World!</h3>`)
-      |> getByRole(~matcher=#Str("heading"), ~options=ByRoleQuery.makeOptions(~level=3, ()))
-      |> expect
-      |> toMatchSnapshot
+      -> getByRole(~matcher=#Str("heading"), ~options=ByRoleQuery.makeOptions(~level=3, ()), ())
+      -> expect
+      -> toMatchSnapshot
     )
   })
 
@@ -970,134 +969,134 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getByTestId(~matcher=#Str("world"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByTestId(~matcher=#Str("world"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getAllByTestId(~matcher=#Str("world"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByTestId(~matcher=#Str("world"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryByTestId(~matcher=#Str("world"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByTestId(~matcher=#Str("world"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryAllByTestId(~matcher=#Str("world"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByTestId(~matcher=#Str("world"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findByTestId(~matcher=#Str("world"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByTestId(~matcher=#Str("world"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findAllByTestId(~matcher=#Str("world"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByTestId(~matcher=#Str("world"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
     describe("regex matcher", () => {
       test("get works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getByTestId(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getByTestId(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getAllByTestId(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByTestId(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryByTestId(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByTestId(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryAllByTestId(~matcher=#RegExp(%re("/\\w+/")))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByTestId(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findByTestId(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByTestId(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findAllByTestId(~matcher=#RegExp(%re("/\\w+/")))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByTestId(~matcher=#RegExp(%re("/\\w+/")), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
     describe("function matcher", () => {
       test("get works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getByTestId(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> getByTestId(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("getAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> getAllByTestId(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> getAllByTestId(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("query works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryByTestId(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryByTestId(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       test("queryAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> queryAllByTestId(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> expect
-        |> toMatchSnapshot
+        -> queryAllByTestId(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> expect
+        -> toMatchSnapshot
       )
 
       testPromise("find works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findByTestId(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findByTestId(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
 
       testPromise("findAll works", () =>
         render(`<p data-testid="world">World!</p>`)
-        |> findAllByTestId(~matcher=#Func((_text, node) => node |> tagName === "P"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        -> findAllByTestId(~matcher=#Func((_text, node) => node -> tagName === "P"), ())
+        -> Promise.then(actual => actual -> expect -> toMatchSnapshot -> Promise.resolve)
       )
     })
   })
 
   test("getNodeText works", () =>
     render(`<b title="greeting">Hello,</b>`)
-    |> getByTitle(~matcher=#Str("greeting"))
-    |> getNodeText
-    |> expect
-    |> toMatchSnapshot
+    -> getByTitle(~matcher=#Str("greeting"), ())
+    -> getNodeText
+    -> expect
+    -> toMatchSnapshot
   )
 
   describe("waitFor", () => {
@@ -1107,7 +1106,7 @@ describe("DomTestingLibrary", () => {
       let _ = setTimeout(() => number := 100, timeout)
       let callback = () => assert (number.contents == 100)
 
-      waitFor(~callback, ()) |> Js.Promise.then_(_ => Js.Promise.resolve(pass))
+      waitFor(~callback, ()) -> Promise.then(_ => Promise.resolve(pass))
     })
 
     testPromise("supports container option", () => {
@@ -1115,10 +1114,10 @@ describe("DomTestingLibrary", () => {
       let timeout = Js.Math.floor(Js.Math.random() *. 300.)
       let _ = setTimeout(() => number := 100, timeout)
       let callback = () => assert (number.contents == 10)
-      let body = document |> Document.asHtmlDocument |> Belt.Option.flatMap(_, HtmlDocument.body)
+      let body = document -> Document.asHtmlDocument -> Belt.Option.flatMap(_, HtmlDocument.body)
       let options = WaitFor.makeOptions(~container=?body, ())
 
-      waitFor(~callback, ~options, ()) |> Js.Promise.catch(_ => Js.Promise.resolve(pass))
+      waitFor(~callback, ~options, ()) -> Promise.catch(_ => Promise.resolve(pass))
     })
 
     testPromise("supports timeout option", () => {
@@ -1127,7 +1126,7 @@ describe("DomTestingLibrary", () => {
       let callback = () => assert (number.contents == 100)
       let options = WaitFor.makeOptions(~timeout=500, ())
 
-      waitFor(~callback, ~options, ()) |> Js.Promise.catch(_ => Js.Promise.resolve(pass))
+      waitFor(~callback, ~options, ()) -> Promise.catch(_ => Promise.resolve(pass))
     })
 
     testPromise("supports interval option", () => {
@@ -1135,7 +1134,7 @@ describe("DomTestingLibrary", () => {
       let callback = () => assert (number.contents == 10)
       let options = WaitFor.makeOptions(~interval=10, ~timeout=45, ())
 
-      waitFor(~callback, ~options, ()) |> Js.Promise.catch(_ => Js.Promise.resolve(pass))
+      waitFor(~callback, ~options, ()) -> Promise.catch(_ => Promise.resolve(pass))
     })
 
     testPromise("supports mutationObserverOptions option", () => {
@@ -1149,21 +1148,21 @@ describe("DomTestingLibrary", () => {
         (),
       )
 
-      waitFor(~callback, ~options, ()) |> Js.Promise.catch(_ => Js.Promise.resolve(pass))
+      waitFor(~callback, ~options, ()) -> Promise.catch(_ => Promise.resolve(pass))
     })
   })
 
   describe("waitForElementToBeRemoved", () =>
     testPromise("works", () => {
       let body = render(`<div data-testid="div"></div><div data-testid="div"></div>`)
-      let callback = #Func(() => queryAllByTestId(~matcher=#Str("div"), body))
-      let options = WaitFor.makeOptions(~timeout=200, ())
-      let divs = queryAllByTestId(~matcher=#Str("div"), body)
+      let callback = #Func(() => queryAllByTestId(body, ~matcher=#Str("div"), ()))
+      let options = WaitFor.makeOptions(~timeout=1000, ())
+      let divs = queryAllByTestId(body, ~matcher=#Str("div"), ())
 
       // first mutation
       let _ = setTimeout(
-        () => Belt.Array.forEach(divs, div => div |> setAttribute("id", "mutated")),
-        1,
+        () => Belt.Array.forEach(divs, div => div -> setAttribute("id", "mutated")),
+        500,
       )
 
       // removal
@@ -1171,14 +1170,14 @@ describe("DomTestingLibrary", () => {
         Belt.Array.forEach(divs, div =>
           switch div->parentElement {
           | Some(parent) =>
-            let _ = parent |> removeChild(div)
+            let _ = parent -> removeChild(div)
           | None => raise(Failure("No parent element found"))
           }
         )
       , 100)
 
-      waitForElementToBeRemoved(~callback, ~options, ()) |> Js.Promise.then_(_ =>
-        Js.Promise.resolve(pass)
+      waitForElementToBeRemoved(~callback, ~options, ()) -> Promise.then(_ =>
+        Promise.resolve(pass)
       )
     })
   )
@@ -1188,42 +1187,42 @@ describe("DomTestingLibrary", () => {
       let number = ref(10)
       let timeout = Js.Math.floor(Js.Math.random() *. 300.)
       let _ = setTimeout(() => number := 100, timeout)
-      let callback = () => Js.Promise.resolve(assert (number.contents == 100))
+      let callback = () => Promise.resolve(assert (number.contents == 100))
 
-      waitForPromise(~callback, ()) |> Js.Promise.then_(_ => Js.Promise.resolve(pass))
+      waitForPromise(~callback, ()) -> Promise.then(_ => Promise.resolve(pass))
     })
   )
 
   describe("FireEvent", () => {
     test("click works", () => {
-      let node = document |> Document.createElement("button")
+      let node = document -> Document.createElement("button")
       let spy = JestJs.inferred_fn()
-      let fn = spy |> MockJs.fn
-      let clickHandler = _ => fn(. "clicked!") |> ignore
+      let fn = spy -> MockJs.fn
+      let clickHandler = _ => fn(. "clicked!") -> ignore
 
-      node |> Element.addEventListener("click", clickHandler)
+      node -> Element.addEventListener("click", clickHandler)
 
-      FireEvent.click(node)
+      FireEvent.click(node, ())
 
-      expect(spy |> MockJs.calls) |> toEqual(["clicked!"])
+      expect(spy -> MockJs.calls) |> toEqual(["clicked!"])
     })
 
     test("change works", () => {
-      let node = document |> Document.createElement("input")
+      let node = document -> Document.createElement("input")
       let spy = JestJs.inferred_fn()
-      let fn = spy |> MockJs.fn
-      let changeHandler = _ => fn(. "changed!") |> ignore
+      let fn = spy -> MockJs.fn
+      let changeHandler = _ => fn(. "changed!") -> ignore
       let eventInit = {
         "target": {
           "value": "1",
         },
       }
 
-      node |> Element.addEventListener("change", changeHandler)
+      node -> Element.addEventListener("change", changeHandler)
 
-      FireEvent.change(~eventInit, node)
+      FireEvent.change(node, ~eventInit, ())
 
-      expect(spy |> MockJs.calls) |> toEqual(["changed!"])
+      expect(spy -> MockJs.calls) |> toEqual(["changed!"])
     })
   })
 })

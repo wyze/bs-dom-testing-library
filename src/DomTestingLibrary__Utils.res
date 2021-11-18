@@ -59,15 +59,15 @@ module WaitForElement = {
 }
 
 @module("@testing-library/dom")
-external _waitFor: (unit => unit, Js.undefined<WaitFor.options>) => Js.Promise.t<'a> = "waitFor"
+external _waitFor: (unit => unit, Js.undefined<WaitFor.options>) => Promise.t<'a> = "waitFor"
 
 let waitFor = (~callback, ~options=?, ()) => _waitFor(callback, Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
 external _waitForPromise: (
-  unit => Js.Promise.t<'a>,
+  unit => Promise.t<'a>,
   Js.undefined<WaitFor.options>,
-) => Js.Promise.t<'b> = "waitFor"
+) => Promise.t<'b> = "waitFor"
 
 let waitForPromise = (~callback, ~options=?, ()) =>
   _waitForPromise(callback, Js.Undefined.fromOption(options))
@@ -76,7 +76,7 @@ let waitForPromise = (~callback, ~options=?, ()) =>
 external _waitForElement: (
   Js.undefined<unit => 'a>,
   Js.undefined<WaitForElement.options>,
-) => Js.Promise.t<'a> = "waitForElement"
+) => Promise.t<'a> = "waitForElement"
 
 let waitForElement = (~callback=?, ~options=?, ()) =>
   _waitForElement(Js.Undefined.fromOption(callback), Js.Undefined.fromOption(options))
@@ -85,20 +85,18 @@ let waitForElement = (~callback=?, ~options=?, ()) =>
 external _waitForElementToBeRemoved: (
   ~callback: @unwrap [#Func(unit => 'a) | #Value('a)],
   Js.undefined<WaitFor.options>,
-) => Js.Promise.t<unit> = "waitForElementToBeRemoved"
+) => Promise.t<unit> = "waitForElementToBeRemoved"
 
 let waitForElementToBeRemoved = (~callback, ~options=?, ()) =>
   _waitForElementToBeRemoved(~callback, Js.Undefined.fromOption(options))
 
 @module("@testing-library/dom")
 external _prettyDOM: (Dom.element, Js.undefined<int>) => string = "prettyDOM"
-
-let prettyDOM = (~maxLength=?, element) => _prettyDOM(element, Js.Undefined.fromOption(maxLength))
+let prettyDOM = (element, ~maxLength=?, ()) => _prettyDOM(element, Js.Undefined.fromOption(maxLength))
 
 @module("@testing-library/dom")
 external _logDOM: (Dom.element, Js.undefined<int>) => unit = "logDOM"
-
-let logDOM = (~maxLength=?, element) => _logDOM(element, Js.Undefined.fromOption(maxLength))
+let logDOM = (element, ~maxLength=?, ()) => _logDOM(element, Js.Undefined.fromOption(maxLength))
 
 module Configure = {
   type options = {

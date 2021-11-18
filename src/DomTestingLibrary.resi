@@ -26,8 +26,7 @@ module ByTextQuery: {
     "ignore": Js.undefined<string>,
     "normalizer": Js.undefined<string => string>,
   }
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~exact: bool=?,
     ~selector: string=?,
     ~ignore: string=?,
@@ -37,18 +36,15 @@ module ByTextQuery: {
 }
 module ByAltTextQuery: {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 module ByTitleQuery: {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 module ByDisplayValueQuery: {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 module ByRoleQuery: {
   type options = {
@@ -64,8 +60,7 @@ module ByRoleQuery: {
     "selected": Js.undefined<bool>,
     "trim": Js.undefined<bool>,
   }
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~checked: bool=?,
     ~collapseWhitespace: bool=?,
     ~exact: bool=?,
@@ -82,8 +77,7 @@ module ByRoleQuery: {
 }
 module ByTestIdQuery: {
   type options = {"exact": Js.undefined<bool>, "normalizer": Js.undefined<string => string>}
-  @obj
-  external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
+  @obj external makeOptions: (~exact: bool=?, ~normalizer: string => string=?, unit) => options = ""
 }
 module MutationObserver: {
   type options = {
@@ -95,8 +89,7 @@ module MutationObserver: {
     "childList": Js.undefined<bool>,
     "subtree": Js.undefined<bool>,
   }
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~attributeFilter: array<string>=?,
     ~attributeOldValue: bool=?,
     ~attributes: bool=?,
@@ -117,8 +110,7 @@ module WaitFor: {
     "stackTraceError": Js.undefined<Js.Exn.t>,
     "timeout": Js.undefined<int>,
   }
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~container: Dom.element=?,
     ~interval: int=?,
     ~mutationObserverOptions: MutationObserver.options=?,
@@ -131,8 +123,7 @@ module WaitFor: {
 }
 module WaitForElement: {
   type options = {"container": Js.undefined<Dom.element>, "timeout": Js.undefined<int>}
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~container: Dom.element=?,
     ~mutationObserverInit: MutationObserver.options=?,
     ~timeout: int=?,
@@ -160,9 +151,9 @@ let waitForElementToBeRemoved: (
   unit,
 ) => Js.Promise.t<unit>
 
-let prettyDOM: (~maxLength: int=?, Dom.element) => string
+let prettyDOM: (Dom.element, ~maxLength: int=?, ()) => string
 
-let logDOM: (~maxLength: int=?, Dom.element) => unit
+let logDOM: (Dom.element, ~maxLength: int=?, ()) => unit
 
 module Configure: {
   type options = {
@@ -177,8 +168,7 @@ module Configure: {
     "testIdAttribute": Js.undefined<string>,
     "throwSuggestions": Js.undefined<bool>,
   }
-  @obj
-  external makeOptions: (
+  @obj external makeOptions: (
     ~_disableExpensiveErrorDiagnostics: bool=?,
     ~asyncUtilTimeout: int=?,
     ~asyncWrapper: unit => unit=?,
@@ -207,502 +197,502 @@ external getNodeText: Dom.element => string = "getNodeText"
  * ByLabelText
  ")
 let getByLabelText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByLabelTextQuery.options=?,
-  Dom.element,
-) => Dom.element
+  ()) => Dom.element
 
 let getAllByLabelText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByLabelTextQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let queryByLabelText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByLabelTextQuery.options=?,
-  Dom.element,
-) => Js.null<Dom.element>
+  ()) => Js.null<Dom.element>
 
 let queryAllByLabelText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByLabelTextQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let findByLabelText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByLabelTextQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<Dom.element>
+  ()) => Js.Promise.t<Dom.element>
 
 let findAllByLabelText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByLabelTextQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<array<Dom.element>>
+  ()) => Js.Promise.t<array<Dom.element>>
 
 @ocaml.doc("
  * ByPlaceholderText
  ")
 let getByPlaceholderText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByPlaceholderTextQuery.options=?,
-  Dom.element,
-) => Dom.element
+  ()) => Dom.element
 
 let getAllByPlaceholderText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByPlaceholderTextQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let queryByPlaceholderText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByPlaceholderTextQuery.options=?,
-  Dom.element,
-) => Js.null<Dom.element>
+  ()) => Js.null<Dom.element>
 
 let queryAllByPlaceholderText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByPlaceholderTextQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let findByPlaceholderText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByPlaceholderTextQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<Dom.element>
+  ()) => Js.Promise.t<Dom.element>
 
 let findAllByPlaceholderText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByPlaceholderTextQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<array<Dom.element>>
+  ()) => Js.Promise.t<array<Dom.element>>
 
 @ocaml.doc("
  * ByText
  ")
 let getByText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTextQuery.options=?,
-  Dom.element,
-) => Dom.element
+  ()) => Dom.element
 
 let getAllByText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTextQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let queryByText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTextQuery.options=?,
-  Dom.element,
-) => Js.null<Dom.element>
+  ()) => Js.null<Dom.element>
 
 let queryAllByText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTextQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let findByText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTextQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<Dom.element>
+  ()) => Js.Promise.t<Dom.element>
 
 let findAllByText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTextQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<array<Dom.element>>
+  ()) => Js.Promise.t<array<Dom.element>>
 
 @ocaml.doc("
  * ByAltText
  ")
 let getByAltText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByAltTextQuery.options=?,
-  Dom.element,
-) => Dom.element
+  ()) => Dom.element
 
 let getAllByAltText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByAltTextQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let queryByAltText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByAltTextQuery.options=?,
-  Dom.element,
-) => Js.null<Dom.element>
+  ()) => Js.null<Dom.element>
 
 let queryAllByAltText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByAltTextQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let findByAltText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByAltTextQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<Dom.element>
+  ()) => Js.Promise.t<Dom.element>
 
 let findAllByAltText: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByAltTextQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<array<Dom.element>>
+  ()) => Js.Promise.t<array<Dom.element>>
 
 @ocaml.doc("
  * ByTitle
  ")
 let getByTitle: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTitleQuery.options=?,
-  Dom.element,
-) => Dom.element
+  ()) => Dom.element
 
 let getAllByTitle: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTitleQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let queryByTitle: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTitleQuery.options=?,
-  Dom.element,
-) => Js.null<Dom.element>
+  ()) => Js.null<Dom.element>
 
 let queryAllByTitle: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTitleQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let findByTitle: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTitleQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<Dom.element>
+  ()) => Js.Promise.t<Dom.element>
 
 let findAllByTitle: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTitleQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<array<Dom.element>>
+  ()) => Js.Promise.t<array<Dom.element>>
 
 @ocaml.doc("
  * ByDisplayValue
  ")
 let getByDisplayValue: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByDisplayValueQuery.options=?,
-  Dom.element,
-) => Dom.element
+  ()) => Dom.element
 
 let getAllByDisplayValue: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByDisplayValueQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let queryByDisplayValue: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByDisplayValueQuery.options=?,
-  Dom.element,
-) => Js.null<Dom.element>
+  ()) => Js.null<Dom.element>
 
 let queryAllByDisplayValue: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByDisplayValueQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let findByDisplayValue: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByDisplayValueQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<Dom.element>
+  ()) => Js.Promise.t<Dom.element>
 
 let findAllByDisplayValue: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByDisplayValueQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<array<Dom.element>>
+  ()) => Js.Promise.t<array<Dom.element>>
 
 @ocaml.doc("
  * ByRole
  ")
 let getByRole: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByRoleQuery.options=?,
-  Dom.element,
-) => Dom.element
+  ()) => Dom.element
 
 let getAllByRole: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByRoleQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let queryByRole: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByRoleQuery.options=?,
-  Dom.element,
-) => Js.null<Dom.element>
+  ()) => Js.null<Dom.element>
 
 let queryAllByRole: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByRoleQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let findByRole: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByRoleQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<Dom.element>
+  ()) => Js.Promise.t<Dom.element>
 
 let findAllByRole: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByRoleQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<array<Dom.element>>
+  ()) => Js.Promise.t<array<Dom.element>>
 
 @ocaml.doc("
  * ByTestId
  ")
 let getByTestId: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTestIdQuery.options=?,
-  Dom.element,
-) => Dom.element
+  ()) => Dom.element
 
 let getAllByTestId: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTestIdQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let queryByTestId: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTestIdQuery.options=?,
-  Dom.element,
-) => Js.null<Dom.element>
+  ()) => Js.null<Dom.element>
 
 let queryAllByTestId: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTestIdQuery.options=?,
-  Dom.element,
-) => array<Dom.element>
+  ()) => array<Dom.element>
 
 let findByTestId: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTestIdQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<Dom.element>
+  ()) => Js.Promise.t<Dom.element>
 
 let findAllByTestId: (
+  Dom.element,
   ~matcher: [
     | #Func((string, Dom.element) => bool)
     | #RegExp(Js.Re.t)
     | #Str(string)
   ],
   ~options: ByTestIdQuery.options=?,
-  Dom.element,
-) => Js.Promise.t<array<Dom.element>>
+  ()) => Promise.t<array<Dom.element>>

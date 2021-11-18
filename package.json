@@ -19,12 +19,12 @@
     "clean": "run-s clean:rescript clean:project",
     "clean:rescript": "rescript clean",
     "clean:project": "rimraf _coverage lib .merlin *.coverage",
-    "convert": "rescript convert -all",
     "postversion": "github-release",
     "prebuild": "npm run clean",
     "pretest": "npm run build",
     "preversion": "npm run build",
-    "test": "npm run jest",
+    "test": "jest",
+    "jest": "jest",
     "test:coverage": "BISECT_ENABLE=yes npm run test",
     "version": "changelog"
   },
@@ -33,6 +33,7 @@
     "testing"
   ],
   "dependencies": {
+    "@ryyppy/rescript-promise": "^2.1.0",
     "@testing-library/dom": "^8.11.0",
     "jest": "^27.3.1"
   },
@@ -45,9 +46,9 @@
     "@wyze/github-release": "^1.1.1",
     "babel-jest": "^27.3.1",
     "bisect_ppx": "^2.6.3",
-    "bs-webapi": "^0.19.1",
     "npm-run-all": "^4.1.5",
     "rescript": "^9.1.4",
+    "rescript-webapi": "^0.1.3",
     "rimraf": "^3.0.2"
   }
 }
