@@ -1,19 +1,30 @@
-# bs-dom-testing-library &middot; [![Build Status][circleci-image]][circleci-url] [![npm][npm-image]][npm-url] [![Coveralls][codecov-image]][codecov-url]
-
-> [Rescript](//github.com/BuckleScript/bucklescript) bindings for [dom-testing-library](//github.com/testing-library/dom-testing-library).
+# rescript-dom-testing-library
+[![Build Status][circleci-image]][circleci-url] [![npm][npm-image]][npm-url] [![Coveralls][codecov-image]][codecov-url]
 
 ## Documentation
+rescript-dom-testing-library updates Neil Kistner's bindings for [dom-testing-library](//github.com/testing-library/dom-testing-library) to [Rescript 9.x ](//github.com/rescript-lang/).  Breaking changes include
+
+- [Rescript 9](https://rescript-lang.org/docs/manual/latest/introduction) revamps the JavaScript Promise API bindings, deprecating `Js.Promise` in favor of [Patrick Ecker's proposal](https://github.com/ryyppy/rescript-promise#usage). rescript-dom-testing-library now depends on [ryyppy/rescript-promise](https://github.com/ryyppy/rescript-promise#usage).
+- BuckleScript web-api [bs-webapi](https://www.npmjs.com/package/bs-webapi) dependency has been updated to the Reason Community webapi package [rescript-webapi](https://www.npmjs.com/package/rescript-webapi).
+- Jest (see [glenslbs-jest pull request 96](https://github.com/glennsl/bs-jest/pull/96)) and testing-library/dom dependencies updated to latest available version of each.  Jest 27.0.0 switched from Jest-Jasmine to Jest-circus changing the behavior of before and after hooks.  *See [glenslbs-jest pull request 96](https://github.com/glennsl/bs-jest/pull/96) for more information*
+- [Recript 9](https://rescript-lang.org/docs/manual/latest/introduction) deprecates the [|> pipe operator](https://rescript-lang.org/docs/manual/latest/pipe#triangle-pipe-deprecated). rescript-dom-testing-library now uses the `->` arrow pipe operator and data-first semantics
+- [Recript 9](https://rescript-lang.org/docs/manual/latest/introduction) deprecates the [send.pipe decorator](https://rescript-lang.org/syntax-lookup#send-pipe-decorator).  rescript-dom-testing-library bindings now use the [send decorator](https://rescript-lang.org/syntax-lookup#send-decorator).
+
+Non-breaking changes include
+- rescript-dom-testing-library includes babel.config.js and jest.config.js illustrating how to transform Jest tests to use ES6 module format
+
+
 
 [**Read the docs**](//testing-library.com/docs/bs-react-testing-library/intro) | [Edit the docs](//github.com/alexkrolick/testing-library-docs)
 
 ## Installation
 
 ```sh
-$ yarn add --dev bs-dom-testing-library
+$ yarn add --dev rescript-dom-testing-library
 
 # or..
 
-$ npm install --save-dev bs-dom-testing-library
+$ npm install --save-dev rescript-dom-testing-library
 ```
 
 ## Usage
@@ -23,12 +34,13 @@ $ npm install --save-dev bs-dom-testing-library
 ```json
 {
   "bs-dev-dependencies": [
-    "bs-dom-testing-library"
+    "rescript-dom-testing-library",
+    "ryppy/rescript-promise",
   ]
 }
 ```
 
-#### With [`bs-jest`](//github.com/reasonml-community/bs-jest)
+#### With [`rescript-jest`](//github.com/glennsl/bs-jest)
 
 ```ocaml
 /* Header_test.re */
@@ -39,15 +51,13 @@ open Webapi.Dom;
 open Webapi.Dom.Element;
 
 test("header exists", () => {
-  let div = Document.createElement("div", document);
+  let doc = document -> Document.createElement("div")
+  doc -> setInnerHTML(`<h1>Hello, World!</h1>`)
 
-  div -> setInnerHTML({|<h1>Hello, World!</h1>|});
-
-  div
-  |> getByText(~matcher=`Str("Hello, World!"))
-  |> expect
-  |> ExpectJs.toBeTruthy;
-});
+  doc -> getByText(~matcher=#Str("Hello, World!"), ())
+  -> expect
+  -> ExpectJs.toBeTruthy;
+})
 ```
 
 ## Examples
@@ -57,7 +67,7 @@ See [`src/__tests__`](src/__tests__) for some examples.
 ## Development
 
 ```sh
-$ git clone https://github.com/wyze/bs-dom-testing-library.git
+$ git clone https://github.com/wyze/s-dom-testing-library.git
 $ cd bs-dom-testing-library
 $ yarn # or `npm install`
 ```
@@ -78,6 +88,7 @@ $ yarn test
 
 > [Full Change Log](changelog.md)
 
+### [v0.8.0 ] Coming soon
 ### [v0.7.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.7.0) (2020-10-21)
 
 * Add waitForElementToBeRemoved ([@wyze](https://github.com/wyze) in [#23](https://github.com/wyze/bs-dom-testing-library/pull/23))
