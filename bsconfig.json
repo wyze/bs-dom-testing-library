@@ -1,5 +1,5 @@
 {
-  "name": "bs-dom-testing-library",
+  "name": "rescript-dom-testing-library",
   "bsc-flags": [
     "-bs-no-version-header",
     "-bs-super-errors"
@@ -11,7 +11,6 @@
   "reason": {
     "react-jsx": 3
   },
-  "refmt": 3,
   "package-specs": {
     "module": "commonjs",
     "in-source": true
@@ -28,9 +27,10 @@
       ]
     }
   ],
+  "bs-dependencies": ["@ryyppy/rescript-promise"],
   "bs-dev-dependencies": [
-    "@glennsl/bs-jest",
+    "@glennsl/rescript-jest",
     "bisect_ppx",
-    "bs-webapi"
+    "rescript-webapi"
   ]
 }

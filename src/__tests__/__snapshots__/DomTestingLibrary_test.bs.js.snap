@@ -458,21 +458,13 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByLabelText string matcher get works 1`] = `<input />`;
+exports[`DomTestingLibrary ByLabelText string matcher get works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByLabelText string matcher getAll works 1`] = `
-Array [
-  <input />,
-]
-`;
+exports[`DomTestingLibrary ByLabelText string matcher getAll works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByLabelText string matcher query works 1`] = `<input />`;
+exports[`DomTestingLibrary ByLabelText string matcher query works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByLabelText string matcher queryAll works 1`] = `
-Array [
-  <input />,
-]
-`;
+exports[`DomTestingLibrary ByLabelText string matcher queryAll works 1`] = `[Function]`;
 
 exports[`DomTestingLibrary ByPlaceholderText function matcher find works 1`] = `
 <input
@@ -492,41 +484,13 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText function matcher get works 1`] = `
-<input
-  name="my-input"
-  placeholder="Enter something"
-  type="text"
-/>
-`;
+exports[`DomTestingLibrary ByPlaceholderText function matcher get works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText function matcher getAll works 1`] = `
-Array [
-  <input
-    name="my-input"
-    placeholder="Enter something"
-    type="text"
-  />,
-]
-`;
+exports[`DomTestingLibrary ByPlaceholderText function matcher getAll works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText function matcher query works 1`] = `
-<input
-  name="my-input"
-  placeholder="Enter something"
-  type="text"
-/>
-`;
+exports[`DomTestingLibrary ByPlaceholderText function matcher query works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText function matcher queryAll works 1`] = `
-Array [
-  <input
-    name="my-input"
-    placeholder="Enter something"
-    type="text"
-  />,
-]
-`;
+exports[`DomTestingLibrary ByPlaceholderText function matcher queryAll works 1`] = `[Function]`;
 
 exports[`DomTestingLibrary ByPlaceholderText regex matcher find works 1`] = `
 <input
@@ -544,37 +508,13 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText regex matcher get works 1`] = `
-<input
-  placeholder="Enter something"
-  type="text"
-/>
-`;
+exports[`DomTestingLibrary ByPlaceholderText regex matcher get works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText regex matcher getAll works 1`] = `
-Array [
-  <input
-    placeholder="Enter something"
-    type="text"
-  />,
-]
-`;
+exports[`DomTestingLibrary ByPlaceholderText regex matcher getAll works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText regex matcher query works 1`] = `
-<input
-  placeholder="Enter something"
-  type="text"
-/>
-`;
+exports[`DomTestingLibrary ByPlaceholderText regex matcher query works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText regex matcher queryAll works 1`] = `
-Array [
-  <input
-    placeholder="Enter something"
-    type="text"
-  />,
-]
-`;
+exports[`DomTestingLibrary ByPlaceholderText regex matcher queryAll works 1`] = `[Function]`;
 
 exports[`DomTestingLibrary ByPlaceholderText string matcher find works 1`] = `
 <input
@@ -592,37 +532,13 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary ByPlaceholderText string matcher get works 1`] = `
-<input
-  placeholder="Enter something"
-  type="text"
-/>
-`;
+exports[`DomTestingLibrary ByPlaceholderText string matcher get works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText string matcher getAll works 1`] = `
-Array [
-  <input
-    placeholder="Enter something"
-    type="text"
-  />,
-]
-`;
+exports[`DomTestingLibrary ByPlaceholderText string matcher getAll works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText string matcher query works 1`] = `
-<input
-  placeholder="Enter something"
-  type="text"
-/>
-`;
+exports[`DomTestingLibrary ByPlaceholderText string matcher query works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary ByPlaceholderText string matcher queryAll works 1`] = `
-Array [
-  <input
-    placeholder="Enter something"
-    type="text"
-  />,
-]
-`;
+exports[`DomTestingLibrary ByPlaceholderText string matcher queryAll works 1`] = `[Function]`;
 
 exports[`DomTestingLibrary ByRole function matcher find works 1`] = `
 <button>
@@ -1242,53 +1158,12 @@ Array [
 ]
 `;
 
-exports[`DomTestingLibrary configure works using a function 1`] = `
-<p
-  data-custom-test-id="world"
->
-   World!
-</p>
-`;
+exports[`DomTestingLibrary configure works using a function 1`] = `[Function]`;
 
-exports[`DomTestingLibrary configure works using an object 1`] = `
-<p
-  data-custom-test-id="world"
->
-   World!
-</p>
-`;
+exports[`DomTestingLibrary configure works using an object 1`] = `[Function]`;
 
 exports[`DomTestingLibrary getNodeText works 1`] = `"Hello,"`;
 
-exports[`DomTestingLibrary prettyDOM works 1`] = `
-"[36m<body>[39m
-  [36m<b[39m
-    [33mtitle[39m=[32m\\"greeting\\"[39m
-  [36m>[39m
-    [0mHello,[0m
-  [36m</b>[39m
-  [36m<p[39m
-    [33mdata-testid[39m=[32m\\"world\\"[39m
-  [36m>[39m
-    [0m World![0m
-  [36m</p>[39m
-  [36m<input[39m
-    [33mplaceholder[39m=[32m\\"Enter something\\"[39m
-    [33mtype[39m=[32m\\"text\\"[39m
-  [36m/>[39m
-  [36m<input[39m
-    [33mtype[39m=[32m\\"text\\"[39m
-    [33mvalue[39m=[32m\\"Some value\\"[39m
-  [36m/>[39m
-  [36m<img[39m
-    [33malt[39m=[32m\\"Alt text\\"[39m
-    [33msrc[39m=[32m\\"\\"[39m
-  [36m/>[39m
-[36m</body>[39m"
-`;
+exports[`DomTestingLibrary prettyDOM works 1`] = `[Function]`;
 
-exports[`DomTestingLibrary prettyDOM works with maxLength 1`] = `
-"[36m<body>[39m
-  [36m<b[39m
-    [33mtitle[39m=[32m\\"gr..."
-`;
+exports[`DomTestingLibrary prettyDOM works with maxLength 1`] = `[Function]`;
