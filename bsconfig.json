@@ -29,7 +29,7 @@
   ],
   "bs-dependencies": ["@ryyppy/rescript-promise"],
   "bs-dev-dependencies": [
-    "@glennsl/bs-jest",
+    "@glennsl/rescript-jest",
     "bisect_ppx",
     "rescript-webapi"
   ]

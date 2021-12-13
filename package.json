@@ -33,14 +33,14 @@
     "testing"
   ],
   "dependencies": {
-    "@ryyppy/rescript-promise": "^2.1.0",
     "@testing-library/dom": "^8.11.0",
     "jest": "^27.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
-    "@glennsl/bs-jest": "^0.7.0",
+    "@glennsl/rescript-jest": "^0.8.1",
+    "@ryyppy/rescript-promise": "^2.1.0",
     "@sheerun/mutationobserver-shim": "^0.3.3",
     "@wyze/changelog": "^1.0.0",
     "@wyze/github-release": "^1.1.1",

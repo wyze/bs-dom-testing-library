@@ -1,6 +1,6 @@
 @@coverage(exclude_file)
 
-open Jest
+open GlennslRescriptJest.Jest
 open Webapi.Dom
 open Webapi.Dom.Element
 
@@ -1204,7 +1204,7 @@ describe("DomTestingLibrary", () => {
 
       FireEvent.click(node, ())
 
-      expect(spy -> MockJs.calls) |> toEqual(["clicked!"])
+      expect(spy -> MockJs.calls) -> toEqual(["clicked!"])
     })
 
     test("change works", () => {
@@ -1222,7 +1222,7 @@ describe("DomTestingLibrary", () => {
 
       FireEvent.change(node, ~eventInit, ())
 
-      expect(spy -> MockJs.calls) |> toEqual(["changed!"])
+      expect(spy -> MockJs.calls) -> toEqual(["changed!"])
     })
   })
 })
