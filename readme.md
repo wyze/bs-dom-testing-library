@@ -5,8 +5,10 @@
 rescript-dom-testing-library updates Neil Kistner's bindings for [dom-testing-library](//github.com/testing-library/dom-testing-library) to [Rescript 9.x ](//github.com/rescript-lang/).  Breaking changes include
 
 - [Rescript 9](https://rescript-lang.org/docs/manual/latest/introduction) revamps the JavaScript Promise API bindings, deprecating `Js.Promise` in favor of [Patrick Ecker's proposal](https://github.com/ryyppy/rescript-promise#usage). rescript-dom-testing-library now depends on [ryyppy/rescript-promise](https://github.com/ryyppy/rescript-promise#usage).
-- BuckleScript web-api [bs-webapi](https://www.npmjs.com/package/bs-webapi) dependency has been updated to the Reason Community webapi package [rescript-webapi](https://www.npmjs.com/package/rescript-webapi).
-- Jest (see [glenslbs-jest pull request 96](https://github.com/glennsl/bs-jest/pull/96)) and testing-library/dom dependencies updated to latest available version of each.  Jest 27.0.0 switched from Jest-Jasmine to Jest-circus changing the behavior of before and after hooks.  *See [glensl/bs-jest pull request 96](https://github.com/glennsl/bs-jest/pull/96) for more information*
+- Web API bindings: [bs-webapi](https://www.npmjs.com/package/bs-webapi) dependency has been updated to the Reason Community webapi package [rescript-webapi](https://www.npmjs.com/package/rescript-webapi).
+- Jest bindings:  [`@glennsl/rescript-jest`](https://github.com/glennsl/rescript-jest) replaces `@glennsl/bs-jest`.  In order to align with Rescript 9 API and semantics, `@glennsl/rescript-jest` introduces many breaking changes.  See the [rescript-jest readme file](https://github.com/glennsl/rescript-jest#readme)
+- testing-library/dom dependencies updated to latest available version of each.
+- [Jest 27.0.0](https://github.com/facebook/jest/pull/10947) switched from Jest-Jasmine to Jest-circus changing the behavior of before and after hooks.  See the rescript-jest [readme](https://github.com/glennsl/rescript-jest#readme) file.
 - [Recript 9](https://rescript-lang.org/docs/manual/latest/introduction) deprecates the [|> pipe operator](https://rescript-lang.org/docs/manual/latest/pipe#triangle-pipe-deprecated). rescript-dom-testing-library now uses the `->` arrow pipe operator and data-first semantics
 - [Recript 9](https://rescript-lang.org/docs/manual/latest/introduction) deprecates the [send.pipe decorator](https://rescript-lang.org/syntax-lookup#send-pipe-decorator).  rescript-dom-testing-library bindings now use the [send decorator](https://rescript-lang.org/syntax-lookup#send-decorator).
 
@@ -43,9 +45,9 @@ $ npm install --save-dev rescript-dom-testing-library
 #### With [`rescript-jest`](//github.com/glennsl/bs-jest)
 
 ```ocaml
-/* Header_test.re */
+/* Header_test.res */
 
-open Jest;
+open GlennslRescriptJest.Jest;
 open Expect;
 open Webapi.Dom;
 open Webapi.Dom.Element;
@@ -88,7 +90,11 @@ $ yarn test
 
 > [Full Change Log](changelog.md)
 
-### [v0.8.0 ] Coming soon
+### [v0.8.0 ]
+- Updated to Rescript 9
+- [BREAKING] Updated to [Patrick Ecker's Promise API](https://github.com/ryyppy/rescript-promise#usage)
+- [BREAKING] Updated to data-first semantics.  API chaining now uses `->` operator instead of `|>` operator
+- Updated tests to use GlennslRescriptJest namespace.
 ### [v0.7.0](https://github.com/wyze/bs-dom-testing-library/releases/tag/v0.7.0) (2020-10-21)
 
 * Add waitForElementToBeRemoved ([@wyze](https://github.com/wyze) in [#23](https://github.com/wyze/bs-dom-testing-library/pull/23))
